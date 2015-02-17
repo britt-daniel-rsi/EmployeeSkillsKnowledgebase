@@ -1,1 +1,4 @@
 /classes
+/bin
+/target
+/WebContent/WEB-INF/lib
