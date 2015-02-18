@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ 	  xmlns:h="http://java.sun.com/jsf/html"
+ 	  xmlns:ui="http://java.sun.com/jsf/facelets"      
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"      
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<head>
+
+<title>List Users</title>
+
+</head>
+<h:body>
+<table>
+	<tr>
+		<td><a href="index.xhtml">Home Page</a></td>
+		<td><a href="listUsers.xhtml">List Users</a></td>
+		<td><a href="saveUser.html">Save Users</a></td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<th>First Name</th>
+		<th>Surname</th>
+		<th>Birthdate</th>
+	</tr>
+	<tbody>
+		<h:dataTable var="listVar" value="#{listUserController.getUserList()}">
+			<h:column>#{listVar.username}</h:column>
+			<h:column>#{listVar.surname}</h:column>
+			<h:column>#{listVar.birthDate}</h:column>
+		</h:dataTable>
+	</tbody>
+</table>
+
+<h:messages />
+<c:forEach var="listVar" items="${userList}"> 
+    <h:outputText value="#{listVar.username}"/><h:outputText value="#{listVar.surname}"/><h:outputText value="#{listVar.birthDate}"/>
+</c:forEach>
+
+</h:body>
+</html>

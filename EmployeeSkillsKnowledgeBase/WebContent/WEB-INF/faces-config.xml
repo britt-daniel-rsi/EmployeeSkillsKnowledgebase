@@ -4,8 +4,8 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 			http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">	
+    
 	<application>	
-		
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>		
 		<locale-config>
 			<default-locale>en</default-locale>
@@ -16,6 +16,25 @@
 			<var>search</var>
 		</resource-bundle>
 	</application>
+	
+	<navigation-rule>
+   <from-view-id>index.xhtml</from-view-id>
+   <navigation-case>
+      <from-action>#{navigationController.moveToSearchUsersPage}</from-action>
+      <from-outcome>searchUsers</from-outcome>
+      <to-view-id>searchUsers.jsf</to-view-id>
+   </navigation-case>
+   <navigation-case>
+      <from-action>#{navigationController.moveToListUsersPage}</from-action>
+      <from-outcome>listUsers</from-outcome>
+      <to-view-id>listUsers.jsf</to-view-id>
+   </navigation-case>
+      <navigation-case>
+      <from-action>#{navigationController.moveToSaveUsersPage}</from-action>
+      <from-outcome>saveUsers</from-outcome>
+      <to-view-id>saveUsers.jsf</to-view-id>
+   </navigation-case>
+</navigation-rule>
 	
 	<!--  <managed-bean>
 		<managed-bean-name>list</managed-bean-name>
