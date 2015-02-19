@@ -26,7 +26,7 @@
 		<th>Birthdate</th>
 	</tr>
 	<tbody>
-		<h:dataTable var="listVar" value="#{listUserController.listUsers()}">
+		<h:dataTable var="listVar" value="#{listUserController.getUserList()}">
 			<h:column>#{listVar.username}</h:column>
 			<h:column>#{listVar.surname}</h:column>
 			<h:column>#{listVar.birthDate}</h:column>
