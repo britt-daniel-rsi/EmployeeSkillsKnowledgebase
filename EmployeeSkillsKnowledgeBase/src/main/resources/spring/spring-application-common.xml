@@ -25,8 +25,7 @@
                            http://www.springframework.org/schema/task
                            http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
-	<context:annotation-config />
-	<context:component-scan base-package="com.rsi.esk.controller.*" />
+
 
 	<task:annotation-driven executor="taskExecutor" />
 	<task:executor id="taskExecutor" pool-size="10-50"
@@ -45,5 +44,12 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="userService" class="com.rsi.esk.service.UserServiceImpl">
+	    <property name="userDao" ref="userDao"/>
+	</bean>
 
+	<bean id="userDao" class="com.rsi.esk.dao.UserDao">
+	    <property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 </beans>
