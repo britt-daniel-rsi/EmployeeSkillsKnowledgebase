@@ -10,6 +10,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name="dbo.contacts")
 public class User {
+	public User() {
+			}
+	public User(String username, String surname, String sex, Date birthDate) {
+		this.username=username;
+		this.surname=surname;
+		this.sex=sex;
+		this.birthDate=birthDate;
+	}
 	@Id
 	@Column(name="contactId")
 	private Integer id;

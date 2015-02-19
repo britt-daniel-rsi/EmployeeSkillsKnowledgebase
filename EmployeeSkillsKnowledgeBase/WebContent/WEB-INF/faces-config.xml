@@ -34,15 +34,12 @@
       <from-outcome>saveUsers</from-outcome>
       <to-view-id>saveUsers.jsf</to-view-id>
    </navigation-case>
+   <navigation-case>
+      <from-action>#{saveUserController.addUser}</from-action>
+      <from-outcome>listUsers</from-outcome>
+      <to-view-id>listUsers.jsf</to-view-id>
+   </navigation-case>
 </navigation-rule>
 	
-	<!--  <managed-bean>
-		<managed-bean-name>list</managed-bean-name>
-		<managed-bean-class>com.rsi.esk.service.ListBean</managed-bean-class>
-		<managed-bean-scope>view</managed-bean-scope>
-		<managed-property>
-			<property-name>userService</property-name>
-			<value>#{userService}</value>
-		</managed-property>
-	</managed-bean> -->
+	
 </faces-config>

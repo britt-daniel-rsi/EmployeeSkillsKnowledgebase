@@ -2,26 +2,82 @@ package com.rsi.esk.controller;
 
 
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.support.SessionStatus;
 
+import com.rsi.esk.domain.User;
+import com.rsi.esk.service.UserService;
 import com.rsi.esk.domain.User;
 import com.rsi.esk.service.UserService;
 
 @Controller
-@RequestMapping(value = "/" + BaseController.PAGES_SAVE_USER)
-public class SaveUserController extends BaseController{
+@ManagedBean(name="saveUserController", eager=true)
+public class SaveUserController extends BaseController implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
-	private String pageName = "stir";	
+	@ManagedProperty(value="#{userService}")
+	private UserService userService;
+	
+	
+	
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+	
+	public String addUser() {
+		try{
+			User user = new User(username, surname, sex, birthDate);
+			userService.addUser(user);
+		}
+		catch(Exception e){
+			System.err.println("Not all attributes set...");
+		}
+		return "listUsers";
+	}
+	
+	private String username;
+	private String surname;
+	private String sex;
+	private Date birthDate;
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+	
+	/*private String pageName = "stir";	
 	private UserService userService;
 	
 	@Autowired
@@ -60,6 +116,6 @@ public class SaveUserController extends BaseController{
 //        System.out.println("profession: " + user.getProfession());
          
         return PAGES_REGISTRATION_SUCCESS;
-    }
+    }*/
 	
 }
