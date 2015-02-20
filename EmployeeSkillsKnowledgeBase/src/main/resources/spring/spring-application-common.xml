@@ -52,4 +52,12 @@
 	<bean id="userDao" class="com.rsi.esk.dao.UserDao">
 	    <property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="phoneTypeDao" class="com.rsi.esk.dao.PhoneTypeDao">
+	    <property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="phoneTypeService" class="com.rsi.esk.service.PhoneTypeServiceImpl" >
+	    <property name="phoneTypeDao" ref="phoneTypeDao" />
+	</bean>
 </beans>
