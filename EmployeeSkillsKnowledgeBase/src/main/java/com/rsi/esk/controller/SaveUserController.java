@@ -5,7 +5,9 @@ import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.springframework.stereotype.Controller;
 
@@ -14,7 +16,7 @@ import com.rsi.esk.service.UserService;
 
 @Controller
 @ManagedBean(name = "saveUserController", eager = true)
-@SessionScoped
+@RequestScoped
 public class SaveUserController extends BaseController implements Serializable {
 	private static final long serialVersionUID = 1L;
 

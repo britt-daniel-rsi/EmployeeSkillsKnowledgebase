@@ -19,7 +19,7 @@ public class NavigationController extends BaseController implements Serializable
 	}
 	
 	public String moveToSearchUsersPage() {
-		return "searchUsers";
+		return "search";
 	}
 	
 	public String getTheMoveToListUsersPage() {

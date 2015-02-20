@@ -21,11 +21,12 @@ public class UserServiceImpl implements UserService, Serializable{
 	}
 
 	public void addUser(User user) {
-		// if(user.getId() != null && user.getId() > 0) {
+//		if(user.getId() != null && user.getId() > 0) {
 		user.setId(userDao.getMaxId() + 1);
 		user.setCreateDate(Calendar.getInstance().getTime());
 		System.out.println(user.getId());
 		getUserDao().save(user);
+		
 	}
 
 	public List<User> getAllUsers() {

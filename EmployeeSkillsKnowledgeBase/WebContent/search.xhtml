@@ -27,48 +27,21 @@
 				<td><a href="saveUsers.xhtml">Save Users</a></td>
 			</tr>
 		</table>
-
-		<h:form id="form">
-
+		
+		<h:form>
 			<table>
 				<tr>
-					<td><h:outputText value="First Name: " /></td>
-					<td><h:inputText id="username"
-							value="#{saveUserController.username}" /></td>
+					<td colspan="2" align="center"><h2>Search Users</h2></td>
 				</tr>
 				<tr>
-					<td><h:outputText value="Last Name: " /></td>
-					<td><h:inputText id="surname"
-							value="#{saveUserController.surname}" /></td>
+					<td><h:outputText value="Search by Surname: " /></td>
+					<!--  <td><h:inputText id="surname" value="#{searchController.surname}"/></td> -->
 				</tr>
 				<tr>
-					<td><h:outputText value="Sex: " /></td>
-					<td><h:selectOneRadio id="sex"
-							value="#{saveUserController.sex}" layout="pageDirection">
-							<f:selectItem itemValue="M" itemLabel="Male" />
-							<f:selectItem itemValue="F" itemLabel="Female" />
-						</h:selectOneRadio></td>
-				</tr>
-				<tr>
-					<td><h:outputText value="Birth Date: " /></td>
-					<td><h:inputText id="birthDate"
-							value="#{saveUserController.birthDate}">
-							<f:convertDateTime pattern="mm/dd/yyyy" />
-						</h:inputText></td>
-
-				</tr>
-				<tr>
-					<td><h:commandButton value="Save User" action="#{saveUserController.getSaveMessage}">
-							
-						</h:commandButton></td>
-				</tr>
-				<tr>
-					<td></td>
+					<td><h:outputText value="Search by Id: " /></td>
+					<!-- <td><h:inputText id="surname" value="#{searchController.id}"/></td> -->
 				</tr>
 			</table>
-
-
-
 		</h:form>
 		<h:messages />
 	</h:body>
