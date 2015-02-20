@@ -18,7 +18,7 @@
 	</application>
 	
 	<navigation-rule>
-   <from-view-id>index.xhtml</from-view-id>
+   <from-view-id>*</from-view-id>
    <navigation-case>
       <from-action>#{navigationController.moveToSearchUsersPage}</from-action>
       <from-outcome>searchUsers</from-outcome>
@@ -34,12 +34,7 @@
       <from-outcome>saveUsers</from-outcome>
       <to-view-id>saveUsers.jsf</to-view-id>
    </navigation-case>
-   <navigation-case>
-      <from-action>#{saveUserController.addUser}</from-action>
-      <from-outcome>listUsers</from-outcome>
-      <to-view-id>listUsers.jsf</to-view-id>
-   </navigation-case>
 </navigation-rule>
-	
+
 	
 </faces-config>

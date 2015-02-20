@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="dbo.contacts")
@@ -22,9 +23,11 @@ public class User {
 	@Column(name="contactId")
 	private Integer id;
 
+	@NotNull
 	@Column(name="name")
 	private String username;
     
+	@NotNull
 	@Column(name="surname")
 	private String surname;
 	
@@ -34,6 +37,8 @@ public class User {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
+	
+	@NotNull
 	@Column(name="birthdate")
     private Date birthDate;
     

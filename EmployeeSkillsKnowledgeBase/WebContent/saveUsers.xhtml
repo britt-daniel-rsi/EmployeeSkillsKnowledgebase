@@ -1,58 +1,78 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
- 	  xmlns:h="http://java.sun.com/jsf/html"
- 	  xmlns:ui="http://java.sun.com/jsf/facelets"      
-      xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
-
-<head>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<f:view>
+	<head>
 
 <title>Save Users</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" />
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>  
-  <script>
-  $(function() {
-    $( "#form\\:birthDate" ).datepicker();
-  });
-  </script>
-</head>
-<h:body>
-	<table>
-		<tr>
-			<td><a href="index.xhtml">Home Page</a></td>
-			<td><a href="listUsers.xhtml">List Users</a></td>
-			<td><a href="saveUser.xhtml">Save Users</a></td>
-		</tr>
-	</table>
-
-	<h:form id="form">
-
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" />
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script>
+	$(function() {
+		$("#form\\:birthDate").datepicker();
+	});
+</script>
+	</head>
+	<h:body>
 		<table>
 			<tr>
-				<td><h:outputText value="First Name: " /></td>
-				<td><h:inputText value="#{saveUserController.username}" /></td>
-			</tr>
-			<tr>
-				<td><h:outputText value="Last Name: " /></td>
-				<td><h:inputText value="#{saveUserController.surname}" /></td>
-			</tr>
-			<tr>
-				<td><h:outputText value="Sex: " /></td>
-				<td><h:selectOneRadio value="#{saveUserController.sex}">
-						<f:selectItem itemValue="M" itemlabel="Male" />
-						<f:selectItem itemValue="F" itemLabel="Female" />
-					</h:selectOneRadio></td>
-			</tr>
-			<tr>
-				<td><h:outputText value="Birth Date: " /></td>
-				<td><h:inputText id="birthDate"
-						value="#{saveUserController.birthDate}" /></td>
+				<td><a href="index.xhtml">Home Page</a></td>
+				<td><a href="listUsers.xhtml">List Users</a></td>
+				<td><a href="saveUsers.xhtml">Save Users</a></td>
 			</tr>
 		</table>
-		<h:commandButton value="Submit" action="#{saveUserController.addUser}" />
-	</h:form>
 
-</h:body>
+		<h:form id="form">
+
+			<table>
+				<tr>
+					<td><h:outputText value="First Name: " /></td>
+					<td><h:inputText id="username"
+							value="#{saveUserController.username}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Last Name: " /></td>
+					<td><h:inputText id="surname"
+							value="#{saveUserController.surname}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Sex: " /></td>
+					<td><h:selectOneRadio id="sex"
+							value="#{saveUserController.sex}">
+							<f:selectItem itemValue="M" itemlabel="Male" />
+							<f:selectItem itemValue="F" itemLabel="Female" />
+						</h:selectOneRadio></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Birth Date: " /></td>
+					<td><h:inputText id="birthDate"
+							value="#{saveUserController.birthDate}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:inputText></td>
+
+				</tr>
+				<tr>
+					<td><h:commandButton value="Save User">
+							<f:ajax execute="username surname sex birthDate"
+								render="saveMessage" />
+						</h:commandButton></td>
+				</tr>
+				<tr>
+					<td><h:outputText id="saveMessage"
+							value="#{saveUserController.saveMessage}" /></td>
+				</tr>
+			</table>
+
+
+
+		</h:form>
+		<h:messages />
+	</h:body>
+</f:view>
 </html>

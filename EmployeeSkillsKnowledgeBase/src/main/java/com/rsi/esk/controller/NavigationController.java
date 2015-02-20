@@ -1,11 +1,14 @@
 package com.rsi.esk.controller;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name="navigationController", eager=true)
-@RequestScoped
-public class NavigationController extends BaseController {
+@SessionScoped
+public class NavigationController extends BaseController implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	public String moveToListUsersPage() {
 		return "listUsers";
@@ -17,6 +20,10 @@ public class NavigationController extends BaseController {
 	
 	public String moveToSearchUsersPage() {
 		return "searchUsers";
+	}
+	
+	public String getTheMoveToListUsersPage() {
+		return "listUsers";
 	}
 	
 }
