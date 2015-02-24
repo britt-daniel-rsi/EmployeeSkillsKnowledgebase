@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.rsi.esk.domain.Phone;
+import com.rsi.esk.util.NumberUtils;
 
 public class PhoneDao {
 
@@ -18,12 +19,15 @@ public class PhoneDao {
 	}
 	public Integer getMaxId() {
 		Session session = this.sessionFactory.openSession();
-		SQLQuery query = session.createSQLQuery("select max(contactId) from dbo.phonenumber");
+		SQLQuery query = session.createSQLQuery("select max(phoneId) from dbo.phonenumber");
 		List maxIds = query.list();
 		System.out.println(maxIds.get(0));
 		session.close();
-		
-		return (Integer)maxIds.get(0);
+		Integer value = (Integer)maxIds.get(0);
+		if(NumberUtils.hasInteger(value)){
+			return value;
+		}
+		return Integer.valueOf(0);
 		}
 		
 	public void save(Phone phone){

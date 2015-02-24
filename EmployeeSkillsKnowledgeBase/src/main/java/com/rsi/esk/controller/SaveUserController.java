@@ -69,9 +69,10 @@ public class SaveUserController extends BaseController implements Serializable {
            
             System.out.println(phones.get(0).getPhoneType().getId());
             userService.addUser(user);
-            for (Phone phone : phones) {
-            	phone.setContactId(user.getId());
+            for (Phone phone : phones) {            	 
+            	phone.setContactId(user.getId());            	
             	phoneService.save(phone);
+            	System.out.println("INSIDE PHONE LOOP............!!!!!!");
             }
         } catch (Exception e) {
             return "";

@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -25,13 +26,7 @@ public class Phone {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idphonenumbertype")
     private PhoneType phoneType;
-
-    // dbo.phonenumber
-
-    // phoneId (id, int)
-    // contactId (int)
-    // phonenumber (string 50)
-    // idphonenumbertype (int)
+    
     public Phone() {
     }
 

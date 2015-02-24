@@ -23,8 +23,7 @@ public class UserDao {
 		SQLQuery query = session.createSQLQuery("select max(contactId) from dbo.contacts");
 		List maxIds = query.list();
 		System.out.println(maxIds.get(0));
-		session.close();
-		
+		session.close();		
 		return (Integer)maxIds.get(0);
 		}
 
