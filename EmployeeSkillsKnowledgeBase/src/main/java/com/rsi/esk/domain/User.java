@@ -47,11 +47,20 @@ public class User {
     
     @Column(name="sex",length=1)
 	private String sex;
+    
+    @Column(name="contactdesc")
+    private String phoneTypeDesc;
 
 //    private String password;
 //    private String email;
 //    private String profession;
     
+	public String getPhoneTypeDesc() {
+		return phoneTypeDesc;
+	}
+	public void setPhoneTypeDesc(String phoneTypeDesc) {
+		this.phoneTypeDesc = phoneTypeDesc;
+	}
 	public String getSex() {
 		return sex;
 	}

@@ -2,9 +2,11 @@ package com.rsi.esk.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import javax.validation.constraints.NotNull;
 
 
@@ -20,7 +22,8 @@ public class Phone {
     @NotNull
     @Column(name = "phonenumber")
     private String number;
-    @Column(name = "idphonenumbertype")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idphonenumbertype")
     private PhoneType phoneType;
 
     // dbo.phonenumber
@@ -32,8 +35,7 @@ public class Phone {
     public Phone() {
     }
 
-    public Phone(Integer contactId, String phoneNumber, PhoneType phoneType) {
-        this.ContactId = contactId;
+    public Phone(String phoneNumber, PhoneType phoneType) {        
         this.number = phoneNumber;
         this.phoneType = phoneType;
     }

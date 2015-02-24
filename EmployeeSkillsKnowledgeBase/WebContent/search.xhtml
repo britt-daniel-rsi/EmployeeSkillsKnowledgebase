@@ -9,15 +9,6 @@
 	<head>
 
 <title>Save Users</title>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" />
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<script>
-	$(function() {
-		$("#form\\:birthDate").datepicker();
-	});
-</script>
 	</head>
 	<h:body>
 		<table>
@@ -35,14 +26,44 @@
 				</tr>
 				<tr>
 					<td><h:outputText value="Search by Surname: " /></td>
-					<!--  <td><h:inputText id="surname" value="#{searchController.surname}"/></td> -->
+					<td><h:inputText id="surname" value="#{searchController.surname}"/></td> 
 				</tr>
 				<tr>
 					<td><h:outputText value="Search by Id: " /></td>
-					<!-- <td><h:inputText id="surname" value="#{searchController.id}"/></td> -->
+					<td><h:inputText id="id" value="#{searchController.id}"/></td> 
+				</tr>
+				<tr>
+					<td><h:commandButton value="Search"
+							action="#{searchController.search}">
+						</h:commandButton></td>
 				</tr>
 			</table>
 		</h:form>
+		
+		<h:dataTable var="listVar" value="#{searchController.userList}" cellspacing="6">
+			
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="First Name" />
+				</f:facet>
+				<h:outputText value="#{listVar.username}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Surname" />
+				</f:facet>
+				<h:outputText value="#{listVar.surname}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Birth Date" />
+				</f:facet>
+				<h:outputText value="#{listVar.birthDate}">
+					<f:convertDateTime dateStyle="full" type="date" />
+				</h:outputText>
+			</h:column>
+		</h:dataTable>
+		
 		<h:messages />
 	</h:body>
 </f:view>

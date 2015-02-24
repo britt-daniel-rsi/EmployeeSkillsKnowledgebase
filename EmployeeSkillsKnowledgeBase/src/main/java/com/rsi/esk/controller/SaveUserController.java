@@ -4,6 +4,7 @@ import com.rsi.esk.converter.PhoneTypeConverter;
 import com.rsi.esk.domain.Phone;
 import com.rsi.esk.domain.PhoneType;
 import com.rsi.esk.domain.User;
+import com.rsi.esk.service.PhoneService;
 import com.rsi.esk.service.PhoneTypeService;
 import com.rsi.esk.service.UserService;
 
@@ -33,6 +34,8 @@ public class SaveUserController extends BaseController implements Serializable {
     private UserService userService;
     @ManagedProperty(value = "#{phoneTypeService}")
     private PhoneTypeService phoneTypeService;
+    @ManagedProperty(value = "#{phoneService}")
+    private PhoneService phoneService;
     @ManagedProperty(value = "#{phoneTypeConverter}")
     private PhoneTypeConverter phoneTypeConverter;
     private String username;
@@ -41,6 +44,10 @@ public class SaveUserController extends BaseController implements Serializable {
     private Date birthDate;
     private List<Phone> phones;
     private Map<String, PhoneType> phoneTypes;
+
+    public void setPhoneService(PhoneService phoneService) {
+        this.phoneService = phoneService;
+    }
 
     public void setPhoneTypeConverter(PhoneTypeConverter phoneTypeConverter) {
         this.phoneTypeConverter = phoneTypeConverter;
@@ -59,9 +66,13 @@ public class SaveUserController extends BaseController implements Serializable {
     public String getSaveMessage() {
         try {
             User user = new User(username, surname, sex, birthDate);
-
+           
             System.out.println(phones.get(0).getPhoneType().getId());
             userService.addUser(user);
+            for (Phone phone : phones) {
+            	phone.setContactId(user.getId());
+            	phoneService.save(phone);
+            }
         } catch (Exception e) {
             return "";
         }

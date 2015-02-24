@@ -1,57 +1,69 @@
 package com.rsi.esk.controller;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.support.SessionStatus;
-
-import com.rsi.esk.domain.SearchCriteria;
 import com.rsi.esk.domain.User;
 import com.rsi.esk.service.UserService;
 import com.rsi.esk.util.NumberUtils;
 
+import org.apache.commons.lang3.StringUtils;
+
+import org.springframework.stereotype.Controller;
+
+import java.io.Serializable;
+
+import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+
+
 @Controller
-@RequestMapping(value = BaseController.BASE_MAPPING + BaseController.PAGES_SEARCH)
-public class SearchController extends BaseController {
+@ManagedBean(name = "searchController", eager = true)
+@RequestScoped
+public class SearchController extends BaseController implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @ManagedProperty(value = "#{userService}")
+    UserService userService;
+    List<User> userList;
+    String surname;
+    Integer id;
 
-	@Autowired
-	UserService userService;
+    public List<User> getUserList() {
+        return userList;
+    }
 
-		public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-		@RequestMapping(method = RequestMethod.GET)
-		public String search(Map<String, Object> model) {
-			SearchCriteria search = new SearchCriteria();
-			List<User> userList = new ArrayList<User>();  
-	        model.put("userList", userList);
-			model.put("search", search);
-			return PAGES_SEARCH;
-		}
-		
-		@RequestMapping(method = RequestMethod.POST)
-	    public String view(@ModelAttribute("search") SearchCriteria search, BindingResult result,
-	            SessionStatus state, Map<String, Object> model) {
-			List<User> userList = new ArrayList<User>();
-			NumberUtils num = new NumberUtils();
-			if(num.hasInteger(search.getId()) == true) {
-				userList=userService.IdSearch(search.getId());
-			}
-			else if(StringUtils.isNotEmpty(search.getSurname())) {
-				userList=userService.SurSearch(search.getSurname());
-			}
-			else {
-				userList=userService.getAllUsers();
-			}
-			model.put("userList", userList);
-	        return PAGES_SEARCH;
-	    }
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    public void search() {
+        NumberUtils num = new NumberUtils();
+
+        if (num.hasInteger(id)) {
+            userList = userService.IdSearch(id);
+        } else if (!StringUtils.isEmpty(surname)) {
+            userList = userService.SurSearch(surname);
+        } else {
+            userList = userService.getAllUsers();
+        }
+    }
 }
