@@ -58,7 +58,7 @@
 
 				</tr>
 				<tr>
-					<h:panelGroup>
+					<h:panelGrid>
 						<ui:repeat value="#{saveUserController.phones}" var="phone">
 							<h:inputText value="#{phone.number}" />
 							<h:selectOneMenu value="#{phone.phoneType}">
@@ -67,7 +67,7 @@
 							</h:selectOneMenu>
 							<br />
 						</ui:repeat>
-					</h:panelGroup>
+					</h:panelGrid>
 				</tr>
 				<tr>
 					<td><h:commandButton value="Extend">
