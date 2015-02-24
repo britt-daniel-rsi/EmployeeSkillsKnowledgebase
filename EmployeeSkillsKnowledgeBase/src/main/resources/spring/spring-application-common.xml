@@ -60,7 +60,14 @@
 	<bean id="phoneTypeService" class="com.rsi.esk.service.PhoneTypeServiceImpl" >
 	    <property name="phoneTypeDao" ref="phoneTypeDao" />
 	</bean>
-	
+	<bean id="phoneDao" class="com.rsi.esk.dao.PhoneDao">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <bean id="phoneService" class="com.rsi.esk.service.PhoneServiceImpl" >
+        <property name="phoneDao" ref="phoneDao" />
+    </bean>
+		
 	<bean id="phoneTypeConverter" class="com.rsi.esk.converter.PhoneTypeConverter" >
 	    <property name="phoneTypeService" ref="phoneTypeService" />
 	</bean>

@@ -20,7 +20,7 @@ public class User {
 		this.birthDate=birthDate;
 	}
 	@Id
-	@Column(name="contactId")
+	@Column(name="contactId",length=50)
 	private Integer id;
 
 	@NotNull
@@ -28,7 +28,7 @@ public class User {
 	private String username;
     
 	@NotNull
-	@Column(name="surname")
+	@Column(name="surname",length=50)
 	private String surname;
 	
     public String getSurname() {
@@ -45,7 +45,7 @@ public class User {
     @Column(name="contactCreateDate")
     private Date createDate;
     
-    @Column(name="sex")
+    @Column(name="sex",length=1)
 	private String sex;
 
 //    private String password;
