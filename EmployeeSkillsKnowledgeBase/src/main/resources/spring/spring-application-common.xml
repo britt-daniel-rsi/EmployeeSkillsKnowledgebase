@@ -60,4 +60,8 @@
 	<bean id="phoneTypeService" class="com.rsi.esk.service.PhoneTypeServiceImpl" >
 	    <property name="phoneTypeDao" ref="phoneTypeDao" />
 	</bean>
+	
+	<bean id="phoneTypeConverter" class="com.rsi.esk.converter.PhoneTypeConverter" >
+	    <property name="phoneTypeService" ref="phoneTypeService" />
+	</bean>
 </beans>

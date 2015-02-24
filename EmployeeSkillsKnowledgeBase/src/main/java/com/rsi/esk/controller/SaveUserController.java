@@ -1,6 +1,16 @@
 package com.rsi.esk.controller;
 
+import com.rsi.esk.converter.PhoneTypeConverter;
+import com.rsi.esk.domain.Phone;
+import com.rsi.esk.domain.PhoneType;
+import com.rsi.esk.domain.User;
+import com.rsi.esk.service.PhoneTypeService;
+import com.rsi.esk.service.UserService;
+
+import org.springframework.stereotype.Controller;
+
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -8,131 +18,127 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 
-import org.springframework.stereotype.Controller;
-
-import com.rsi.esk.domain.Phone;
-import com.rsi.esk.domain.PhoneType;
-import com.rsi.esk.domain.User;
-import com.rsi.esk.service.PhoneTypeServiceImpl;
-import com.rsi.esk.service.UserService;
 
 @Controller
 @ManagedBean(name = "saveUserController", eager = true)
 @RequestScoped
 public class SaveUserController extends BaseController implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+    @ManagedProperty(value = "#{userService}")
+    private UserService userService;
+    @ManagedProperty(value = "#{phoneTypeService}")
+    private PhoneTypeService phoneTypeService;
+    @ManagedProperty(value = "#{phoneTypeConverter}")
+    private PhoneTypeConverter phoneTypeConverter;
+    private String username;
+    private String surname;
+    private String sex;
+    private Date birthDate;
+    private List<Phone> phones;
+    private Map<String, PhoneType> phoneTypes;
 
-	@ManagedProperty(value = "#{userService}")
-	private UserService userService;
-	
-	@ManagedProperty(value = "#{phoneTypeService}")
-	private PhoneTypeServiceImpl phoneTypeService;
-	
-	private String username;
-	private String surname;
-	private String sex;
-	private Date birthDate;
-	
-	private List<Phone> phones;
-	
-	private Map<String,PhoneType> phoneTypes;
+    public void setPhoneTypeConverter(PhoneTypeConverter phoneTypeConverter) {
+        this.phoneTypeConverter = phoneTypeConverter;
+    }
 
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-	
-	 @PostConstruct
-	    public void init() {
-	       phones = new ArrayList<Phone>();
-	       phones.add(new Phone());
-	    }
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
-	public String getSaveMessage() {
-		try {
-			User user = new User(username, surname, sex, birthDate);
+    @PostConstruct
+    public void init() {
+        phones = new ArrayList<Phone>();
+        phones.add(new Phone());
+    }
 
-			userService.addUser(user);
-		} catch (Exception e) {
-			return "";
-		}
-		return "User Save Successful";
-	}
+    public String getSaveMessage() {
+        try {
+            User user = new User(username, surname, sex, birthDate);
 
-	public String getUsername() {
-		return username;
-	}
+            System.out.println(phones.get(0).getPhoneType().getId());
+            userService.addUser(user);
+        } catch (Exception e) {
+            return "";
+        }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+        return "User Save Successful";
+    }
 
-	public String getSurname() {
-		return surname;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getSex() {
-		return sex;
-	}
+    public String getSurname() {
+        return surname;
+    }
 
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-	public Date getBirthDate() {
-		return birthDate;
-	}
+    public String getSex() {
+        return sex;
+    }
 
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
-	public UserService getUserService() {
-		return userService;
-	}
+    public Date getBirthDate() {
+        return birthDate;
+    }
 
-	public Map<String,PhoneType> getPhoneTypes() {
-		if(phoneTypes == null) {
-			List<PhoneType> phoneTypeList = phoneTypeService.getPhoneTypes();
-			phoneTypes = new HashMap<String, PhoneType>();
-			for(PhoneType type: phoneTypeList) {
-				phoneTypes.put(type.getDescription(), type);
-			}
-		}
-		return phoneTypes;
-	}
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
 
-	public void setPhoneTypes(Map<String,PhoneType> phoneTypes) {
-		this.phoneTypes = phoneTypes;
-	}
+    public UserService getUserService() {
+        return userService;
+    }
 
-	public List<Phone> getPhones() {
-		return phones;
-	}
+    public Map<String, PhoneType> getPhoneTypes() {
+        if (phoneTypes == null) {
+            List<PhoneType> phoneTypeList = phoneTypeService.getPhoneTypes();
+            phoneTypes = new HashMap<String, PhoneType>();
 
-	public void setPhones(List<Phone> phones) {
-		this.phones = phones;
-	}
-	
-	public void extendPhones() {
-		phones.add(new Phone());
-	}
+            for (PhoneType type : phoneTypeList) {
+                phoneTypes.put(type.getDescription(), type);
+            }
+        }
 
-	public PhoneTypeServiceImpl getPhoneTypeService() {
-		return phoneTypeService;
-	}
+        return phoneTypes;
+    }
 
-	public void setPhoneTypeService(PhoneTypeServiceImpl phoneTypeService) {
-		this.phoneTypeService = phoneTypeService;
-	}
+    public void setPhoneTypes(Map<String, PhoneType> phoneTypes) {
+        this.phoneTypes = phoneTypes;
+    }
 
+    public List<Phone> getPhones() {
+        return phones;
+    }
+
+    public PhoneTypeService getPhoneTypeService() {
+        return phoneTypeService;
+    }
+
+    public void setPhoneTypeService(PhoneTypeService phoneTypeService) {
+        this.phoneTypeService = phoneTypeService;
+    }
+
+    public void setPhones(List<Phone> phones) {
+        this.phones = phones;
+    }
+
+    public void extendPhones() {
+        phones.add(new Phone());
+    }
 }

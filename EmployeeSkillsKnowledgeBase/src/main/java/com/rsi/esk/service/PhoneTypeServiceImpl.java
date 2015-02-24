@@ -1,24 +1,31 @@
 package com.rsi.esk.service;
 
-import java.util.List;
-
 import com.rsi.esk.dao.PhoneTypeDao;
 import com.rsi.esk.domain.PhoneType;
 
-public class PhoneTypeServiceImpl implements PhoneTypeService{
+import java.util.List;
 
-	private PhoneTypeDao phoneTypeDao;
-	
-	public List<PhoneType> getPhoneTypes() {
-		return phoneTypeDao.list();
-	}
 
-	public PhoneTypeDao getPhoneTypeDao() {
-		return phoneTypeDao;
-	}
+public class PhoneTypeServiceImpl implements PhoneTypeService {
+    private PhoneTypeDao phoneTypeDao;
 
-	public void setPhoneTypeDao(PhoneTypeDao phoneTypeDao) {
-		this.phoneTypeDao = phoneTypeDao;
-	}
-	
+    public List<PhoneType> getPhoneTypes() {
+        return phoneTypeDao.list();
+    }
+
+    public PhoneTypeDao getPhoneTypeDao() {
+        return phoneTypeDao;
+    }
+
+    public void setPhoneTypeDao(PhoneTypeDao phoneTypeDao) {
+        this.phoneTypeDao = phoneTypeDao;
+    }
+
+    public PhoneType getPhoneTypeByDescription(String description) {
+        return phoneTypeDao.getPhoneTypeByDescription(description);
+    }
+
+    public PhoneType getPhoneTypeById(Long id) {
+        return phoneTypeDao.getPhoneTypeById(id);
+    }
 }

@@ -58,8 +58,27 @@
 
 				</tr>
 				<tr>
-					<td><h:commandButton value="Save User" action="#{saveUserController.getSaveMessage}">
-							
+					<h:panelGroup>
+						<ui:repeat value="#{saveUserController.phones}" var="phone">
+							<h:inputText value="#{phone.number}" />
+							<h:selectOneMenu value="#{phone.phoneType}">
+								<f:selectItems value="#{saveUserController.phoneTypes}" />
+								<f:converter binding="#{phoneTypeConverter}" />
+							</h:selectOneMenu>
+							<br />
+						</ui:repeat>
+					</h:panelGroup>
+				</tr>
+				<tr>
+					<td><h:commandButton value="Extend">
+							<f:ajax listener="#{saveUserController.extendPhones}"
+								process="@form" render="@form" />
+						</h:commandButton></td>
+				</tr>
+				<tr>
+					<td><h:commandButton value="Save User"
+							action="#{saveUserController.getSaveMessage}">
+
 						</h:commandButton></td>
 				</tr>
 				<tr>

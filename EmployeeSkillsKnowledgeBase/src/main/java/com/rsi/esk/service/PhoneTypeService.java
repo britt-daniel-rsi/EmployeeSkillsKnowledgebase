@@ -1,10 +1,14 @@
 package com.rsi.esk.service;
 
-import java.util.List;
-
 import com.rsi.esk.domain.PhoneType;
 
-public interface PhoneTypeService {
+import java.util.List;
 
-	List<PhoneType> getPhoneTypes();
+
+public interface PhoneTypeService {
+    List<PhoneType> getPhoneTypes();
+
+    PhoneType getPhoneTypeByDescription(String description);
+
+    PhoneType getPhoneTypeById(Long id);
 }
