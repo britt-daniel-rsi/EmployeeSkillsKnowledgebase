@@ -44,7 +44,21 @@
 				</h:outputText>
 			</h:column>
 		</h:dataTable>
-	
+		
+	<h:dataTable var="listVar2" value="#{listUserController.phoneList}" cellspacing="6">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Phone Number" />
+				</f:facet>
+				<h:outputText value="#{listVar2.number}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Phone Type" />
+				</f:facet>
+				<h:outputText value="#{listVar2.phoneType.getDescription}" />
+			</h:column>			
+		</h:dataTable>
 
 
 <h:messages />

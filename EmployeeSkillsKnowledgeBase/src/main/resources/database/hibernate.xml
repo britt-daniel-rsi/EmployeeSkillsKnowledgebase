@@ -21,6 +21,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 			<list>
 				<value>com.rsi.esk.domain.User</value>
 				<value>com.rsi.esk.domain.PhoneType</value>
+				<value>com.rsi.esk.domain.Phone</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

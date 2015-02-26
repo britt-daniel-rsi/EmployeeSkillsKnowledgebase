@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 
 @Entity
@@ -21,6 +22,7 @@ public class Phone {
     @Column(name = "contactId")
     private Integer ContactId;
     @NotNull
+    @Pattern(regexp="\\(\\d{3}\\)\\d{3}-\\d{4}")
     @Column(name = "phonenumber")
     private String number;
     @ManyToOne(fetch = FetchType.LAZY)
