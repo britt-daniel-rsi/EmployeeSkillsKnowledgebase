@@ -59,8 +59,8 @@
 
 				</tr>
 				<tr>
-					<h:panelGrid>
-						<ui:repeat value="#{saveUserController.phones}" var="phone">
+					<h:panelGrid id="saveUser_phonePanelGrid">
+						<ui:repeat value="#{saveUserController.phones}" var="phone" varStatus="saveuser_phone">
 							<h:inputText value="#{phone.number}" />
 							<h:selectOneMenu value="#{phone.phoneType}">
 								<f:selectItems value="#{saveUserController.phoneTypes}" />
@@ -73,7 +73,7 @@
 				<tr>
 					<td><h:commandButton value="Extend">
 							<f:ajax listener="#{saveUserController.extendPhones}"
-								process="@form" render="@form" />
+								process="@form" render="saveUser_phonePanelGrid" />
 						</h:commandButton></td>
 				</tr>
 				<tr>

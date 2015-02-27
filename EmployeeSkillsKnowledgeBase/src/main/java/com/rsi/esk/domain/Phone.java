@@ -36,6 +36,9 @@ public class Phone {
         this.number = phoneNumber;
         this.phoneType = phoneType;
     }
+    public Phone(String phoneNumber) {        //Constructor for test
+        this.number = phoneNumber;       
+    }
 
     public Integer getId() {
         return Id;
