@@ -33,7 +33,7 @@ public class ListUserController extends BaseController implements Serializable {
 	
 	private List<Phone> phoneList;
 	private Map<String, PhoneType> phoneTypes;
-	private MultiMap<User, Phone, PhoneType> comboMap;
+	
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;

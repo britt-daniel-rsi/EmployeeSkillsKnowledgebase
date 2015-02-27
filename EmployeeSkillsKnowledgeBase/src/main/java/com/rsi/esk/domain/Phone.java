@@ -25,7 +25,7 @@ public class Phone {
     @Pattern(regexp="\\(\\d{3}\\)\\d{3}-\\d{4}")
     @Column(name = "phonenumber")
     private String number;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idphonenumbertype")
     private PhoneType phoneType;
     

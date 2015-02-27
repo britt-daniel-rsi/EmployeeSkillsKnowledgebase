@@ -11,7 +11,6 @@ import com.rsi.esk.service.UserService;
 import org.springframework.stereotype.Controller;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,15 +18,16 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 
 @Controller
 @ManagedBean(name = "saveUserController", eager = true)
-@RequestScoped
+@ViewScoped
 public class SaveUserController extends BaseController implements Serializable {
     private static final long serialVersionUID = 1L;
     @ManagedProperty(value = "#{userService}")
@@ -59,8 +59,10 @@ public class SaveUserController extends BaseController implements Serializable {
 
     @PostConstruct
     public void init() {
-        phones = new ArrayList<Phone>();
-        phones.add(new Phone());
+        if (phones == null){
+	    	phones = new ArrayList<Phone>();
+	        phones.add(new Phone());
+        }
     }
 
     public String getSaveMessage() {
