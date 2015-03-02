@@ -68,14 +68,27 @@
 
 
 			<h:panelGroup>
+				<h:panelGrid columns="4" cellpadding="0" cellspacing="10">
+						<f:facet name="header">
+							<h:outputText value="First Name        //" />
+							<h:outputText value="Surname           //" />
+							<h:outputText value="Birth Date         //" />
+							<h:outputText value="Phone(s)         //" />
+						</f:facet>
+				</h:panelGrid>					
 				<ui:repeat var="userLoop" value="#{listUserController.userList}">
-					<h:panelGrid>
+					<h:panelGrid columns="4" cellpadding="0" cellspacing="6">
+																	
 						<h:outputText  value="#{userLoop.username}"/>
 						<h:outputText  value="#{userLoop.surname}"/>
-						<h:outputText  value="#{userLoop.birthDate}"/>
+						<h:outputText  value="#{userLoop.birthDate}">
+							<f:convertDateTime dateStyle="full" type="date" />
+						</h:outputText>
 						<ui:repeat var="phoneLoop" value="#{userLoop.phoneList}">
-							<h:outputText  value="#{phoneLoop.number}"/>
-							<h:outputText  value="#{phoneLoop.phoneType.description}"/>
+							<h:panelGrid >
+								<h:outputText  value="#{phoneLoop.number}  (#{phoneLoop.phoneType.description})"/>
+						<!-- 		<h:outputText  value="#{phoneLoop.phoneType.description}"/>  -->
+							</h:panelGrid>
 						</ui:repeat>
 					</h:panelGrid>
 				</ui:repeat>
