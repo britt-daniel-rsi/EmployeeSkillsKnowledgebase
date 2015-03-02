@@ -67,6 +67,21 @@
 		</h:dataTable>
 
 
+			<h:panelGroup>
+				<ui:repeat var="userLoop" value="#{listUserController.userList}">
+					<h:panelGrid>
+						<h:outputText  value="#{userLoop.username}"/>
+						<h:outputText  value="#{userLoop.surname}"/>
+						<h:outputText  value="#{userLoop.birthDate}"/>
+						<ui:repeat var="phoneLoop" value="#{userLoop.phoneList}">
+							<h:outputText  value="#{phoneLoop.number}"/>
+							<h:outputText  value="#{phoneLoop.phoneType.description}"/>
+						</ui:repeat>
+					</h:panelGrid>
+				</ui:repeat>
+			</h:panelGroup>
+
+
 <h:messages />
 
 </h:body>
