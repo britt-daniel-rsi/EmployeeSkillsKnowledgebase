@@ -15,7 +15,7 @@
 			<tr>
 				<td><a href="index.xhtml">Home Page</a></td>
 				<td><a href="listUsers.xhtml">List Users</a></td>
-				<td><a href="saveUsers.xhtml">Save Users</a></td>
+				<td><a href="saveUsers.xhtml">Save Users</a></td>				
 			</tr>
 		</table>
 		
@@ -40,29 +40,36 @@
 			</table>
 		</h:form>
 		
-		<h:dataTable var="listVar" value="#{searchController.userList}" cellspacing="6">
-			
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="First Name" />
-				</f:facet>
-				<h:outputText value="#{listVar.username}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Surname" />
-				</f:facet>
-				<h:outputText value="#{listVar.surname}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Birth Date" />
-				</f:facet>
-				<h:outputText value="#{listVar.birthDate}">
-					<f:convertDateTime dateStyle="full" type="date" />
-				</h:outputText>
-			</h:column>
-		</h:dataTable>
+		
+			<table class="order-table">
+				<tr>
+						<th class="order-table-header">First Name</th>
+						<th class="order-table-header">Surname</th>
+						<th class="order-table-header">Birth Date </th>
+						<th class="order-table-header">Phone(s)</th>
+				</tr>	
+				<tbody>			
+					<ui:repeat var="userLoop" value="#{searchController.userList}">
+						<h:panelGroup>		
+							<tr>
+														
+							<td class="order-table-row">#{userLoop.username}</td> 
+							<td class="order-table-row">#{userLoop.surname}</td> 
+							<td class="order-table-row">#{listUserController.getBirthDateString(userLoop.birthDate)}</td> 
+														
+							<ui:repeat var="phoneLoop" value="#{userLoop.phoneList}">
+								<td class="order-table-row">#{phoneLoop.number}</td> 
+								<td class="order-table-row">[#{phoneLoop.phoneType.description}]</td> 
+									
+							<!-- 		<h:outputText  value="#{phoneLoop.phoneType.description}"/>  -->
+															
+							</ui:repeat>
+							
+							</tr>
+						</h:panelGroup>
+					</ui:repeat>
+				</tbody>
+			</table>
 		
 		<h:messages />
 	</h:body>

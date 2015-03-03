@@ -6,93 +6,48 @@
       xmlns:f="http://java.sun.com/jsf/core"      
       xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
-<head>
-
-<title>List Users</title>
-
-</head>
+<h:head>
+	<title>List Users</title>
+	<h:outputStylesheet library="css" name="table-style.css"  />
+</h:head>
 <h:body>
 <table>
 	<tr>
 		<td><a href="index.xhtml">Home Page</a></td>
-		<td><a href="listUsers.xhtml">List Users</a></td>
 		<td><a href="saveUsers.xhtml">Save Users</a></td>
+		<td><a href="search.xhtml">Search</a></td>
 	</tr>
 </table>
 
-	
-	
-		<h:dataTable var="listVar" value="#{listUserController.userList}" cellspacing="6">
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="First Name" />
-				</f:facet>
-				<h:outputText value="#{listVar.username}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Surname" />
-				</f:facet>
-				<h:outputText value="#{listVar.surname}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Birth Date" />
-				</f:facet>
-				<h:outputText value="#{listVar.birthDate}">
-					<f:convertDateTime dateStyle="full" type="date" />
-				</h:outputText>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Phone" />
-				</f:facet>
-				<h:outputText value="#{listVar.phoneList.get(0).number}" />
-			</h:column>
-		</h:dataTable>
-		
-	<h:dataTable var="listVar2" value="#{listUserController.phoneList}" cellspacing="6">
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Phone Number" />
-				</f:facet>
-				<h:outputText value="#{listVar2.number}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Phone Type" />
-				</f:facet>
-				<h:outputText value="#{listVar2.phoneType.description}" />
-			</h:column>			
-		</h:dataTable>
-
-
-			<h:panelGroup>
-				<h:panelGrid columns="4" cellpadding="0" cellspacing="10">
-						<f:facet name="header">
-							<h:outputText value="First Name        //" />
-							<h:outputText value="Surname           //" />
-							<h:outputText value="Birth Date         //" />
-							<h:outputText value="Phone(s)         //" />
-						</f:facet>
-				</h:panelGrid>					
-				<ui:repeat var="userLoop" value="#{listUserController.userList}">
-					<h:panelGrid columns="4" cellpadding="0" cellspacing="6">
-																	
-						<h:outputText  value="#{userLoop.username}"/>
-						<h:outputText  value="#{userLoop.surname}"/>
-						<h:outputText  value="#{userLoop.birthDate}">
-							<f:convertDateTime dateStyle="full" type="date" />
-						</h:outputText>
-						<ui:repeat var="phoneLoop" value="#{userLoop.phoneList}">
-							<h:panelGrid >
-								<h:outputText  value="#{phoneLoop.number}  (#{phoneLoop.phoneType.description})"/>
-						<!-- 		<h:outputText  value="#{phoneLoop.phoneType.description}"/>  -->
-							</h:panelGrid>
-						</ui:repeat>
-					</h:panelGrid>
-				</ui:repeat>
-			</h:panelGroup>
+			<table class="order-table">
+				<tr>
+						<th class="order-table-header">First Name</th>
+						<th class="order-table-header">Surname</th>
+						<th class="order-table-header">Birth Date </th>
+						<th class="order-table-header">Phone(s)</th>
+				</tr>	
+				<tbody>			
+					<ui:repeat var="userLoop" value="#{listUserController.userList}">
+						<h:panelGroup>		
+							<tr>
+														
+							<td class="order-table-row">#{userLoop.username}</td> 
+							<td class="order-table-row">#{userLoop.surname}</td> 
+							<td class="order-table-row">#{listUserController.getBirthDateString(userLoop.birthDate)}</td> 
+														
+							<ui:repeat var="phoneLoop" value="#{userLoop.phoneList}">
+								<td class="order-table-row">#{phoneLoop.number}</td> 
+								<td class="order-table-row">[#{phoneLoop.phoneType.description}]</td> 
+									
+							<!-- 		<h:outputText  value="#{phoneLoop.phoneType.description}"/>  -->
+															
+							</ui:repeat>
+							
+							</tr>
+						</h:panelGroup>
+					</ui:repeat>
+				</tbody>
+			</table>
 
 
 <h:messages />

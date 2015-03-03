@@ -25,7 +25,7 @@
 			<tr>
 				<td><a href="index.xhtml">Home Page</a></td>
 				<td><a href="listUsers.xhtml">List Users</a></td>
-				<td><a href="saveUsers.xhtml">Save Users</a></td>
+				<td><a href="search.xhtml">Search</a></td>
 			</tr>
 		</table>
 
@@ -71,7 +71,7 @@
 					</h:panelGrid>
 				</tr>
 				<tr>
-					<td><h:commandButton value="Extend">
+					<td><h:commandButton value="Extend" >
 							<f:ajax listener="#{saveUserController.extendPhones}"
 								process="@form" render="saveUser_phonePanelGrid" />
 						</h:commandButton></td>

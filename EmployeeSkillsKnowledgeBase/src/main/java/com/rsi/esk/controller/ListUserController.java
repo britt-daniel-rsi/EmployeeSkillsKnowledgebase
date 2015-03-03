@@ -1,7 +1,11 @@
 package com.rsi.esk.controller;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,8 +37,17 @@ public class ListUserController extends BaseController implements Serializable {
 	
 	private List<Phone> phoneList;
 	private Map<String, PhoneType> phoneTypes;
+	private String birthDateString;
+	private DateFormat df = new SimpleDateFormat("E, dd MMM yyyy ");
 	
 
+	public String getBirthDateString(Timestamp birth) {		
+		return df.format(birth);
+	}
+	public String getBirthDateString(Date birth) {
+		
+		return df.format(birth);
+	}
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}

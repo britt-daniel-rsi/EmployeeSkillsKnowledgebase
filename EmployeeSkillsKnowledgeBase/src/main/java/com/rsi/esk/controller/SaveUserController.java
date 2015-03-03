@@ -42,7 +42,7 @@ public class SaveUserController extends BaseController implements Serializable {
     private String surname;
     private String sex;
     private Date birthDate;
-    private List<Phone> phones;
+    private List<Phone> phones ;
     private Map<String, PhoneType> phoneTypes;
 
     public void setPhoneService(PhoneService phoneService) {
@@ -59,7 +59,8 @@ public class SaveUserController extends BaseController implements Serializable {
 
     @PostConstruct
     public void init() {
-        if (phones == null){
+
+    	if (phones == null){
 	    	phones = new ArrayList<Phone>();
 	        phones.add(new Phone());
         }
@@ -151,7 +152,9 @@ public class SaveUserController extends BaseController implements Serializable {
         this.phones = phones;
     }
 
-    public void extendPhones() {
+    public String extendPhones() {
         phones.add(new Phone());
+        return null;
     }
+    
 }
