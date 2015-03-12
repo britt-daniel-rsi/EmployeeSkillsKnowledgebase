@@ -6,7 +6,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import javax.validation.constraints.NotNull;
@@ -38,7 +37,7 @@ public class Phone {
         this.phoneType = phoneType;
     }
 
-    public Phone(String phoneNumber) { 					//Constructor for test
+    public Phone(String phoneNumber) { //Constructor for test
         this.number = phoneNumber;
     }
 

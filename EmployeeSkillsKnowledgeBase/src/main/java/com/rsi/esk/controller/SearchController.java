@@ -5,12 +5,16 @@ import com.rsi.esk.service.UserService;
 import com.rsi.esk.util.NumberUtils;
 
 import org.apache.commons.lang3.StringUtils;
+
 import org.springframework.stereotype.Controller;
 
 import java.io.Serializable;
+
 import java.sql.Timestamp;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -29,11 +33,11 @@ public class SearchController extends BaseController implements Serializable {
     String surname;
     Integer id;
     private DateFormat df = new SimpleDateFormat("E, dd MMM yyyy ");
-    
-    
-    public String getBirthDateString(Timestamp birth) {		
-		return df.format(birth);
-	}
+
+    public String getBirthDateString(Timestamp birth) {
+        return df.format(birth);
+    }
+
     public List<User> getUserList() {
         return userList;
     }
@@ -62,8 +66,8 @@ public class SearchController extends BaseController implements Serializable {
         this.userService = userService;
     }
 
-    public void search() { 
-    	if (NumberUtils.hasInteger(id)) {
+    public void search() {
+        if (NumberUtils.hasInteger(id)) {
             userList = userService.IdSearch(id);
         } else if (!StringUtils.isEmpty(surname)) {
             userList = userService.SurSearch(surname);

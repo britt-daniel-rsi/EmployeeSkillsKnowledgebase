@@ -11,6 +11,7 @@ import com.rsi.esk.service.UserService;
 import org.springframework.stereotype.Controller;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,10 +19,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 
@@ -42,7 +42,7 @@ public class SaveUserController extends BaseController implements Serializable {
     private String surname;
     private String sex;
     private Date birthDate;
-    private List<Phone> phones ;
+    private List<Phone> phones;
     private Map<String, PhoneType> phoneTypes;
 
     public void setPhoneService(PhoneService phoneService) {
@@ -59,22 +59,22 @@ public class SaveUserController extends BaseController implements Serializable {
 
     @PostConstruct
     public void init() {
-
-    	if (phones == null){
-	    	phones = new ArrayList<Phone>();
-	        phones.add(new Phone());
+        if (phones == null) {
+            phones = new ArrayList<Phone>();
+            phones.add(new Phone());
         }
     }
 
     public String getSaveMessage() {
         try {
             User user = new User(username, surname, sex, birthDate);
-           
+
             System.out.println(phones.get(0).getPhoneType().getId());
             userService.addUser(user);
-            for (Phone phone : phones) {            	 
-            	phone.setUser(user);            	
-            	phoneService.save(phone);
+
+            for (Phone phone : phones) {
+                phone.setUser(user);
+                phoneService.save(phone);
             }
         } catch (Exception e) {
             return "";
@@ -154,7 +154,7 @@ public class SaveUserController extends BaseController implements Serializable {
 
     public String extendPhones() {
         phones.add(new Phone());
+
         return null;
     }
-    
 }
