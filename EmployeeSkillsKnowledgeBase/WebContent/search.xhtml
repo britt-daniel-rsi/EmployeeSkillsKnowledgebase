@@ -6,10 +6,16 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 <f:view>
-	<head>
-
-<title>Save Users</title>
-	</head>
+	<h:head>
+		<title>Save Users</title>
+		<script>
+		<!-- $(document).ready(function(){
+			<!--	$("#searchButton").click(function(){
+				<!--		$("#searchTable").show();
+				<!--	});
+			<!--}); 
+		</script>
+	</h:head>
 	<h:body>
 		<table>
 			<tr>
@@ -34,14 +40,14 @@
 				</tr>
 				<tr>
 					<td><h:commandButton value="Search"
-							action="#{searchController.search}">
+							action="#{searchController.search}" id="searchButton">
 						</h:commandButton></td>
 				</tr>
 			</table>
 		</h:form>
 		
 		
-			<table class="order-table">
+			<table class="order-table" id="searchTable" style="display:none">
 				<tr>
 						<th class="order-table-header">First Name</th>
 						<th class="order-table-header">Surname</th>
