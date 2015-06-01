@@ -1,34 +1,15 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
-<f:view>
-	<h:head>
-		<title>Save Users</title>
-		<script>
-		<!-- $(document).ready(function(){ -->
-			<!--	$("#searchButton").click(function(){ -->
-				<!--		$("#searchTable").show();-->
-				<!--	});-->
-			<!--}); -->
-		</script>
-	</h:head>
-	<h:body>
-		<table>
-			<tr>
-				<td><a href="index.xhtml">Home Page</a></td>
-				<td><a href="listUsers.xhtml">List Users</a></td>
-				<td><a href="saveUsers.xhtml">Save Users</a></td>				
-			</tr>
-		</table>
-		
+<ui:composition template="/WEB-INF/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="title">Search</ui:define>
+	<ui:define name="content">
 		<h:form>
 			<table>
 				<tr>
-					<td colspan="2" align="center"><h2>Search Users</h2></td>
+					<td><h2>Search Users</h2></td>
 				</tr>
 				<tr>
 					<td><h:outputText value="Search by Surname: " /></td>
@@ -39,9 +20,7 @@
 					<td><h:inputText id="id" value="#{searchController.id}"/></td> 
 				</tr>
 				<tr>
-					<td><h:commandButton value="Search"
-							action="#{searchController.search}" id="searchButton">
-						</h:commandButton></td>
+					<td><h:commandButton value="Search"	action="#{searchController.search}" id="searchButton"></h:commandButton></td>
 				</tr>
 			</table>
 		</h:form>
@@ -76,8 +55,5 @@
 					</ui:repeat>
 				</tbody>
 			</table>
-		
-		<h:messages />
-	</h:body>
-</f:view>
-</html>
+	</ui:define>
+</ui:composition>
