@@ -26,4 +26,8 @@ public class NavigationController extends BaseController implements Serializable
     public String getTheMoveToListUsersPage() {
         return "listUsers";
     }
+    
+    public String moveToHomePage() {
+    	return "index";
+    }
 }
