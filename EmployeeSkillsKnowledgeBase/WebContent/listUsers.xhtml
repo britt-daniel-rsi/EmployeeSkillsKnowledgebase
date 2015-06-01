@@ -1,23 +1,12 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
- 	  xmlns:h="http://java.sun.com/jsf/html"
- 	  xmlns:ui="http://java.sun.com/jsf/facelets"      
-      xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<ui:composition template="/WEB-INF/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
-	<title>List Users</title>
-	<h:outputStylesheet library="css" name="table-style.css"  />
-</h:head>
-<h:body>
-<table>
-	<tr>
-		<td><a href="index.xhtml">Home Page</a></td>
-		<td><a href="saveUsers.xhtml">Save Users</a></td>
-		<td><a href="search.xhtml">Search</a></td>
-	</tr>
-</table>
+    <ui:define name="title">List Users</ui:define>
+
+    <ui:define name="content">
 
 			<table class="order-table">
 				<tr>
@@ -50,7 +39,5 @@
 			</table>
 
 
-<h:messages />
-
-</h:body>
-</html>
+</ui:define>
+</ui:composition>
