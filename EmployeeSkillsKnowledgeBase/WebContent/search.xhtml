@@ -42,12 +42,12 @@
 				<th class="order-table-header">Phone(s)</th>
 			</tr>	
 			<tbody>			
-				<ui:repeat var="userLoop" value="#{searchController.userList}">
+				<ui:repeat var="employeeLoop" value="#{searchController.employeeList}">
 					<h:panelGroup>		
 						<tr>										
-							<td class="order-table-row">#{userLoop.username}</td> 
-							<td class="order-table-row">#{userLoop.surname}</td> 
-							<td class="order-table-row">#{listUserController.getBirthDateString(userLoop.birthDate)}</td> 							
+							<td class="order-table-row">#{employeeLoop.username}</td> 
+							<td class="order-table-row">#{employeeLoop.surname}</td> 
+							<td class="order-table-row">#{listUserController.getBirthDateString(employeeLoop.birthDate)}</td> 							
 							<ui:repeat var="phoneLoop" value="#{userLoop.phoneList}">
 								<td class="order-table-row">#{phoneLoop.number}</td> 
 								<td class="order-table-row">[#{phoneLoop.phoneType.description}]</td> 	

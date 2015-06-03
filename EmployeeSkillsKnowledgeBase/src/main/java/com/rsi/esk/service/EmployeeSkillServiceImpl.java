@@ -3,15 +3,12 @@ package com.rsi.esk.service;
 import java.util.List;
 
 import com.rsi.esk.dao.EmployeeSkillDao;
+import com.rsi.esk.dao.EmployeeSkillDaoImpl;
 import com.rsi.esk.domain.EmployeeSkill;
 
-public class EmployeeSkillServiceImpl implements EmployeeSkillService{
+public class EmployeeSkillServiceImpl implements EmployeeSkillService {
+	
     private EmployeeSkillDao employeeSkillDao;
-
-    @Override
-	public EmployeeSkillDao getEmployeeSkillDao() {
-        return employeeSkillDao;
-    }
 
     @Override
 	public void save(EmployeeSkill employeeSkill) {
@@ -26,9 +23,11 @@ public class EmployeeSkillServiceImpl implements EmployeeSkillService{
         return getEmployeeSkillDao().list();
     }
 
-	@Override
+	public EmployeeSkillDao getEmployeeSkillDao() {
+		return employeeSkillDao;
+	}
+
 	public void setEmployeeSkillDao(EmployeeSkillDao employeeSkillDao) {
-		
-		
+		this.employeeSkillDao = employeeSkillDao;
 	}
 }
