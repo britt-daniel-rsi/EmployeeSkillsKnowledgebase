@@ -1,7 +1,7 @@
 package com.rsi.esk.controller;
 
-import com.rsi.esk.domain.User;
-import com.rsi.esk.service.UserService;
+import com.rsi.esk.domain.Employee;
+import com.rsi.esk.service.EmployeeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,22 +16,22 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value = BaseController.BASE_MAPPING +
-BaseController.PAGES_FIND_USER_SUR)
-public class FindUserSurController extends BaseController {
+BaseController.PAGES_FIND_EMPLOYEE_SUR)
+public class FindEmployeeSurController extends BaseController {
     @Autowired
-    UserService userService;
+    EmployeeService employeeService;
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    public void setEmployeeService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public String view(Map<String, Object> model, String surname) {
-        List<User> userList = userService.SurSearch(surname);
-        model.put("userList", userList);
+        List<Employee> employeeList = employeeService.SurSearch(surname);
+        model.put("employeeList", employeeList);
 
         System.out.println("gaa");
 
-        return PAGES_FIND_USER_SUR;
+        return PAGES_FIND_EMPLOYEE_SUR;
     }
 }

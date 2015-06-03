@@ -3,15 +3,14 @@ package com.rsi.esk.controller;
 import com.rsi.esk.converter.PhoneTypeConverter;
 import com.rsi.esk.domain.Phone;
 import com.rsi.esk.domain.PhoneType;
-import com.rsi.esk.domain.User;
+import com.rsi.esk.domain.Employee;
 import com.rsi.esk.service.PhoneService;
 import com.rsi.esk.service.PhoneTypeService;
-import com.rsi.esk.service.UserService;
+import com.rsi.esk.service.EmployeeService;
 
 import org.springframework.stereotype.Controller;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,26 +18,25 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 
 @Controller
-@ManagedBean(name = "saveUserController", eager = true)
+@ManagedBean(name = "saveEmployeeController", eager = true)
 @ViewScoped
-public class SaveUserController extends BaseController implements Serializable {
+public class SaveEmployeeController extends BaseController implements Serializable {
     private static final long serialVersionUID = 1L;
-    @ManagedProperty(value = "#{userService}")
-    private UserService userService;
+    @ManagedProperty(value = "#{employeeService}")
+    private EmployeeService employeeService;
     @ManagedProperty(value = "#{phoneTypeService}")
     private PhoneTypeService phoneTypeService;
     @ManagedProperty(value = "#{phoneService}")
     private PhoneService phoneService;
     @ManagedProperty(value = "#{phoneTypeConverter}")
     private PhoneTypeConverter phoneTypeConverter;
-    private String username;
+    private String name;
     private String surname;
     private String sex;
     private Date birthDate;
@@ -53,8 +51,8 @@ public class SaveUserController extends BaseController implements Serializable {
         this.phoneTypeConverter = phoneTypeConverter;
     }
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    public void setEmployeeService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @PostConstruct
@@ -66,29 +64,31 @@ public class SaveUserController extends BaseController implements Serializable {
     }
 
     public String getSaveMessage() {
+    	System.out.println("Save Employee clicked!");
         try {
-            User user = new User(username, surname, sex, birthDate);
+            Employee employee = new Employee(name, surname, sex, birthDate);
 
             System.out.println(phones.get(0).getPhoneType().getId());
-            userService.addUser(user);
+            employeeService.addEmployee(employee);
 
             for (Phone phone : phones) {
-                phone.setUser(user);
+                phone.setEmployee(employee);
                 phoneService.save(phone);
             }
         } catch (Exception e) {
+        	System.out.println("Error!");
             return "";
         }
 
-        return "User Save Successful";
+        return "Employee Save Successful";
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSurname() {
@@ -115,8 +115,8 @@ public class SaveUserController extends BaseController implements Serializable {
         this.birthDate = birthDate;
     }
 
-    public UserService getUserService() {
-        return userService;
+    public EmployeeService getEmployeeService() {
+        return employeeService;
     }
 
     public Map<String, PhoneType> getPhoneTypes() {
@@ -153,8 +153,8 @@ public class SaveUserController extends BaseController implements Serializable {
     }
 
     public String extendPhones() {
+    	System.out.println("Extend was clicked!");
         phones.add(new Phone());
-
         return null;
     }
 }

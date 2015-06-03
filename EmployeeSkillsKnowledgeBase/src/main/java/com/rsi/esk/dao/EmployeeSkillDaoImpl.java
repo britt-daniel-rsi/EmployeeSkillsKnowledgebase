@@ -1,28 +1,29 @@
 package com.rsi.esk.dao;
 
-import com.rsi.esk.domain.Phone;
-import com.rsi.esk.util.NumberUtils;
+import java.util.List;
 
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import java.util.List;
+import com.rsi.esk.domain.EmployeeSkill;
+import com.rsi.esk.util.NumberUtils;
 
-
-public class PhoneDao {
+public class EmployeeSkillDaoImpl implements EmployeeSkillDao{
     private SessionFactory sessionFactory;
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
+    @Override
+	public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-    @SuppressWarnings("rawtypes")
+    @Override
+	@SuppressWarnings("rawtypes")
     public Integer getMaxId() {
         Session session = this.sessionFactory.openSession();
         SQLQuery query = session.createSQLQuery(
-                "select max(phone_id) from esk.employee_phone");
+                "select max(employee_skill_id) from esk.employee_skill_xref");
         List maxIds = query.list();
         System.out.println(maxIds.get(0));
         session.close();
@@ -36,20 +37,21 @@ public class PhoneDao {
         return Integer.valueOf(0);
     }
 
-    public void save(Phone phone) {
+    @Override
+	public void save(EmployeeSkill employeeSkill) {
         Session session = this.sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        session.persist(phone);
+        session.persist(employeeSkill);
         tx.commit();
         session.close();
     }
 
-    @SuppressWarnings("unchecked")
-    public List<Phone> list() {
+    @Override
+	@SuppressWarnings("unchecked")
+    public List<EmployeeSkill> list() {
         Session session = this.sessionFactory.openSession();
-        List<Phone> phoneList = session.createQuery("from Phone").list();
+        List<EmployeeSkill> employeeSkillList = session.createQuery("from EmployeeSkill").list();
         session.close();
-
-        return phoneList;
+        return employeeSkillList;
     }
 }
