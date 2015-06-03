@@ -22,7 +22,7 @@ public class PhoneDao {
     public Integer getMaxId() {
         Session session = this.sessionFactory.openSession();
         SQLQuery query = session.createSQLQuery(
-                "select max(phoneId) from dbo.phonenumber");
+                "select max(phone_id) from esk.employee_phone");
         List maxIds = query.list();
         System.out.println(maxIds.get(0));
         session.close();

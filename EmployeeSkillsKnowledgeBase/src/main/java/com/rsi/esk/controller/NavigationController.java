@@ -11,20 +11,20 @@ import javax.faces.bean.SessionScoped;
 public class NavigationController extends BaseController implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public String moveToListUsersPage() {
-        return "listUsers";
+    public String moveToListEmployeesPage() {
+        return "listEmployees";
     }
 
-    public String moveToSaveUsersPage() {
-        return "saveUsers";
+    public String moveToSaveEmployeesPage() {
+        return "saveEmployees";
     }
 
-    public String moveToSearchUsersPage() {
+    public String moveToSearchEmployeesPage() {
         return "search";
     }
 
-    public String getTheMoveToListUsersPage() {
-        return "listUsers";
+    public String getTheMoveToListEmployeesPage() {
+        return "listEmployees";
     }
     
     public String moveToHomePage() {

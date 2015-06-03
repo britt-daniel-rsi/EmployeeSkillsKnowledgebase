@@ -17,22 +17,22 @@
 		</resource-bundle>
 	</application>
 	
-	<navigation-rule>
+<navigation-rule>
    <from-view-id>*</from-view-id>
    <navigation-case>
-      <from-action>#{navigationController.moveToSearchUsersPage}</from-action>
-      <from-outcome>searchUsers</from-outcome>
-      <to-view-id>searchUsers.jsf</to-view-id>
+      <from-action>#{navigationController.moveToSearchEmployeesPage}</from-action>
+      <from-outcome>searchEmployees</from-outcome>
+      <to-view-id>searchEmployees.jsf</to-view-id>
    </navigation-case>
    <navigation-case>
-      <from-action>#{navigationController.moveToListUsersPage}</from-action>
-      <from-outcome>listUsers</from-outcome>
-      <to-view-id>listUsers.jsf</to-view-id>
+      <from-action>#{navigationController.moveToListEmployeesPage}</from-action>
+      <from-outcome>listEmployees</from-outcome>
+      <to-view-id>listEmployees.jsf</to-view-id>
    </navigation-case>
       <navigation-case>
-      <from-action>#{navigationController.moveToSaveUsersPage}</from-action>
-      <from-outcome>saveUsers</from-outcome>
-      <to-view-id>saveUsers.jsf</to-view-id>
+      <from-action>#{navigationController.moveToSaveEmployeesPage}</from-action>
+      <from-outcome>saveEmployees</from-outcome>
+      <to-view-id>saveEmployees.jsf</to-view-id>
    </navigation-case>
 </navigation-rule>
 

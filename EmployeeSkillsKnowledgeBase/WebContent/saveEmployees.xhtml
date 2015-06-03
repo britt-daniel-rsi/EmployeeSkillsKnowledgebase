@@ -1,0 +1,73 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:define name="title">Save Employees</ui:define>
+	<ui:define name="content">
+		<h:form id="form">
+			<script>
+					$(function() {
+						$("#form\\:birthDate").datepicker();
+					});
+			</script>
+			<table>
+				<tr>
+					<td><h:outputText value="First Name: " /></td>
+					<td><h:inputText id="name"
+							value="#{saveEmployeeController.name}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Last Name: " /></td>
+					<td><h:inputText id="surname"
+							value="#{saveEmployeeController.surname}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Sex: " /></td>
+					<td><h:selectOneRadio id="sex"
+							value="#{saveEmployeeController.sex}" layout="pageDirection">
+							<f:selectItem itemValue="M" itemLabel="Male" />
+							<f:selectItem itemValue="F" itemLabel="Female" />
+						</h:selectOneRadio></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Birth Date: " /></td>
+					<td><h:inputText id="birthDate"
+							value="#{saveEmployeeController.birthDate}">
+							<f:convertDateTime pattern="MM/dd/yyyy" />
+						</h:inputText></td>
+
+				</tr>
+				<tr>
+					<td><h:outputText value="Phone Number: " /></td>
+					<h:panelGrid id="saveEmployee_phonePanelGrid">
+						<ui:repeat value="#{saveEmployeeController.phones}" var="phone"
+							varStatus="saveEmployee_phone">
+							<h:inputText value="#{phone.number}" />
+							<h:selectOneMenu value="#{phone.phoneType}">
+								<f:selectItems value="#{saveEmployeeController.phoneTypes}" />
+								<f:converter binding="#{phoneTypeConverter}" />
+							</h:selectOneMenu>
+							<br />
+						</ui:repeat>
+					</h:panelGrid>
+				</tr>
+
+				<tr>
+					<td><h:commandButton value="Extend">
+							<f:ajax listener="#{saveEmployeeController.extendPhones}"
+								process="@form" render="saveEmployee_phonePanelGrid" />
+						</h:commandButton></td>
+				</tr>
+				<tr>
+					<td><h:commandButton value="Save Employee"
+							action="#{saveEmployeeController.getSaveMessage}">
+
+						</h:commandButton></td>
+				</tr>
+
+			</table>
+		</h:form>
+	</ui:define>
+</ui:composition>
