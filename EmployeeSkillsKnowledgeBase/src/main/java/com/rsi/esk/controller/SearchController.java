@@ -1,7 +1,7 @@
 package com.rsi.esk.controller;
 
-import com.rsi.esk.domain.User;
-import com.rsi.esk.service.UserService;
+import com.rsi.esk.domain.Employee;
+import com.rsi.esk.service.EmployeeService;
 import com.rsi.esk.util.NumberUtils;
 
 import org.apache.commons.lang3.StringUtils;
@@ -27,9 +27,9 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class SearchController extends BaseController implements Serializable {
     private static final long serialVersionUID = 1L;
-    @ManagedProperty(value = "#{userService}")
-    private UserService userService;
-    List<User> userList;
+    @ManagedProperty(value = "#{employeeService}")
+    private EmployeeService employeeService;
+    List<Employee> employeeList;
     String surname;
     Integer id;
     private DateFormat df = new SimpleDateFormat("E, dd MMM yyyy ");
@@ -38,12 +38,12 @@ public class SearchController extends BaseController implements Serializable {
         return df.format(birth);
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public List<Employee> getEmployeeList() {
+        return employeeList;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 
     public String getSurname() {
@@ -62,17 +62,17 @@ public class SearchController extends BaseController implements Serializable {
         this.id = id;
     }
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    public void setEmployeeService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     public void search() {
         if (NumberUtils.hasInteger(id)) {
-            userList = userService.IdSearch(id);
+            employeeList = employeeService.IdSearch(id);
         } else if (!StringUtils.isEmpty(surname)) {
-            userList = userService.SurSearch(surname);
+            employeeList = employeeService.SurSearch(surname);
         } else {
-            userList = userService.getAllUsers();
+            employeeList = employeeService.getAllEmployees();
         }
     }
 }

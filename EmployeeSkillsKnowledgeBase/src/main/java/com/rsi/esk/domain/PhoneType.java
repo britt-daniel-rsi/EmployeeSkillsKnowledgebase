@@ -7,12 +7,12 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "dbo.phonenumbertype")
+@Table(name = "esk.phone_type")
 public class PhoneType {
     @Id
-    @Column(name = "idphonenumbertype")
+    @Column(name = "phone_type_id")
     private Long id;
-    @Column(name = "type")
+    @Column(name = "phone_type_desc")
     private String description;
 
     public Long getId() {

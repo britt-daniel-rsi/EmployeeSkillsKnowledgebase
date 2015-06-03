@@ -12,9 +12,9 @@
 <table>
 	<tr>
 		<td><a href="index.html">Home Page</a></td>
-		<td><a href="listUsers.html">List Users</a></td>
+		<td><a href="listEmployees.html">List Employees</a></td>
 	
-		<td><a href="saveUser.html">Save Users</a></td>
+		<td><a href="saveEmployee.html">Save Employees</a></td>
 	</tr>
 </table>
     <div align="center">
@@ -28,28 +28,28 @@
                 </td>
             </tr>
             <tr>
-                <td>User Name:</td>
-                <td>${userForm.username}</td>
+                <td>Employee Name:</td>
+                <td>${employeeForm.name}</td>
             </tr>
             <tr>
                 <td>Surname:</td>
-                <td>${userForm.surname}</td>
+                <td>${employeeForm.surname}</td>
             </tr>
             <tr>
                 <td>Sex:</td>
-                <td>${userForm.sex}</td>
+                <td>${employeeForm.sex}</td>
             </tr>
 <!--             <tr> -->
 <!--                 <td>E-mail:</td> -->
-<%--                 <td>${userForm.email}</td> --%>
+<%--                 <td>${employeeForm.email}</td> --%>
 <!--             </tr> -->
             <tr>
                 <td>Birthday:</td>
-                <td>${userForm.birthDate}</td>
+                <td>${employeeForm.birthDate}</td>
             </tr>
 <!--             <tr> -->
 <!--                 <td>Profession:</td> -->
-<%--                 <td>${userForm.profession}</td> --%>
+<%--                 <td>${employeeForm.profession}</td> --%>
 <!--             </tr> -->
  
         </table>

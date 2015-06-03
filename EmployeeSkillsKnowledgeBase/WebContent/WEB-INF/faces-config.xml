@@ -1,50 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 			http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
-	version="2.0">
-
-	<application>
-		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+    version="2.0">	
+    
+	<application>	
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>		
 		<locale-config>
 			<default-locale>en</default-locale>
 			<supported-locale>es</supported-locale>
-		</locale-config>
+		</locale-config>		
 		<resource-bundle>
 			<base-name>resources.properties</base-name>
 			<var>search</var>
 		</resource-bundle>
 	</application>
+	
+<navigation-rule>
+   <from-view-id>*</from-view-id>
+   <navigation-case>
+      <from-action>#{navigationController.moveToSearchEmployeesPage}</from-action>
+      <from-outcome>searchEmployees</from-outcome>
+      <to-view-id>searchEmployees.jsf</to-view-id>
+   </navigation-case>
+   <navigation-case>
+      <from-action>#{navigationController.moveToListEmployeesPage}</from-action>
+      <from-outcome>listEmployees</from-outcome>
+      <to-view-id>listEmployees.jsf</to-view-id>
+   </navigation-case>
+      <navigation-case>
+      <from-action>#{navigationController.moveToSaveEmployeesPage}</from-action>
+      <from-outcome>saveEmployees</from-outcome>
+      <to-view-id>saveEmployees.jsf</to-view-id>
+   </navigation-case>
+</navigation-rule>
 
-	<navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-action>#{navigationController.moveToSearchUsersPage}</from-action>
-			<from-outcome>searchUsers</from-outcome>
-			<to-view-id>/searchUsers</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-action>#{navigationController.moveToListUsersPage}</from-action>
-			<from-outcome>listUsers</from-outcome>
-			<to-view-id>/listUsers</to-view-id>
-		</navigation-case>
-		<navigation-case>
-			<from-action>#{navigationController.moveToSaveUsersPage}</from-action>
-			<from-outcome>saveUsers</from-outcome>
-			<to-view-id>/saveUsers</to-view-id>
-		</navigation-case>
-		<navigation-case>
-		    <from-action>#{navigationController.moveToDevCentersPage}</from-action>
-		    <from-outcome>devCenters</from-outcome>
-		    <to-view-id>/devCenters</to-view-id>
-		</navigation-case>
-		<navigation-case>
-		    <from-action>#{navigationController.moveToSaveDevCenterPage}</from-action>
-		    <from-outcome>saveDevCenter</from-outcome>
-		    <to-view-id>/saveDevCenter</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-
-
+	
 </faces-config>

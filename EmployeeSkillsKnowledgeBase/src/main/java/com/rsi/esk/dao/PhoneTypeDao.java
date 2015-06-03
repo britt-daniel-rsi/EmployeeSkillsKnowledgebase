@@ -28,8 +28,8 @@ public class PhoneTypeDao {
     public PhoneType getPhoneTypeByDescription(String description) {
         Session session = this.sessionFactory.openSession();
         Query query = session.createQuery(
-                "from PhoneType where type = :phoneType");
-        query.setParameter("phoneType", description);
+                "from PhoneType where phone_type_desc = :description");
+        query.setParameter("description", description);
 
         return (PhoneType) (query.uniqueResult());
     }
@@ -37,8 +37,8 @@ public class PhoneTypeDao {
     public PhoneType getPhoneTypeById(Long id) {
         Session session = this.sessionFactory.openSession();
         Query query = session.createQuery(
-                "from PhoneType where idphonenumbertype = :phoneTypeId");
-        query.setParameter("phoneTypeId", id);
+                "from PhoneType where phone_type_id = :id");
+        query.setParameter("id", id);
 
         return (PhoneType) (query.uniqueResult());
     }
