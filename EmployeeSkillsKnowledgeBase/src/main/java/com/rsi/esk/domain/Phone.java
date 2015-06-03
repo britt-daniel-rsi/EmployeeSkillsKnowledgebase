@@ -13,21 +13,21 @@ import javax.validation.constraints.Pattern;
 
 
 @Entity
-@Table(name = "dbo.phonenumber")
+@Table(name = "esk.employee_phone")
 public class Phone {
     @Id
-    @Column(name = "phoneId", unique = true, nullable = false)
+    @Column(name = "phone_id", unique = true, nullable = false)
     private Integer Id;
     @NotNull
     @Pattern(regexp = "\\(\\d{3}\\)\\d{3}-\\d{4}")
-    @Column(name = "phonenumber")
+    @Column(name = "phone_number")
     private String number;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idphonenumbertype")
+    @JoinColumn(name = "phone_type_id")
     private PhoneType phoneType;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contactId", nullable = false)
-    private User user;
+    @JoinColumn(name = "employee_id", nullable = false)
+    private Employee employee;
 
     public Phone() {
     }
@@ -41,12 +41,12 @@ public class Phone {
         this.number = phoneNumber;
     }
 
-    public User getUser() {
-        return user;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public Integer getId() {
