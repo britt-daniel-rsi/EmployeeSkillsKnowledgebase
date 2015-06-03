@@ -11,7 +11,6 @@ import com.rsi.esk.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -157,7 +155,6 @@ public class SaveEmployeeController extends BaseController implements Serializab
     public String extendPhones() {
     	System.out.println("Extend was clicked!");
         phones.add(new Phone());
-
         return null;
     }
 }

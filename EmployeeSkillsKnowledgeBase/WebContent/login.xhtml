@@ -1,0 +1,33 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:define name="title">Login</ui:define>
+	
+	<ui:define name="content">
+		<h:form id="form">
+			<table>
+				<tr>
+					<td><h:outputText value="Username: " /></td>
+					<td><h:inputText id="username"
+							value="#{loginController.username}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Password: " /></td>
+					<td><h:inputText id="password"
+							value="#{loginController.password}" /></td>
+				</tr>
+				<tr>
+					<td><h:commandButton value="Login"
+							action="#{loginController.checkCredentials}">
+						</h:commandButton></td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+			</table>
+		</h:form>
+	</ui:define>
+</ui:composition>
