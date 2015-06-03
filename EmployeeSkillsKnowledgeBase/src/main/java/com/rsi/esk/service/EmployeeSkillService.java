@@ -7,12 +7,8 @@ import com.rsi.esk.domain.EmployeeSkill;
 
 public interface EmployeeSkillService {
 
-	public abstract EmployeeSkillDao getEmployeeSkillDao();
+	public void save(EmployeeSkill employeeSkill);
 
-	public abstract void setEmployeeSkillDao(EmployeeSkillDao employeeSkillDao);
-
-	public abstract void save(EmployeeSkill employeeSkill);
-
-	public abstract List<EmployeeSkill> getEmployeeSkills();
+	public List<EmployeeSkill> getEmployeeSkills();
 
 }

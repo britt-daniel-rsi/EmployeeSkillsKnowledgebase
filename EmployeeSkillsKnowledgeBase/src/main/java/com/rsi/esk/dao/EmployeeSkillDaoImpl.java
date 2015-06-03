@@ -10,7 +10,7 @@ import org.hibernate.Transaction;
 import com.rsi.esk.domain.EmployeeSkill;
 import com.rsi.esk.util.NumberUtils;
 
-public class EmployeeSkillDaoImpl implements EmployeeSkillDao{
+public class EmployeeSkillDaoImpl implements EmployeeSkillDao {
     private SessionFactory sessionFactory;
 
     @Override

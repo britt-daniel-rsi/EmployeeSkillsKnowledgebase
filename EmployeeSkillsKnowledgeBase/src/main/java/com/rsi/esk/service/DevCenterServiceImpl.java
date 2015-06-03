@@ -2,13 +2,14 @@ package com.rsi.esk.service;
 
 import java.util.List;
 
+import com.rsi.esk.dao.DevCenterDao;
 import com.rsi.esk.dao.DevCenterDaoImpl;
 import com.rsi.esk.domain.DevCenter;
 
 public class DevCenterServiceImpl implements DevCenterService {
 
 	
-	private DevCenterDaoImpl devCenterDao;
+	private DevCenterDao devCenterDao;
 
 	@Override
 	public List<DevCenter> getAllDevCenters() {
@@ -20,15 +21,11 @@ public class DevCenterServiceImpl implements DevCenterService {
 		devCenterDao.save(center);
 	}
 
-	public DevCenterDaoImpl getDevCenterDao() {
+	public DevCenterDao getDevCenterDao() {
 		return devCenterDao;
 	}
 
-	public void setDevCenterDao(DevCenterDaoImpl devCenterDao) {
+	public void setDevCenterDao(DevCenterDao devCenterDao) {
 		this.devCenterDao = devCenterDao;
 	}
-
-	
-	
-	
 }
