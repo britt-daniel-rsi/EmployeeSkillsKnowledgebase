@@ -45,11 +45,11 @@
 		</property>
 	</bean>
 	
-	<bean id="userService" class="com.rsi.esk.service.UserServiceImpl">
-	    <property name="userDao" ref="userDao"/>
+	<bean id="employeeService" class="com.rsi.esk.service.EmployeeServiceImpl">
+	    <property name="employeeDao" ref="employeeDao"/>
 	</bean>
 
-	<bean id="userDao" class="com.rsi.esk.dao.UserDao">
+	<bean id="employeeDao" class="com.rsi.esk.dao.EmployeeDao">
 	    <property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	

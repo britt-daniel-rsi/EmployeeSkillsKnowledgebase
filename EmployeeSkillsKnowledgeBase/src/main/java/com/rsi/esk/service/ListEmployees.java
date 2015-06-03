@@ -1,6 +1,6 @@
 package com.rsi.esk.service;
 
-import com.rsi.esk.domain.User;
+import com.rsi.esk.domain.Employee;
 import com.rsi.esk.service.SerializationHandler;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +13,12 @@ import javax.faces.bean.ViewScoped;
 
 @ManagedBean
 @ViewScoped
-public class ListUsers extends SerializationHandler {
+public class ListEmployees extends SerializationHandler {
     private static final long serialVersionUID = 1L;
     @Autowired
-    transient UserService userService;
+    transient EmployeeService employeeService;
 
-    public List<User> listUsers() {
-        return userService.getAllUsers();
+    public List<Employee> listEmployees() {
+        return employeeService.getAllEmployees();
     }
 }

@@ -2,10 +2,10 @@ package com.rsi.esk.controller;
 
 import com.rsi.esk.domain.Phone;
 import com.rsi.esk.domain.PhoneType;
-import com.rsi.esk.domain.User;
+import com.rsi.esk.domain.Employee;
 import com.rsi.esk.service.PhoneService;
 import com.rsi.esk.service.PhoneTypeService;
-import com.rsi.esk.service.UserService;
+import com.rsi.esk.service.EmployeeService;
 
 import org.springframework.stereotype.Controller;
 
@@ -27,11 +27,11 @@ import javax.faces.bean.ManagedProperty;
 
 
 @Controller
-@ManagedBean(name = "listUserController", eager = true)
-public class ListUserController extends BaseController implements Serializable {
+@ManagedBean(name = "listEmployeeController", eager = true)
+public class ListEmployeeController extends BaseController implements Serializable {
     private static final long serialVersionUID = 1L;
-    @ManagedProperty(value = "#{userService}")
-    private UserService userService;
+    @ManagedProperty(value = "#{employeeService}")
+    private EmployeeService employeeService;
     @ManagedProperty(value = "#{phoneService}")
     private PhoneService phoneService;
     @ManagedProperty(value = "#{phoneTypeService}")
@@ -48,8 +48,8 @@ public class ListUserController extends BaseController implements Serializable {
         return df.format(birth);
     }
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    public void setEmployeeService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     public void setPhoneService(PhoneService phoneService) {
@@ -60,8 +60,8 @@ public class ListUserController extends BaseController implements Serializable {
         this.phoneTypeService = phoneTypeService;
     }
 
-    public List<User> getUserList() {
-        return userService.getAllUsers();
+    public List<Employee> getEmployeeList() {
+        return employeeService.getAllEmployees();
     }
 
     public List<Phone> getPhoneList() {
@@ -72,7 +72,7 @@ public class ListUserController extends BaseController implements Serializable {
 
     public List<Object> getComboList() {
         List<Object> comboList = new ArrayList<Object>();
-        comboList.addAll(getUserList());
+        comboList.addAll(getEmployeeList());
         comboList.addAll(getPhoneList());
 
         return comboList;

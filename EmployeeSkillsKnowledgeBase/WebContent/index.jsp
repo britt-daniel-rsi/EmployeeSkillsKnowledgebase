@@ -10,9 +10,9 @@ body {
 <body>
 <table>
 	<tr>
-		<td><a href="listUsers.xhtml">List Users</a></td>
+		<td><a href="listEmployees.xhtml">List Employees</a></td>
 		<td><a href="search.xhtml">Search</a></td>	
-		<td><a href="saveUser.xhtml">Save Users</a></td>
+		<td><a href="saveEmployee.xhtml">Save Employees</a></td>
 	</tr>
 	<tr>
 		<td>THIS IS A JSP PAGE...</td>

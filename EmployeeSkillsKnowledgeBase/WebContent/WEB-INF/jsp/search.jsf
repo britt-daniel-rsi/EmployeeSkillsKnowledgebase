@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Search Users</title>
+<title>Search Employees</title>
 </head>
 <body>
 		<h:form>
@@ -26,8 +26,8 @@
 	    
 	<table>
 		<tr>
-			<td><a href="listUsers.html">List Users</a></td>
-			<td><a href="saveUser.html">Save Users</a></td>
+			<td><a href="listEmployees.html">List Employees</a></td>
+			<td><a href="saveEmployee.html">Save Employees</a></td>
 		</tr>
 	</table>
 
@@ -35,14 +35,14 @@
 	        <form:form action="search" method="post" commandName="search">
 	            <table border="0">
 	                <tr>
-	                    <td colspan="2" align="center"><h2>Search Users</h2></td>
+	                    <td colspan="2" align="center"><h2>Search Employees</h2></td>
 	                </tr>
 	                <tr>
-	                	<td><spring:message code="user.labelSurname" />: </td>
+	                	<td><spring:message code="employee.labelSurname" />: </td>
 	                	<td><form:input path="surname" /></td>
 	                </tr>
 	                <tr>
-	                	<td><spring:message code="user.labelId" />: </td>
+	                	<td><spring:message code="employee.labelId" />: </td>
 	                	<td><form:input path="id" /></td>
 	                </tr>
 	                <tr>
@@ -53,8 +53,8 @@
 	</div>
 	
 	
-	<c:forEach var="listVar" items="${userList}"> 
-    	<option value ="10"><c:out value="${listVar.username}"/><c:out value="${listVar.surname}"/><c:out value="${listVar.birthDate}"/></option>
+	<c:forEach var="listVar" items="${employeeList}"> 
+    	<option value ="10"><c:out value="${listVar.name}"/><c:out value="${listVar.surname}"/><c:out value="${listVar.birthDate}"/></option>
 	</c:forEach>
 </body>
 </html>
