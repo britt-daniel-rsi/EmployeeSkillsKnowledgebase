@@ -30,4 +30,12 @@ public class NavigationController extends BaseController implements Serializable
     public String moveToHomePage() {
     	return "index";
     }
+    
+    public String moveToDevCentersPage() {
+    	return "devCenters";
+    }
+    
+    public String moveToSaveDevCenterPage() {
+    	return "saveDevCenter";
+    }
 }
