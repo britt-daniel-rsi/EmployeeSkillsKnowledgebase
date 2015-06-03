@@ -28,7 +28,7 @@ public class EmployeeSkillServiceImpl implements EmployeeSkillService{
 
 	@Override
 	public void setEmployeeSkillDao(EmployeeSkillDao employeeSkillDao) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 }

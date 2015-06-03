@@ -22,6 +22,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 				<value>com.rsi.esk.domain.User</value>
 				<value>com.rsi.esk.domain.PhoneType</value>
 				<value>com.rsi.esk.domain.Phone</value>
+				<value>com.rsi.esk.domain.EmployeeSkill</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

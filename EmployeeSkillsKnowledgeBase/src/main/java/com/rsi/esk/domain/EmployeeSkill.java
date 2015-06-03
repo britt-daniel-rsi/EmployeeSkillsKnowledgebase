@@ -16,12 +16,12 @@ public class EmployeeSkill {
     @Id
     @Column(name = "employee_skill_id", unique = true, nullable = false)
     private Integer id;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "skill_type_id")
-    private Integer skillTypeId;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id")
-    private Integer employeeId;
+    @JoinColumn(name = "skill_type_id", nullable = false)
+    private SkillType skillType;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id", nullable = false)
+    private Employee employee;
     @NotNull
     @Column(name = "skill_level")
     private Integer skillLevel;
@@ -42,19 +42,19 @@ public class EmployeeSkill {
     }
 
     public Integer getSkillTypeId() {
-        return skillTypeId;
+        return skillType;
     }
     //This will need to accept SkillTypeId class as input
-    public void setSkillTypeId(Integer skillTypeId) {
-        this.skillTypeId = skillTypeId;
+    public void setSkillTypeId(SkillType skillType) {
+        this.skillType = skillType;
     }
     
     public Integer getEmployeeId() {
-        return employeeId;
+        return employee;
     }
     
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployeeId(Employee employee) {
+        this.employee = employee;
     }
     
     public Integer getSkillLevel() {

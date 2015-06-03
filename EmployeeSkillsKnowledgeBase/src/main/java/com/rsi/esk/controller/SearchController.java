@@ -66,7 +66,7 @@ public class SearchController extends BaseController implements Serializable {
         this.userService = userService;
     }
 
-    public void search() {
+    public String search() {
         if (NumberUtils.hasInteger(id)) {
             userList = userService.IdSearch(id);
         } else if (!StringUtils.isEmpty(surname)) {
@@ -74,5 +74,6 @@ public class SearchController extends BaseController implements Serializable {
         } else {
             userList = userService.getAllUsers();
         }
+        return "success";
     }
 }
