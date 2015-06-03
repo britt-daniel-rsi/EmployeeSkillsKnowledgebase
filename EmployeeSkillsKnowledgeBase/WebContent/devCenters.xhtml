@@ -1,0 +1,35 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<ui:define name="title">List Users</ui:define>
+	<ui:define name="content">
+		<table class="order-table">
+			<tr>
+				<th class="order-table-header">Description</th>
+				<th class="order-table-header">Name</th>
+				<th class="order-table-header">Address</th>
+				<th class="order-table-header">Address 2</th>
+				<th class="order-table-header">City</th>
+				<th class="order-table-header">State</th>
+				<th class="order-table-header">Zip</th>
+			</tr>
+			<tbody>
+				<ui:repeat var="centerLoop" value="#{devCenterController.devCenterList}">
+					<h:panelGroup>
+						<tr>
+							<td class="order-table-row">#{centerLoop.description}</td>
+							<td class="order-table-row">#{centerLoop.name}</td>
+							<td class="order-table-row">#{centerLoop.address}</td>
+							<td class="order-table-row">#{centerLoop.address2}</td>
+							<td class="order-table-row">#{centerLoop.city}</td>
+							<td class="order-table-row">#{centerLoop.state}</td>
+							<td class="order-table-row">#{centerLoop.zipcode}</td>
+						</tr>
+					</h:panelGroup>
+				</ui:repeat>
+			</tbody>
+		</table>
+	</ui:define>
+</ui:composition>
