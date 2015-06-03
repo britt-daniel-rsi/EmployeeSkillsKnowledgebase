@@ -40,17 +40,10 @@ public class EmployeeSkill {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public Integer getSkillTypeId() {
-        return skillType;
-    }
+    
     //This will need to accept SkillTypeId class as input
     public void setSkillTypeId(SkillType skillType) {
         this.skillType = skillType;
-    }
-    
-    public Integer getEmployeeId() {
-        return employee;
     }
     
     public void setEmployeeId(Employee employee) {
