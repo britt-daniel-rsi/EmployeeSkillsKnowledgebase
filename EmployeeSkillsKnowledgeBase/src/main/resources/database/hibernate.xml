@@ -19,11 +19,12 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>com.rsi.esk.domain.Employee</value>
-				<value>com.rsi.esk.domain.PhoneType</value>
-				<value>com.rsi.esk.domain.Phone</value>
-				<value>com.rsi.esk.domain.EmployeeSkill</value>
-				<value>com.rsi.esk.domain.DevCenter</value>
+-				<value>com.rsi.esk.domain.Employee</value>
+ 				<value>com.rsi.esk.domain.PhoneType</value>
+ 				<value>com.rsi.esk.domain.Phone</value>
+-				<value>com.rsi.esk.domain.EmployeeSkill</value>
+-				<value>com.rsi.esk.domain.DevCenter</value>
++				<value>com.rsi.esk.domain.SkillType</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
