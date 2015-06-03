@@ -71,4 +71,12 @@
 	<bean id="phoneTypeConverter" class="com.rsi.esk.converter.PhoneTypeConverter" >
 	    <property name="phoneTypeService" ref="phoneTypeService" />
 	</bean>
+	
+	<bean id="skillTypeDao" class="com.rsi.esk.dao.SkillTypeDaoImpl" >
+    <property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="skillTypeService" class="com.rsi.esk.service.SkillTypeServiceImpl" >
+	    <property name="skillTypeDao" ref="skillTypeDao" />
+	</bean> 
 </beans>

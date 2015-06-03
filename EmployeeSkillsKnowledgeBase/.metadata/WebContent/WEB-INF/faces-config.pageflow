@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14333398881160" configfile="/EmployeeSkillsKnowledgeBase/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="562" id="pf14333405236791" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14333405236792 pf14333405236793 pf14333405236794" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="searchUsers.jsf" x="338" y="178" id="pf14333405236795" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14333405236792" path="searchUsers.jsf"/>
+  <nodes xsi:type="pageflow:PFPage" name="listUsers.jsf" x="338" y="562" id="pf14333405236796" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14333405236793" path="listUsers.jsf"/>
+  <nodes xsi:type="pageflow:PFPage" name="saveUsers.jsf" x="338" y="946" id="pf14333405236797" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf14333405236794" path="saveUsers.jsf"/>
+  <links id="pf14333405236792" target="pf14333405236795" source="pf14333405236791" outcome="searchUsers" fromaction="#{navigationController.moveToSearchUsersPage}"/>
+  <links id="pf14333405236793" target="pf14333405236796" source="pf14333405236791" outcome="listUsers" fromaction="#{navigationController.moveToListUsersPage}"/>
+  <links id="pf14333405236794" target="pf14333405236797" source="pf14333405236791" outcome="saveUsers" fromaction="#{navigationController.moveToSaveUsersPage}"/>
+</pageflow:Pageflow>
