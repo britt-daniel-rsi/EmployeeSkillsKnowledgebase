@@ -21,9 +21,11 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 
 @Controller
 @ManagedBean(name = "saveEmployeeController", eager = true)
+@SessionScoped
 public class SaveEmployeeController extends BaseController {
     @ManagedProperty(value = "#{employeeService}")
     private EmployeeService employeeService;

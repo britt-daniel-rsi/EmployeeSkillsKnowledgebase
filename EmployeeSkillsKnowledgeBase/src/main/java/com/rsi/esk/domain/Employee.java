@@ -1,6 +1,7 @@
 package com.rsi.esk.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -40,10 +42,10 @@ public class Employee {
     private String description;
     @Column(name = "create_timestamp")
     private Date createDate;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "employee")
+    private List<Phone> phoneList;
     
-    
-    public Employee() {
-    }
+    public Employee() { }
 
     public Employee(String name, String surname, String sex, Date birthDate) {
         this.name = name;
@@ -110,5 +112,13 @@ public class Employee {
 
 	public void setDevCenter(DevCenter devCenter) {
 		this.devCenter = devCenter;
+	}
+
+	public List<Phone> getPhoneList() {
+		return phoneList;
+	}
+
+	public void setPhoneList(List<Phone> phoneList) {
+		this.phoneList = phoneList;
 	}
 }

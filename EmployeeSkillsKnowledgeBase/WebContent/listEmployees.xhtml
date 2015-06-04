@@ -16,22 +16,19 @@
 				<th class="order-table-header">Birth Date</th>
 				<th class="order-table-header">Phone(s)</th>
 			</tr>
-			<tbody>
-				<ui:repeat var="employeeLoop"
-					value="#{listEmployeeController.employeeList}">
-					<h:panelGroup>
-						<tr>
-
-							<td class="order-table-row">#{employeeLoop.name}</td>
-							<td class="order-table-row">#{employeeLoop.surname}</td>
-							<td class="order-table-row">#{employeeLoop.birthDate}</td>
-
-
-
-						</tr>
-					</h:panelGroup>
-				</ui:repeat>
-			</tbody>
+			<ui:repeat var="employeeLoop"
+				value="#{listEmployeeController.employeeList}">
+				<tr>
+					<td class="order-table-row">#{employeeLoop.name}</td>
+					<td class="order-table-row">#{employeeLoop.surname}</td>
+					<td class="order-table-row">#{employeeLoop.birthDate}</td>
+					<td>
+					<ui:repeat var="phoneLoop" value="#{employeeLoop.phoneList}">
+						<p>#{phoneLoop.number}[#{phoneLoop.phoneType.description}]</p>
+					</ui:repeat>
+					</td>
+				</tr>
+			</ui:repeat>
 		</table>
 	</ui:define>
 </ui:composition>
