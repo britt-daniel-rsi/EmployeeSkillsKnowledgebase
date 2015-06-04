@@ -7,8 +7,9 @@
     <ui:define name="title">Login</ui:define>
 	
 	<ui:define name="content">
+	<div id="background"> <!-- In case we want to add a jaw-dropping background -->
 		<h:form id="form">
-			<table>
+			<table id="login">
 				<tr>
 					<td><h:outputText value="Username: " /></td>
 					<td><h:inputText id="username"
@@ -20,14 +21,13 @@
 							value="#{loginController.password}" /></td>
 				</tr>
 				<tr>
-					<td><h:commandButton value="Login"
-							action="#{loginController.checkCredentials}">
-						</h:commandButton></td>
-				</tr>
-				<tr>
 					<td></td>
+					<td style="float:right;"><h:commandButton value="Login"
+							action="#{loginController.checkCredentials}">
+					</h:commandButton></td>
 				</tr>
 			</table>
 		</h:form>
+	</div>
 	</ui:define>
 </ui:composition>

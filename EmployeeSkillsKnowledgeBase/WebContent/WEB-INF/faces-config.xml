@@ -44,6 +44,11 @@
 			<from-outcome>saveDevCenter</from-outcome>
 			<to-view-id>/saveDevCenter</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-action>#{navigationController.moveToLoginPage}</from-action>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/login</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 
 
