@@ -1,42 +1,37 @@
 <ui:composition template="/WEB-INF/template.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <ui:define name="title">List Employees</ui:define>
-	
+	<ui:define name="title">List Employees</ui:define>
 
-    <ui:define name="content">
 
-			<table class="order-table">
-				<tr>
-						<th class="order-table-header">First Name</th>
-						<th class="order-table-header">Surname</th>
-						<th class="order-table-header">Birth Date </th>
-						<th class="order-table-header">Phone(s)</th>
-				</tr>	
-				<tbody>			
-					<ui:repeat var="employeeLoop" value="#{listEmployeeController.employeeList}">
-						<h:panelGroup>		
-							<tr>
-														
-							<td class="order-table-row">#{employeeLoop.name}</td> 
-							<td class="order-table-row">#{employeeLoop.surname}</td> 
-							<td class="order-table-row">#{listEmployeeController.getBirthDateString(employeeLoop.birthDate)}</td> 
-														
-							<ui:repeat var="phoneLoop" value="#{employeeLoop.phoneList}">
-								<td class="order-table-row">#{phoneLoop.number}</td> 
-								<td class="order-table-row">[#{phoneLoop.phoneType.description}]</td> 
-									
-							<!-- 		<h:outputText  value="#{phoneLoop.phoneType.description}"/>  -->
-															
-							</ui:repeat>
-							
-							</tr>
-						</h:panelGroup>
-					</ui:repeat>
-				</tbody>
-			</table>
-</ui:define>
+	<ui:define name="content">
+
+		<table class="order-table">
+			<tr>
+				<th class="order-table-header">First Name</th>
+				<th class="order-table-header">Surname</th>
+				<th class="order-table-header">Birth Date</th>
+				<th class="order-table-header">Phone(s)</th>
+			</tr>
+			<tbody>
+				<ui:repeat var="employeeLoop"
+					value="#{listEmployeeController.employeeList}">
+					<h:panelGroup>
+						<tr>
+
+							<td class="order-table-row">#{employeeLoop.name}</td>
+							<td class="order-table-row">#{employeeLoop.surname}</td>
+							<td class="order-table-row">#{employeeLoop.birthDate}</td>
+
+
+
+						</tr>
+					</h:panelGroup>
+				</ui:repeat>
+			</tbody>
+		</table>
+	</ui:define>
 </ui:composition>

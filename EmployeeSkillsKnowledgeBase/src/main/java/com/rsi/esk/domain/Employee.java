@@ -4,9 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 import javax.validation.constraints.NotNull;
 
 
@@ -14,6 +19,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "esk.employee")
 public class Employee {
     @Id
+	@GeneratedValue(strategy=GenerationType.TABLE)
     @Column(name = "employee_id")
     private Integer id;
     @NotNull
@@ -27,13 +33,13 @@ public class Employee {
     private Date birthDate;
     @Column(name = "sex")
     private String sex;
-  	@Column(name = "dev_center_id")
-    private Integer devCenterId;
+    @ManyToOne(fetch = FetchType.LAZY)
+  	@JoinColumn(name = "dev_center_id")
+    private DevCenter devCenter;
     @Column(name = "description")
     private String description;
     @Column(name = "create_timestamp")
     private Date createDate;
-    
     
     
     public Employee() {
@@ -90,19 +96,19 @@ public class Employee {
 		this.name = name;
 	}
 
-	public Integer getDevCenterId() {
-		return devCenterId;
-	}
-
-	public void setDevCenterId(Integer devCenterId) {
-		this.devCenterId = devCenterId;
-	}
-
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public DevCenter getDevCenter() {
+		return devCenter;
+	}
+
+	public void setDevCenter(DevCenter devCenter) {
+		this.devCenter = devCenter;
 	}
 }

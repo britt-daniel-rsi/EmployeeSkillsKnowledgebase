@@ -17,18 +17,6 @@ public class EmployeeDao {
         this.sessionFactory = sessionFactory;
     }
 
-    @SuppressWarnings("rawtypes")
-    public Integer getMaxId() {
-        Session session = this.sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery(
-                "select max(employee_id) from esk.employee");
-        List maxIds = query.list();
-        System.out.println(maxIds.get(0));
-        session.close();
-
-        return (Integer) maxIds.get(0);
-    }
-
     public void save(Employee employee) {
         Session session = this.sessionFactory.openSession();
         Transaction tx = session.beginTransaction();

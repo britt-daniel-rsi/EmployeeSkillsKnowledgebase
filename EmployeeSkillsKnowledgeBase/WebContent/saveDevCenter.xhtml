@@ -8,11 +8,6 @@
 		<h:form id="form">
 			<table>
 				<tr>
-					<td><h:outputText value="Description: " /></td>
-					<td><h:inputText id="description"
-							value="#{saveDevCenterController.center.description}" /></td>
-				</tr>
-				<tr>
 					<td><h:outputText value="Name: " /></td>
 					<td><h:inputText id="name"
 							value="#{saveDevCenterController.center.name}" /></td>
@@ -44,8 +39,7 @@
 				</tr>
 				<tr>
 					<td><h:commandButton value="Save Center"
-							action="#{saveDevCenterController.saveCenter}">
-
+							actionListener="#{saveDevCenterController.saveCenter}">
 						</h:commandButton></td>
 				</tr>
 			</table>
