@@ -50,11 +50,11 @@
 		<property name="employeeDao" ref="employeeDao" />
 	</bean>
 
-	<bean id="employeeDao" class="com.rsi.esk.dao.EmployeeDao">
+	<bean id="employeeDao" class="com.rsi.esk.dao.EmployeeDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="phoneTypeDao" class="com.rsi.esk.dao.PhoneTypeDao">
+	<bean id="phoneTypeDao" class="com.rsi.esk.dao.PhoneTypeDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
@@ -62,7 +62,7 @@
 		<property name="phoneTypeDao" ref="phoneTypeDao" />
 	</bean>
 	
-	<bean id="phoneDao" class="com.rsi.esk.dao.PhoneDao">
+	<bean id="phoneDao" class="com.rsi.esk.dao.PhoneDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
