@@ -96,5 +96,14 @@
 	
 	<bean id="skillTypeService" class="com.rsi.esk.service.SkillTypeServiceImpl" >
 	    <property name="skillTypeDao" ref="skillTypeDao" />
-	</bean> 
+	</bean>
+	
+	<bean id="userDao" class="com.rsi.esk.dao.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="userService" class="com.rsi.esk.service.UserServiceImpl" >
+    	<property name="userDao" ref="userDao" />
+	</bean>
+	 
 </beans>
