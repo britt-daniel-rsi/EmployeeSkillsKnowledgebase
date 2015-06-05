@@ -11,11 +11,11 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(name = "esk.employee")
+@Table(schema = "esk", name = "employee")
 public class Employee {
     @Id
     @Column(name = "employee_id")
-    private Integer id;
+    private Long id;
     @NotNull
     @Column(name = "name")
     private String name;
@@ -28,7 +28,7 @@ public class Employee {
     @Column(name = "sex")
     private String sex;
   	@Column(name = "dev_center_id")
-    private Integer devCenterId;
+    private Long devCenterId;
     @Column(name = "description")
     private String description;
     @Column(name = "create_timestamp")
@@ -60,7 +60,7 @@ public class Employee {
         this.sex = sex;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -72,7 +72,7 @@ public class Employee {
         this.createDate = createDate;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public Date getBirthDate() {
@@ -90,11 +90,11 @@ public class Employee {
 		this.name = name;
 	}
 
-	public Integer getDevCenterId() {
+	public Long getDevCenterId() {
 		return devCenterId;
 	}
 
-	public void setDevCenterId(Integer devCenterId) {
+	public void setDevCenterId(Long devCenterId) {
 		this.devCenterId = devCenterId;
 	}
 

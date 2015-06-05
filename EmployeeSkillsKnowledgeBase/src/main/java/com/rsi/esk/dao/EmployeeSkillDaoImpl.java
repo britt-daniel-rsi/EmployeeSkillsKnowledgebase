@@ -20,7 +20,7 @@ public class EmployeeSkillDaoImpl implements EmployeeSkillDao {
 
     @Override
 	@SuppressWarnings("rawtypes")
-    public Integer getMaxId() {
+    public Long getMaxId() {
         Session session = this.sessionFactory.openSession();
         SQLQuery query = session.createSQLQuery(
                 "select max(employee_skill_id) from esk.employee_skill_xref");
@@ -28,13 +28,13 @@ public class EmployeeSkillDaoImpl implements EmployeeSkillDao {
         System.out.println(maxIds.get(0));
         session.close();
 
-        Integer value = (Integer) maxIds.get(0);
+        Long value = (Long) maxIds.get(0);
 
-        if (NumberUtils.hasInteger(value)) {
+        if (NumberUtils.hasLong(value)) {
             return value;
         }
 
-        return Integer.valueOf(0);
+        return Long.valueOf(0);
     }
 
     @Override

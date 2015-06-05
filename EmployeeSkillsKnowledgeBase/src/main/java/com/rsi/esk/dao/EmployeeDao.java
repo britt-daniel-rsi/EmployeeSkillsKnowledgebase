@@ -1,68 +1,18 @@
 package com.rsi.esk.dao;
 
-import com.rsi.esk.domain.Employee;
-
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
 import java.util.List;
 
+import com.rsi.esk.domain.Employee;
 
-public class EmployeeDao {
-    private SessionFactory sessionFactory;
+public interface EmployeeDao {
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+	Long getMaxId();
 
-    @SuppressWarnings("rawtypes")
-    public Integer getMaxId() {
-        Session session = this.sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery(
-                "select max(employee_id) from esk.employee");
-        List maxIds = query.list();
-        System.out.println(maxIds.get(0));
-        session.close();
+	void save(Employee employee);
 
-        return (Integer) maxIds.get(0);
-    }
+	List<Employee> list();
 
-    public void save(Employee employee) {
-        Session session = this.sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        session.persist(employee);
-        tx.commit();
-        session.close();
-    }
+	List<Employee> SurnameSearch(String surname);
 
-    @SuppressWarnings("unchecked")
-    public List<Employee> list() {
-        Session session = this.sessionFactory.openSession();
-        List<Employee> personList = session.createQuery("from Employee").list();
-        session.close();
-
-        return personList;
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Employee> SurnameSearch(String surname) {
-        Session session = this.sessionFactory.openSession();
-        List<Employee> personList = session.createQuery(
-                "from Employee where surname='" + surname + "'").list();
-        session.close();
-
-        return personList;
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Employee> IdSearch(Integer id) {
-        Session session = this.sessionFactory.openSession();
-        List<Employee> personList = session.createQuery(
-                "from Employee where id='" + id + "'").list();
-        session.close();
-
-        return personList;
-    }
+	List<Employee> IdSearch(Long id);
 }

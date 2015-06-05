@@ -2,13 +2,16 @@ package com.rsi.esk.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.rsi.esk.dao.DevCenterDao;
-import com.rsi.esk.dao.DevCenterDaoImpl;
 import com.rsi.esk.domain.DevCenter;
 
+@Component
 public class DevCenterServiceImpl implements DevCenterService {
 
-	
+	@Autowired
 	private DevCenterDao devCenterDao;
 
 	@Override

@@ -1,21 +1,21 @@
 package com.rsi.esk.service;
 
-import com.rsi.esk.dao.EmployeeDao;
-import com.rsi.esk.domain.Employee;
-
 import java.io.Serializable;
-
 import java.util.Calendar;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import com.rsi.esk.dao.EmployeeDao;
+import com.rsi.esk.domain.Employee;
+
+@Component
 public class EmployeeServiceImpl implements EmployeeService, Serializable {
     private static final long serialVersionUID = 1L;
+    
+    @Autowired
     private EmployeeDao employeeDao;
-
-    public EmployeeDao getEmployeeDao() {
-        return employeeDao;
-    }
 
     public void setEmployeeDao(EmployeeDao employeeDao) {
         this.employeeDao = employeeDao;
@@ -26,18 +26,18 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable {
         employee.setId(employeeDao.getMaxId() + 1);
         employee.setCreateDate(Calendar.getInstance().getTime());
         System.out.println(employee.getId());
-        getEmployeeDao().save(employee);
+        employeeDao.save(employee);
     }
 
     public List<Employee> getAllEmployees() {
-        return getEmployeeDao().list();
+        return employeeDao.list();
     }
 
     public List<Employee> SurSearch(String surname) {
-        return getEmployeeDao().SurnameSearch(surname);
+        return employeeDao.SurnameSearch(surname);
     }
 
-    public List<Employee> IdSearch(Integer id) {
-        return getEmployeeDao().IdSearch(id);
+    public List<Employee> IdSearch(Long id) {
+        return employeeDao.IdSearch(id);
     }
 }

@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "esk.phone_type")
+@Table(schema = "esk", name = "phone_type")
 public class PhoneType {
     @Id
     @Column(name = "phone_type_id")

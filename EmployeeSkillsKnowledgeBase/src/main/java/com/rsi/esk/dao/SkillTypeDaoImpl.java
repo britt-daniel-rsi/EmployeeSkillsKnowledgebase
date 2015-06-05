@@ -3,23 +3,20 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rsi.esk.domain.SkillType;
 
-public class SkillTypeDaoImpl implements SkillTypeDao{
-
-	private SessionFactory sessionFactory;
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+@Transactional
+@Repository
+public class SkillTypeDaoImpl extends HibernateDao implements SkillTypeDao{
     
     @Override
 	@SuppressWarnings("unchecked")
     public List<SkillType> list() {
-        Session session = this.sessionFactory.openSession();
+        Session session = getSessionFactory().openSession();
         List<SkillType> skillList = session.createQuery("from SkillType").list();
         session.close();
 
@@ -28,7 +25,7 @@ public class SkillTypeDaoImpl implements SkillTypeDao{
     
   
 	public SkillType getSkillTypeByDescription(String description) {
-        Session session = this.sessionFactory.openSession();
+        Session session = getSessionFactory().openSession();
         Query query = session.createQuery(
                 "from SkillType where type = :skillType");
         query.setParameter("skillType", description);
@@ -38,7 +35,7 @@ public class SkillTypeDaoImpl implements SkillTypeDao{
 
   
 	public SkillType getSkillTypeById(Long id) {
-        Session session = this.sessionFactory.openSession();
+        Session session = getSessionFactory().openSession();
         Query query = session.createQuery(
                 "from SkillType where idskilltype = :skillTypeId");
         query.setParameter("skillTypeId", id);
@@ -48,7 +45,7 @@ public class SkillTypeDaoImpl implements SkillTypeDao{
 	
 	@Override
     public void save(SkillType skillType) {
-        Session session = this.sessionFactory.openSession();
+        Session session = getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         session.persist(skillType);
         tx.commit();

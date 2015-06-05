@@ -1,15 +1,11 @@
 package com.rsi.esk.service;
 
-import com.rsi.esk.dao.EmployeeDao;
-import com.rsi.esk.domain.Employee;
-
 import java.util.List;
+
+import com.rsi.esk.domain.Employee;
 
 
 public interface EmployeeService {
-    EmployeeDao getEmployeeDao();
-
-    void setEmployeeDao(EmployeeDao employeeDao);
 
     void addEmployee(Employee employee);
 
@@ -17,5 +13,5 @@ public interface EmployeeService {
 
     List<Employee> SurSearch(String surname);
 
-    List<Employee> IdSearch(Integer id);
+    List<Employee> IdSearch(Long id);
 }

@@ -11,11 +11,11 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(name = "esk.employee_skill_xref")
+@Table(schema = "esk", name = "employee_skill_xref")
 public class EmployeeSkill {
     @Id
     @Column(name = "employee_skill_id", unique = true, nullable = false)
-    private Integer id;
+    private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "skill_type_id", nullable = false)
     private SkillType skillType;
@@ -24,20 +24,20 @@ public class EmployeeSkill {
     private Employee employee;
     @NotNull
     @Column(name = "skill_level")
-    private Integer skillLevel;
+    private Long skillLevel;
 
     public EmployeeSkill() {
     }
 
-    public EmployeeSkill(Integer skillLevel) {
+    public EmployeeSkill(Long skillLevel) {
         this.skillLevel = skillLevel;
     }
     
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
     
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
     
@@ -50,11 +50,11 @@ public class EmployeeSkill {
         this.employee = employee;
     }
     
-    public Integer getSkillLevel() {
+    public Long getSkillLevel() {
         return skillLevel;
     }
 
-    public void setSkillLevel(Integer skillLevel) {
+    public void setSkillLevel(Long skillLevel) {
         this.skillLevel = skillLevel;
     }
 }

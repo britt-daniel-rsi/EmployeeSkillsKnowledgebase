@@ -7,20 +7,20 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "esk.skill_type")
+@Table(schema = "esk", name = "skill_type")
 public class SkillType {
 	@Id
 	@Column(name = "skill_type_id", unique = true, nullable = false)
-	private Integer Id;
+	private Long Id;
 	@NotNull
 	@Column(name = "skill_type_desc")
 	private String skillName;
 
-	public Integer getId() {
+	public Long getId() {
 		return Id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		Id = id;
 	}
 

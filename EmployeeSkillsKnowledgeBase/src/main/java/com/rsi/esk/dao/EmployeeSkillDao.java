@@ -10,7 +10,7 @@ public interface EmployeeSkillDao {
 
 	public abstract void setSessionFactory(SessionFactory sessionFactory);
 
-	public abstract Integer getMaxId();
+	public abstract Long getMaxId();
 
 	public abstract void save(EmployeeSkill employeeSkill);
 

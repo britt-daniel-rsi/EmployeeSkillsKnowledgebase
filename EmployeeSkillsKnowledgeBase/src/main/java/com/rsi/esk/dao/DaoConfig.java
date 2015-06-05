@@ -8,34 +8,33 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan("com.rsi.esk.dao")
 public class DaoConfig {
 
-		
-		@Bean
-		public EmployeeDao employeeDao() {
-			return new EmployeeDaoImpl();
-		}
+	@Bean
+	public EmployeeDao employeeDao() {
+		return new EmployeeDaoImpl();
+	}
 
-		@Bean
-		public EmployeeSkillDao employeeSkillDao() {
-			return new EmployeeSkillDaoImpl();
-		}
-		
-		@Bean
-		public DevCenterDao devCenterDao() {
-			return new DevCenterDaoImpl();
-		}
-		
-		@Bean
-		public PhoneTypeDaoImpl phoneTypeDao() {
-			return new PhoneTypeDaoImpl();
-		}
-		
-		@Bean
-		public SkillTypeDao skillTypeDao() {
-			return new SkillTypeDaoImpl();
-		}
-		
-		@Bean
-		public PhoneDaoImpl phoneDao() {
-			return new PhoneDaoImpl();
-		}
+	@Bean
+	public EmployeeSkillDao employeeSkillDao() {
+		return new EmployeeSkillDaoImpl();
+	}
+
+	@Bean
+	public DevCenterDao devCenterDao() {
+		return new DevCenterDaoImpl();
+	}
+
+	@Bean
+	public PhoneTypeDao phoneTypeDao() {
+		return new PhoneTypeDaoImpl();
+	}
+
+	@Bean
+	public SkillTypeDao skillTypeDao() {
+		return new SkillTypeDaoImpl();
+	}
+
+	@Bean
+	public PhoneDao phoneDao() {
+		return new PhoneDaoImpl();
+	}
 }

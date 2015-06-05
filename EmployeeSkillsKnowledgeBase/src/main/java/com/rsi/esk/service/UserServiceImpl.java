@@ -5,19 +5,18 @@ import java.util.Map;
 
 import javax.faces.context.ExternalContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.rsi.esk.dao.UserDao;
 import com.rsi.esk.domain.User;
 
+@Component
 public class UserServiceImpl implements UserService {
 	
+	@Autowired
     private UserDao userDao;
 
-	@Override
-	public UserDao getUserDao() {
-        return userDao;
-    }
-
-	@Override
 	public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
@@ -26,22 +25,22 @@ public class UserServiceImpl implements UserService {
 	public void addUser(User user) {
         user.setId(userDao.getMaxId() + 1);
         System.out.println(user.getId());
-        getUserDao().save(user);
+        userDao.save(user);
     }
 
 	@Override
 	public List<User> getAllUsers() {
-        return getUserDao().list();
+        return userDao.list();
     }
 
 	@Override
 	public List<User> userNameSearch(String userName) {
-        return getUserDao().userNameSearch(userName);
+        return userDao.userNameSearch(userName);
     }
 
 	@Override
-	public List<User> IdSearch(Integer id) {
-        return getUserDao().IdSearch(id);
+	public List<User> IdSearch(Long id) {
+        return userDao.IdSearch(id);
     }
 
 	@Override
@@ -49,7 +48,7 @@ public class UserServiceImpl implements UserService {
 		if(password.equals("") || password == null){
 			return false;
 		}
-		if(getUserDao().checkPassword(username, password)){
+		if(userDao.checkPassword(username, password)){
 			//Establish a session
 			ExternalContext externalContext = null;
 			@SuppressWarnings("null")

@@ -1,42 +1,39 @@
 package com.rsi.esk.dao;
 
-import com.rsi.esk.domain.User;
-
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-public class UserDaoImpl implements UserDao{
-    private SessionFactory sessionFactory;
+import com.rsi.esk.domain.User;
 
-	@Override
-	public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+@Transactional
+@Repository
+public class UserDaoImpl extends HibernateDao implements UserDao{
+
 
 	@Override
 	@SuppressWarnings("rawtypes")
-    public Integer getMaxId() {
-        Session session = this.sessionFactory.openSession();
+    public Long getMaxId() {
+        Session session = getSessionFactory().openSession();
         SQLQuery query = session.createSQLQuery(
                 "select max(user_id) from esk.user");
         List maxIds = query.list();
         System.out.println(maxIds.get(0));
         session.close();
 
-        return (Integer) maxIds.get(0);
+        return (Long) maxIds.get(0);
     }
 
 	@Override
 	public void save(User user) {
-        Session session = this.sessionFactory.openSession();
+        Session session = getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         session.persist(user);
         tx.commit();
@@ -46,7 +43,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	@SuppressWarnings("unchecked")
     public List<User> list() {
-        Session session = this.sessionFactory.openSession();
+        Session session = getSessionFactory().openSession();
         List<User> userList = session.createQuery("from User").list();
         session.close();
 
@@ -56,7 +53,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	@SuppressWarnings("unchecked")
     public List<User> userNameSearch(String userName) {
-        Session session = this.sessionFactory.openSession();
+        Session session = getSessionFactory().openSession();
         List<User> userList = session.createQuery(
                 "from User where userName='" + userName + "'").list();
         session.close();
@@ -66,8 +63,8 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	@SuppressWarnings("unchecked")
-    public List<User> IdSearch(Integer id) {
-        Session session = this.sessionFactory.openSession();
+    public List<User> IdSearch(Long id) {
+        Session session = getSessionFactory().openSession();
         List<User> userList = session.createQuery(
                 "from User where id='" + id + "'").list();
         session.close();
@@ -77,7 +74,7 @@ public class UserDaoImpl implements UserDao{
 
     @Override
 	public Boolean checkPassword(String userName, String password) {
-    	Session session = sessionFactory.openSession();
+    	Session session = getSessionFactory().openSession();
 		try {
 			byte[] hashedPass = SHA1(password);
 			System.out.println(bytesToHex(hashedPass));

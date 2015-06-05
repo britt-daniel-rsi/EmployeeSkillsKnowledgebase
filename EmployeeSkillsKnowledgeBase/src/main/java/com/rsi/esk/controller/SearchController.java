@@ -31,7 +31,7 @@ public class SearchController extends BaseController implements Serializable {
     private EmployeeService employeeService;
     List<Employee> employeeList;
     String surname;
-    Integer id;
+    Long id;
     private DateFormat df = new SimpleDateFormat("E, dd MMM yyyy ");
 
     public String getBirthDateString(Timestamp birth) {
@@ -54,11 +54,11 @@ public class SearchController extends BaseController implements Serializable {
         this.surname = surname;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -67,7 +67,7 @@ public class SearchController extends BaseController implements Serializable {
     }
 
     public String search() {
-        if (NumberUtils.hasInteger(id)) {
+        if (NumberUtils.hasLong(id)) {
             employeeList = employeeService.IdSearch(id);
         } else if (!StringUtils.isEmpty(surname)) {
             employeeList = employeeService.SurSearch(surname);

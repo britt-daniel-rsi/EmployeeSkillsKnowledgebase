@@ -1,20 +1,21 @@
 package com.rsi.esk.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.rsi.esk.dao.PhoneTypeDao;
 import com.rsi.esk.domain.PhoneType;
 
-import java.util.List;
-
-
+@Component
 public class PhoneTypeServiceImpl implements PhoneTypeService {
+	
+	@Autowired
     private PhoneTypeDao phoneTypeDao;
 
     public List<PhoneType> getPhoneTypes() {
         return phoneTypeDao.list();
-    }
-
-    public PhoneTypeDao getPhoneTypeDao() {
-        return phoneTypeDao;
     }
 
     public void setPhoneTypeDao(PhoneTypeDao phoneTypeDao) {

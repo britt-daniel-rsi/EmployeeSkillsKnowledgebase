@@ -2,23 +2,18 @@ package com.rsi.esk.service;
 
 import java.util.List;
 
-import com.rsi.esk.dao.UserDao;
 import com.rsi.esk.domain.User;
 
 public interface UserService {
 
-	public abstract UserDao getUserDao();
+	void addUser(User user);
 
-	public abstract void setUserDao(UserDao userDao);
+	List<User> getAllUsers();
 
-	public abstract void addUser(User user);
+	List<User> userNameSearch(String userName);
 
-	public abstract List<User> getAllUsers();
+	List<User> IdSearch(Long id);
 
-	public abstract List<User> userNameSearch(String userName);
-
-	public abstract List<User> IdSearch(Integer id);
-
-	public abstract boolean validate(String username, String password);
+	boolean validate(String username, String password);
 
 }

@@ -34,7 +34,7 @@ public class AdminController extends BaseController{
     	this.employee = employee;
     }
     
-	public void addSkill(SkillType skill){
+	public void addSkill(SkillType skillType){
 		this.skillType = skillType;
 	}
 	

@@ -10,14 +10,12 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "dbo.dev_center")
+@Table(schema = "esk", name = "dev_center")
 public class DevCenter {
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
     @Column(name = "dev_center_id")
-    private Integer Id;
-	@Column(name="description")
-	private String description;
+    private Long Id;
 	@Column(name="name")
 	private String name;
 	@Column(name="address")
@@ -31,20 +29,12 @@ public class DevCenter {
 	@Column(name="zip_code")
 	private String zipcode;
 
-	public Integer getId() {
+	public Long getId() {
 		return Id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		Id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public String getName() {

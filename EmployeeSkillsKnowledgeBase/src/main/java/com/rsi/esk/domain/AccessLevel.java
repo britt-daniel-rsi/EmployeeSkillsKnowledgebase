@@ -6,19 +6,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "esk.access_level")
+@Table(schema = "esk", name = "access_level")
 public class AccessLevel {
     @Id
     @Column(name = "access_level_id")
-    private Integer id;
+    private Long id;
     @Column(name = "access_level_desc")
     private String description;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

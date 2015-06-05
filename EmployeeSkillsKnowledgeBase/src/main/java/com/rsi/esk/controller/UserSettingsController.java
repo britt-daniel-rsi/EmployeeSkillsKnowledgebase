@@ -1,13 +1,10 @@
 package com.rsi.esk.controller;
 
-import java.util.List;
-
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty; 
+import javax.faces.bean.ManagedProperty;
 
 import org.springframework.stereotype.Controller;
 
-import com.rsi.esk.domain.User;
 import com.rsi.esk.service.UserService;
 
 

@@ -12,11 +12,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "esk.user")
+@Table(name = "esk_user", schema="esk")
 public class User {
 	@Id
 	@Column(name = "user_id")
-	private Integer id;
+	private Long id;
 	@NotNull
 	@Column(name = "user_name")
 	private String userName;
@@ -25,7 +25,7 @@ public class User {
 	private Byte[] userPassword;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "access_level_id", nullable = false)
-	private AccessLevel accessLevel;
+	private transient AccessLevel accessLevel;
 	@Column(name = "create_timestamp")
 	private Date createDate;
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -51,7 +51,7 @@ public class User {
 		return employee;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -75,7 +75,7 @@ public class User {
 		this.employee = employee;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -11,65 +11,64 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-
 @Entity
-@Table(name = "esk.employee_phone")
+@Table(schema = "esk", name = "employee_phone")
 public class Phone {
-    @Id
-    @Column(name = "phone_id", unique = true, nullable = false)
-    private Integer Id;
-    @NotNull
-    @Pattern(regexp = "\\(\\d{3}\\)\\d{3}-\\d{4}")
-    @Column(name = "phone_number")
-    private String number;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "phone_type_id")
-    private PhoneType phoneType;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id", nullable = false)
-    private Employee employee;
+	@Id
+	@Column(name = "phone_id", unique = true, nullable = false)
+	private Long Id;
+	@NotNull
+	@Pattern(regexp = "\\(\\d{3}\\)\\d{3}-\\d{4}")
+	@Column(name = "phone_number")
+	private String number;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "phone_type_id")
+	private PhoneType phoneType;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "employee_id", nullable = false)
+	private Employee employee;
 
-    public Phone() {
-    }
+	public Phone() {
+	}
 
-    public Phone(String phoneNumber, PhoneType phoneType) {
-        this.number = phoneNumber;
-        this.phoneType = phoneType;
-    }
+	public Phone(String phoneNumber, PhoneType phoneType) {
+		this.number = phoneNumber;
+		this.phoneType = phoneType;
+	}
 
-    public Phone(String phoneNumber) { //Constructor for test
-        this.number = phoneNumber;
-    }
+	public Phone(String phoneNumber) { // Constructor for test
+		this.number = phoneNumber;
+	}
 
-    public Employee getEmployee() {
-        return employee;
-    }
+	public Employee getEmployee() {
+		return employee;
+	}
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
 
-    public Integer getId() {
-        return Id;
-    }
+	public String getNumber() {
+		return number;
+	}
 
-    public void setId(Integer id) {
-        Id = id;
-    }
+	public void setNumber(String number) {
+		this.number = number;
+	}
 
-    public String getNumber() {
-        return number;
-    }
+	public PhoneType getPhoneType() {
+		return phoneType;
+	}
 
-    public void setNumber(String number) {
-        this.number = number;
-    }
+	public void setPhoneType(PhoneType phoneType) {
+		this.phoneType = phoneType;
+	}
 
-    public PhoneType getPhoneType() {
-        return phoneType;
-    }
+	public Long getId() {
+		return Id;
+	}
 
-    public void setPhoneType(PhoneType phoneType) {
-        this.phoneType = phoneType;
-    }
+	public void setId(Long id) {
+		Id = id;
+	}
 }

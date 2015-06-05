@@ -26,7 +26,7 @@ public class FindEmployeeIdController extends BaseController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String view(Map<String, Object> model, Integer id) {
+    public String view(Map<String, Object> model, Long id) {
         List<Employee> employeeList = employeeService.IdSearch(id);
         model.put("employeeList", employeeList);
 
