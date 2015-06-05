@@ -14,5 +14,4 @@ public interface EmployeeDao {
 	
 	List<Employee> IdSearch(Integer id);
 	
-	Integer getMaxId();
 }
