@@ -6,7 +6,7 @@ import com.rsi.esk.domain.DevCenter;
 
 public interface DevCenterDao {
 	
-	public void save(DevCenter center);
+	void save(DevCenter center);
 	
-	public List<DevCenter> list();
+	List<DevCenter> list();
 }

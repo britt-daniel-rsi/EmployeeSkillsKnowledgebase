@@ -8,19 +8,21 @@ import com.rsi.esk.domain.User;
 
 public interface UserService {
 
-	public abstract UserDao getUserDao();
+	UserDao getUserDao();
 
-	public abstract void setUserDao(UserDao userDao);
+	void setUserDao(UserDao userDao);
 
-	public abstract void addUser(User user);
+	void addUser(User user);
 
-	public abstract List<User> getAllUsers();
+	List<User> getAllUsers();
 
-	public abstract List<User> userNameSearch(String userName);
+	List<User> userNameSearch(String userName);
 
-	public abstract List<User> IdSearch(Integer id);
+	List<User> IdSearch(Integer id);
 
-	public LoginDao getLoginDao();
-    public void setLoginDao(LoginDao LoginDao);
-	public boolean validate(String username, String password);
+	LoginDao getLoginDao();
+
+	void setLoginDao(LoginDao LoginDao);
+
+	boolean validate(String username, String password);
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.rsi.esk.domain.PhoneType;
 
-
 public interface PhoneTypeDao {
 	
 	List<PhoneType> list();
