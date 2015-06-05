@@ -43,6 +43,10 @@ public class NavigationController extends BaseController implements Serializable
 		return "saveDevCenter";
 	}
 	
+	public String moveToAdminPage() {
+		return "admin";
+	}
+		
 	public String moveToUserSettingsPage() {
 		return "userSettings";
 	}

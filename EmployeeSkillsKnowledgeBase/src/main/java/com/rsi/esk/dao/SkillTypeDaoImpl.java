@@ -12,7 +12,6 @@ public class SkillTypeDaoImpl implements SkillTypeDao{
 
 	private SessionFactory sessionFactory;
 
-    @Override
 	public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -28,7 +27,6 @@ public class SkillTypeDaoImpl implements SkillTypeDao{
     }
     
   
-	@Override
 	public SkillType getSkillTypeByDescription(String description) {
         Session session = this.sessionFactory.openSession();
         Query query = session.createQuery(
@@ -39,7 +37,6 @@ public class SkillTypeDaoImpl implements SkillTypeDao{
     }
 
   
-	@Override
 	public SkillType getSkillTypeById(Long id) {
         Session session = this.sessionFactory.openSession();
         Query query = session.createQuery(
