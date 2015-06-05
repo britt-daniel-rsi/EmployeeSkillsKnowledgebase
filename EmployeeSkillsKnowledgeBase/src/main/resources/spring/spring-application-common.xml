@@ -97,4 +97,12 @@
 	<bean id="skillTypeService" class="com.rsi.esk.service.SkillTypeServiceImpl" >
 	    <property name="skillTypeDao" ref="skillTypeDao" />
 	</bean> 
+	
+	<bean id="loginDao" class="com.rsi.esk.dao.LoginDaoImpl" >
+    	<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="loginService" class="com.rsi.esk.service.LoginServiceImpl" >
+	    <property name="loginDao" ref="loginDao" />
+	</bean> 
 </beans>
