@@ -1,5 +1,5 @@
 package com.rsi.esk;
-
+/*
 import java.util.Locale;
 
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
@@ -91,3 +91,4 @@ public class ESKConfig extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(interceptor);
 	}
 }
+*/

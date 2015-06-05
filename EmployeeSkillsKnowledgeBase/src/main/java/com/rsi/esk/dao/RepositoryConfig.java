@@ -1,5 +1,5 @@
 package com.rsi.esk.dao;
-
+/*
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -81,3 +81,4 @@ public class RepositoryConfig {
 	}
 
 }
+*/
