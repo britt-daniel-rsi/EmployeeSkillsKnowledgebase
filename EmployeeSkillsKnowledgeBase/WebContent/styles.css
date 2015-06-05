@@ -48,3 +48,13 @@
 				float:right;
 				padding-top: 15px;
 			}
+			#login{
+				background:#ededed;
+				padding: 10px;
+				border: solid #222222 2px;
+				border-radius: 2px;
+				margin: 10% auto;
+			}
+			#background{ /*For log-in page background*/
+
+			}

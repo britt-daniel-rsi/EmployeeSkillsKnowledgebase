@@ -5,11 +5,13 @@ import java.util.Map;
 
 import javax.faces.context.ExternalContext;
 
+import com.rsi.esk.dao.LoginDao;
+import com.rsi.esk.dao.LoginDaoImpl;
 import com.rsi.esk.dao.UserDao;
 import com.rsi.esk.domain.User;
 
 public class UserServiceImpl implements UserService {
-	
+	private LoginDao loginDao;
     private UserDao userDao;
 
 	@Override
@@ -43,22 +45,19 @@ public class UserServiceImpl implements UserService {
 	public List<User> IdSearch(Integer id) {
         return getUserDao().IdSearch(id);
     }
-
+	@Override
+	public LoginDao getLoginDao() {
+		return loginDao;
+	}
+	@Override
+	public void setLoginDao(LoginDao loginDao) {
+		this.loginDao = loginDao;
+	}
 	@Override
 	public boolean validate(String username, String password) {
-		if(password.equals("") || password == null){
+		if(username.equals("") || username == null || password.equals("") || password == null){
 			return false;
 		}
-		if(getUserDao().checkPassword(username, password)){
-			//Establish a session
-			ExternalContext externalContext = null;
-			@SuppressWarnings("null")
-			Map<String, Object> sessionMap = externalContext.getSessionMap();
-			sessionMap.put("User", sessionMap);
-			return true;
-		}
-		else{
-			return false;
-		}
+		return getLoginDao().matchUserToPass(username, password);
 	}
 }
