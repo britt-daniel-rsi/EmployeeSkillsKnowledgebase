@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.rsi.esk.dao.SkillTypeDaoImpl;
+import com.rsi.esk.dao.SkillTypeDao;
 import com.rsi.esk.domain.SkillType;
 
 @Component
 public class SkillTypeServiceImpl implements SkillTypeService  {
 
 	@Autowired
-	private SkillTypeDaoImpl skillTypeDao;
+	private SkillTypeDao skillTypeDao;
 	
 	@Override
 	public List<SkillType> getAllSkillTypes(){
@@ -24,7 +24,7 @@ public class SkillTypeServiceImpl implements SkillTypeService  {
 		skillTypeDao.save(skill);
 	}
 	
-	public void setSkillTypeDao(SkillTypeDaoImpl skillTypeDao){
+	public void setSkillTypeDao(SkillTypeDao skillTypeDao){
 		this.skillTypeDao = skillTypeDao;
 	}
 }

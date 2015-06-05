@@ -8,12 +8,12 @@ import com.rsi.esk.domain.EmployeeSkill;
 
 public interface EmployeeSkillDao {
 
-	public abstract void setSessionFactory(SessionFactory sessionFactory);
+	void setSessionFactory(SessionFactory sessionFactory);
 
-	public abstract Long getMaxId();
+	Long getMaxId();
 
-	public abstract void save(EmployeeSkill employeeSkill);
+	void save(EmployeeSkill employeeSkill);
 
-	public abstract List<EmployeeSkill> list();
+	List<EmployeeSkill> list();
 
 }

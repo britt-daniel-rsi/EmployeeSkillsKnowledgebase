@@ -6,17 +6,16 @@ import com.rsi.esk.domain.User;
 
 public interface UserDao {
 
+	Long getMaxId();
 
-	public abstract Long getMaxId();
+	void save(User user);
 
-	public abstract void save(User user);
+	List<User> list();
 
-	public abstract List<User> list();
+	List<User> userNameSearch(String userName);
 
-	public abstract List<User> userNameSearch(String userName);
+	Boolean checkPassword(String userName, String password);
 
-	public abstract List<User> IdSearch(Long id);
-
-	public abstract Boolean checkPassword(String userName, String password);
+	List<User> IdSearch(Long id);
 
 }

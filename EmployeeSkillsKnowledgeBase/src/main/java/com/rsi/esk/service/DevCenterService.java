@@ -5,7 +5,7 @@ import java.util.List;
 import com.rsi.esk.domain.DevCenter;
 
 public interface DevCenterService {
-	public List<DevCenter> getAllDevCenters();
+	List<DevCenter> getAllDevCenters();
 	
-	public void addCenter(DevCenter center);
+	void addCenter(DevCenter center);
 }

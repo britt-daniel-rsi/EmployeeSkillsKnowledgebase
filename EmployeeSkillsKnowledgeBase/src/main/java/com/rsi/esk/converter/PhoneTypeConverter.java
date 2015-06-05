@@ -1,24 +1,28 @@
 package com.rsi.esk.converter;
 
-import com.rsi.esk.domain.PhoneType;
-import com.rsi.esk.service.PhoneTypeService;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
 
+import com.rsi.esk.domain.PhoneType;
+import com.rsi.esk.service.PhoneTypeService;
 
+@FacesConverter("phoneTypeConverter")
 public class PhoneTypeConverter implements Converter {
-    private PhoneTypeService phoneTypeService;
-
-    public void setPhoneTypeService(PhoneTypeService phoneTypeService) {
-        this.phoneTypeService = phoneTypeService;
-    }
+	
+	private PhoneTypeService service;
+	
+	public PhoneTypeConverter(PhoneTypeService service) {
+		this.service = service;
+	}
 
     @Override
-    public Object getAsObject(FacesContext facesContext, UIComponent component,
+    public Object getAsObject(FacesContext context, UIComponent component,
         String value) {
-        return phoneTypeService.getPhoneTypeByDescription(value);
+    	
+    	PhoneType type = service.getPhoneTypeByDescription(value);
+        return type;
     }
 
     @Override

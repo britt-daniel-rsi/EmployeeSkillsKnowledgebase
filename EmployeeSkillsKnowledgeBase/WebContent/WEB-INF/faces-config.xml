@@ -21,19 +21,19 @@
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
-			<from-action>#{navigationController.moveToSearchUsersPage}</from-action>
+			<from-action>#{navigationController.moveToSearchEmployeesPage}</from-action>
 			<from-outcome>searchUsers</from-outcome>
-			<to-view-id>searchUsers.jsf</to-view-id>
+			<to-view-id>/searchUsers</to-view-id>
 		</navigation-case>
 		<navigation-case>
-			<from-action>#{navigationController.moveToListUsersPage}</from-action>
+			<from-action>#{navigationController.moveToListEmployeesPage}</from-action>
 			<from-outcome>listUsers</from-outcome>
-			<to-view-id>listUsers.jsf</to-view-id>
+			<to-view-id>/listUsers</to-view-id>
 		</navigation-case>
 		<navigation-case>
-			<from-action>#{navigationController.moveToSaveUsersPage}</from-action>
+			<from-action>#{navigationController.moveToSaveEmployeesPage}</from-action>
 			<from-outcome>saveUsers</from-outcome>
-			<to-view-id>saveUsers.jsf</to-view-id>
+			<to-view-id>/saveUsers</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-action>#{navigationController.moveToDevCentersPage}</from-action>
@@ -44,6 +44,16 @@
 			<from-action>#{navigationController.moveToSaveDevCenterPage}</from-action>
 			<from-outcome>saveDevCenter</from-outcome>
 			<to-view-id>/saveDevCenter</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{navigationController.moveToLoginPage}</from-action>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/login</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{loginController.checkCredentials}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/index</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

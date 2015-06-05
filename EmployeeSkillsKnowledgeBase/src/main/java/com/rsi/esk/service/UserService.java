@@ -15,5 +15,4 @@ public interface UserService {
 	List<User> IdSearch(Long id);
 
 	boolean validate(String username, String password);
-
 }

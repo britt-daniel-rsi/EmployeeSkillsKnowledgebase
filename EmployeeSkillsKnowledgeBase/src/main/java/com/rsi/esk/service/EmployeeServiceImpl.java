@@ -12,32 +12,31 @@ import com.rsi.esk.domain.Employee;
 
 @Component
 public class EmployeeServiceImpl implements EmployeeService, Serializable {
-    private static final long serialVersionUID = 1L;
-    
-    @Autowired
-    private EmployeeDao employeeDao;
+	private static final long serialVersionUID = 1L;
 
-    public void setEmployeeDao(EmployeeDao employeeDao) {
-        this.employeeDao = employeeDao;
-    }
+	@Autowired
+	private EmployeeDao employeeDao;
 
-    public void addEmployee(Employee employee) {
-        //		if(employee.getId() != null && employee.getId() > 0) {
-        employee.setId(employeeDao.getMaxId() + 1);
-        employee.setCreateDate(Calendar.getInstance().getTime());
-        System.out.println(employee.getId());
-        employeeDao.save(employee);
-    }
+	public void setEmployeeDao(EmployeeDao employeeDao) {
+		this.employeeDao = employeeDao;
+	}
 
-    public List<Employee> getAllEmployees() {
-        return employeeDao.list();
-    }
+	public void addEmployee(Employee employee) {
+		employee.setCreateDate(Calendar.getInstance().getTime());
+		System.out.println(employee.getId());
+		employeeDao.save(employee);
+	}
 
-    public List<Employee> SurSearch(String surname) {
-        return employeeDao.SurnameSearch(surname);
-    }
+	public List<Employee> getAllEmployees() {
+		return employeeDao.list();
+	}
 
-    public List<Employee> IdSearch(Long id) {
-        return employeeDao.IdSearch(id);
-    }
+	public List<Employee> SurSearch(String surname) {
+		return employeeDao.SurnameSearch(surname);
+	}
+
+	public List<Employee> IdSearch(Long id) {
+		return employeeDao.IdSearch(id);
+	}
+
 }

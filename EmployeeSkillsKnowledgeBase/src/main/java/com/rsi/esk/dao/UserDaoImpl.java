@@ -72,6 +72,7 @@ public class UserDaoImpl extends HibernateDao implements UserDao{
         return userList;
     }
 
+
     @Override
 	public Boolean checkPassword(String userName, String password) {
     	Session session = getSessionFactory().openSession();
@@ -108,4 +109,5 @@ public class UserDaoImpl extends HibernateDao implements UserDao{
 	      }
 	      return buf.toString();
 	   }
+
 }

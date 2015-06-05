@@ -6,15 +6,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 
 
 @Entity
 @Table(schema = "esk", name = "dev_center")
+
 public class DevCenter {
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
     @Column(name = "dev_center_id")
+
     private Long Id;
 	@Column(name="name")
 	private String name;
@@ -25,8 +28,10 @@ public class DevCenter {
 	@Column(name="city")
 	private String city;
 	@Column(name="state")
+	@Size(max=2, message="The state is two characters")
 	private String state;
 	@Column(name="zip_code")
+	@Size(max=5)
 	private String zipcode;
 
 	public Long getId() {

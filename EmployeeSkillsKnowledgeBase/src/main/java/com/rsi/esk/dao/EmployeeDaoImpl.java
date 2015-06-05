@@ -29,6 +29,7 @@ public class EmployeeDaoImpl extends HibernateDao implements EmployeeDao {
 
     public void save(Employee employee) {
         Session session = getSessionFactory().openSession();
+
         Transaction tx = session.beginTransaction();
         session.persist(employee);
         tx.commit();
@@ -57,6 +58,7 @@ public class EmployeeDaoImpl extends HibernateDao implements EmployeeDao {
     @SuppressWarnings("unchecked")
     public List<Employee> IdSearch(Long id) {
         Session session = getSessionFactory().openSession();
+
         List<Employee> personList = session.createQuery(
                 "from Employee where id='" + id + "'").list();
         session.close();

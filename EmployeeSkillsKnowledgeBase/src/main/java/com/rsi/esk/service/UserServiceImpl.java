@@ -13,13 +13,14 @@ import com.rsi.esk.domain.User;
 
 @Component
 public class UserServiceImpl implements UserService {
+
 	
 	@Autowired
     private UserDao userDao;
 
 	public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
+		this.userDao = userDao;
+	}
 
 	@Override
 	public void addUser(User user) {
@@ -43,6 +44,7 @@ public class UserServiceImpl implements UserService {
         return userDao.IdSearch(id);
     }
 
+
 	@Override
 	public boolean validate(String username, String password) {
 		if(password.equals("") || password == null){
@@ -57,7 +59,9 @@ public class UserServiceImpl implements UserService {
 			return true;
 		}
 		else{
+
 			return false;
 		}
+		
 	}
 }

@@ -9,5 +9,6 @@ public interface PhoneDao {
 
 	void save(Phone phone);
 
+
 	List<Phone> list();
 }

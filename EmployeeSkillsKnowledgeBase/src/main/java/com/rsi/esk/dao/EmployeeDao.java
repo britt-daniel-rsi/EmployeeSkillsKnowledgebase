@@ -15,4 +15,5 @@ public interface EmployeeDao {
 	List<Employee> SurnameSearch(String surname);
 
 	List<Employee> IdSearch(Long id);
+
 }

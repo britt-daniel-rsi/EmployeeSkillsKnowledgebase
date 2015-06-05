@@ -7,7 +7,6 @@
 	<ui:define name="content">
 		<table class="order-table">
 			<tr>
-				<th class="order-table-header">Description</th>
 				<th class="order-table-header">Name</th>
 				<th class="order-table-header">Address</th>
 				<th class="order-table-header">Address 2</th>
@@ -19,7 +18,6 @@
 				<ui:repeat var="centerLoop" value="#{devCenterController.devCenterList}">
 					<h:panelGroup>
 						<tr>
-							<td class="order-table-row">#{centerLoop.description}</td>
 							<td class="order-table-row">#{centerLoop.name}</td>
 							<td class="order-table-row">#{centerLoop.address}</td>
 							<td class="order-table-row">#{centerLoop.address2}</td>

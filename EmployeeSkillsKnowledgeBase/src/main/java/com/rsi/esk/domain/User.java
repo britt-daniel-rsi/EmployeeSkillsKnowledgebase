@@ -11,8 +11,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.rsi.esk.util.EncryptionUtils;
+
 @Entity
-@Table(name = "esk_user", schema="esk")
+@Table(name = "esk_user", schema = "esk")
 public class User {
 	@Id
 	@Column(name = "user_id")
@@ -22,7 +24,7 @@ public class User {
 	private String userName;
 	@NotNull
 	@Column(name = "user_password")
-	private Byte[] userPassword;
+	private byte[] userPassword;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "access_level_id", nullable = false)
 	private transient AccessLevel accessLevel;
@@ -31,13 +33,7 @@ public class User {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "employee_id", nullable = false)
 	private Employee employee;
-
-	public User() {}
-
-	public User(String userName, Byte[] userPassword) {
-		this.userName = userName;
-		this.userPassword = userPassword;
-	}
+	private transient String passwordString;
 
 	public AccessLevel getAccessLevel() {
 		return accessLevel;
@@ -59,7 +55,7 @@ public class User {
 		return userName;
 	}
 
-	public Byte[] getUserPassword() {
+	public byte[] getUserPassword() {
 		return userPassword;
 	}
 
@@ -87,7 +83,16 @@ public class User {
 		this.userName = userName;
 	}
 
-	public void setUserPassword(Byte[] userPassword) {
+	public void setUserPassword(byte[] userPassword) {
 		this.userPassword = userPassword;
+	}
+
+	public String getPasswordString() {
+		return passwordString;
+	}
+
+	public void setPasswordString(String passwordString) throws Exception {
+		this.passwordString = passwordString;
+		setUserPassword(EncryptionUtils.SHA1(passwordString));
 	}
 }

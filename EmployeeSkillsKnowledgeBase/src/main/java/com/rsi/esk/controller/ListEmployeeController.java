@@ -65,7 +65,9 @@ public class ListEmployeeController extends BaseController implements Serializab
     }
 
     public List<Phone> getPhoneList() {
-        phoneList = phoneService.getPhones();
+    	if(phoneList == null) {
+            phoneList = phoneService.getPhones();
+    	}
 
         return phoneList;
     }
