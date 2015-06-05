@@ -8,7 +8,8 @@ import javax.faces.context.ExternalContext;
 import com.rsi.esk.dao.UserDao;
 import com.rsi.esk.domain.User;
 
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
+	
     private UserDao userDao;
 
 	@Override

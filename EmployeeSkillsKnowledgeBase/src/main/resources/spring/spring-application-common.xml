@@ -102,7 +102,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="userService" class="com.rsi.esk.dao.UserServiceImpl" >
+	<bean id="userService" class="com.rsi.esk.service.UserServiceImpl" >
     	<property name="userDao" ref="userDao" />
 	</bean>
 	 

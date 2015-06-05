@@ -29,7 +29,7 @@ public class User {
 	@Column(name = "create_timestamp")
 	private Date createDate;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "access_level_id", nullable = false)
+	@JoinColumn(name = "employee_id", nullable = false)
 	private Employee employee;
 
 	public User() {}
