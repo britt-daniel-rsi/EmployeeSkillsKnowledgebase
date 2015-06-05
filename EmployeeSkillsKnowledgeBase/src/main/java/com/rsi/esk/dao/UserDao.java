@@ -8,18 +8,16 @@ import com.rsi.esk.domain.User;
 
 public interface UserDao {
 
-	public abstract void setSessionFactory(SessionFactory sessionFactory);
+	void setSessionFactory(SessionFactory sessionFactory);
 
-	public abstract Integer getMaxId();
+	Integer getMaxId();
 
-	public abstract void save(User user);
+	void save(User user);
 
-	public abstract List<User> list();
+	List<User> list();
 
-	public abstract List<User> userNameSearch(String userName);
+	List<User> userNameSearch(String userName);
 
-	public abstract List<User> IdSearch(Integer id);
-
-	public abstract Boolean checkPassword(String userName, String password);
-
+	List<User> IdSearch(Integer id);
+	
 }

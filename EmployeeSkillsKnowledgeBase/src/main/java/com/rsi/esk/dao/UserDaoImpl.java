@@ -74,41 +74,4 @@ public class UserDaoImpl implements UserDao{
 
         return userList;
     }
-
-    @Override
-	public Boolean checkPassword(String userName, String password) {
-    	Session session = sessionFactory.openSession();
-		try {
-			byte[] hashedPass = SHA1(password);
-			System.out.println(bytesToHex(hashedPass));
-	        SQLQuery query = session.createSQLQuery("select user_password from esk.user where user_name =" + userName);        
-	        if(bytesToHex((byte[]) query.list().get(0)).equals(bytesToHex(hashedPass))){
-	        	session.close();
-	        	return true;
-	        }
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return false;
-    }
-    
-	private static byte[] SHA1(String text) throws NoSuchAlgorithmException, UnsupportedEncodingException  { 
-	    MessageDigest md = MessageDigest.getInstance("SHA-1");
-	    byte[] sha1hash = new byte[40];
-	    md.update(text.getBytes());
-	    sha1hash = md.digest();
-	    return sha1hash;
-	} 
-	private static String bytesToHex(byte[] b) {
-	      char hexDigit[] = {'0', '1', '2', '3', '4', '5', '6', '7',
-	                         '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-	      StringBuffer buf = new StringBuffer();
-	      for (int j=0; j<b.length; j++) {
-	         buf.append(hexDigit[(b[j] >> 4) & 0x0f]);
-	         buf.append(hexDigit[b[j] & 0x0f]);
-	      }
-	      return buf.toString();
-	   }
 }
