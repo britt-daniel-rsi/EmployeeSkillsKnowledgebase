@@ -8,14 +8,8 @@ import com.rsi.esk.domain.SkillType;
 
 public interface SkillTypeDao {
 
-	public abstract void setSessionFactory(SessionFactory sessionFactory);
+	List<SkillType> list();
 
-	public abstract List<SkillType> list();
-
-	public abstract SkillType getSkillTypeByDescription(String description);
-
-	public abstract SkillType getSkillTypeById(Long id);
-
-	public abstract void save(SkillType skillType);
+	void save(SkillType skillType);
 
 }

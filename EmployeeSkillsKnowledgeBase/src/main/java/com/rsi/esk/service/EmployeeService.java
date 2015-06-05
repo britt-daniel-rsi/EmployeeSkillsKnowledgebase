@@ -7,6 +7,7 @@ import java.util.List;
 
 
 public interface EmployeeService {
+	
     EmployeeDao getEmployeeDao();
 
     void setEmployeeDao(EmployeeDao employeeDao);
@@ -18,4 +19,4 @@ public interface EmployeeService {
     List<Employee> SurSearch(String surname);
 
     List<Employee> IdSearch(Integer id);
-}
+} 

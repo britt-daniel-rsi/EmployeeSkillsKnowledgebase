@@ -26,6 +26,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 				<value>com.rsi.esk.domain.DevCenter</value>
 				<value>com.rsi.esk.domain.SkillType</value>
 				<value>com.rsi.esk.domain.User</value>
+				<value>com.rsi.esk.domain.AccessLevel</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

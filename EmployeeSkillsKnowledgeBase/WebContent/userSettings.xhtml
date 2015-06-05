@@ -1,0 +1,38 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:define name="title">User Settings</ui:define>
+	
+	<ui:define name="content">
+		<h:form id="form">
+			<table>
+				<tr>
+					<td><h:outputText value="Current Password: " /></td>
+					<td><h:inputText id="passwordCurrent"
+							value="#{userSettingsController.passwordCurrent}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="New Password: " /></td>
+					<td><h:inputText id="passwordNew"
+							value="#{userSettingsController.passwordNew}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Retype New Password: " /></td>
+					<td><h:inputText id="passwordNewRe"
+							value="#{userSettingsController.passwordNewRe}" /></td>
+				</tr>
+				<tr>
+					<td><h:commandButton value="Update Password"
+							action="#{userSettingsController.checkCredentials}">
+						</h:commandButton></td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+			</table>
+		</h:form>
+	</ui:define>
+</ui:composition>

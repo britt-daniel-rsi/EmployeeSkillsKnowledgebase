@@ -1,12 +1,18 @@
 package com.rsi.esk.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import javax.validation.constraints.NotNull;
 
 
@@ -14,6 +20,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "esk.employee")
 public class Employee {
     @Id
+	@GeneratedValue(strategy=GenerationType.TABLE)
     @Column(name = "employee_id")
     private Integer id;
     @NotNull
@@ -27,17 +34,17 @@ public class Employee {
     private Date birthDate;
     @Column(name = "sex")
     private String sex;
-  	@Column(name = "dev_center_id")
-    private Integer devCenterId;
+    @ManyToOne(fetch = FetchType.LAZY)
+  	@JoinColumn(name = "dev_center_id")
+    private DevCenter devCenter;
     @Column(name = "description")
     private String description;
     @Column(name = "create_timestamp")
     private Date createDate;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "employee")
+    private List<Phone> phoneList;
     
-    
-    
-    public Employee() {
-    }
+    public Employee() { }
 
     public Employee(String name, String surname, String sex, Date birthDate) {
         this.name = name;
@@ -90,19 +97,27 @@ public class Employee {
 		this.name = name;
 	}
 
-	public Integer getDevCenterId() {
-		return devCenterId;
-	}
-
-	public void setDevCenterId(Integer devCenterId) {
-		this.devCenterId = devCenterId;
-	}
-
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public DevCenter getDevCenter() {
+		return devCenter;
+	}
+
+	public void setDevCenter(DevCenter devCenter) {
+		this.devCenter = devCenter;
+	}
+
+	public List<Phone> getPhoneList() {
+		return phoneList;
+	}
+
+	public void setPhoneList(List<Phone> phoneList) {
+		this.phoneList = phoneList;
 	}
 }

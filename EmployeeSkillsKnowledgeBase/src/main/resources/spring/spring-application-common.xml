@@ -50,11 +50,11 @@
 		<property name="employeeDao" ref="employeeDao" />
 	</bean>
 
-	<bean id="employeeDao" class="com.rsi.esk.dao.EmployeeDao">
+	<bean id="employeeDao" class="com.rsi.esk.dao.EmployeeDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="phoneTypeDao" class="com.rsi.esk.dao.PhoneTypeDao">
+	<bean id="phoneTypeDao" class="com.rsi.esk.dao.PhoneTypeDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
@@ -62,7 +62,7 @@
 		<property name="phoneTypeDao" ref="phoneTypeDao" />
 	</bean>
 	
-	<bean id="phoneDao" class="com.rsi.esk.dao.PhoneDao">
+	<bean id="phoneDao" class="com.rsi.esk.dao.PhoneDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
@@ -76,10 +76,6 @@
 	
 	<bean id="devCenterDao" class="com.rsi.esk.dao.DevCenterDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
-	<bean id="phoneTypeConverter" class="com.rsi.esk.converter.PhoneTypeConverter">
-		<property name="phoneTypeService" ref="phoneTypeService" />
 	</bean>
 
 	<bean id="employeeSkillService" class="com.rsi.esk.service.EmployeeSkillServiceImpl">
@@ -96,13 +92,20 @@
 	
 	<bean id="skillTypeService" class="com.rsi.esk.service.SkillTypeServiceImpl" >
 	    <property name="skillTypeDao" ref="skillTypeDao" />
+
 	</bean> 
 	
 	<bean id="loginDao" class="com.rsi.esk.dao.LoginDaoImpl" >
     	<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="loginService" class="com.rsi.esk.service.LoginServiceImpl" >
-	    <property name="loginDao" ref="loginDao" />
-	</bean> 
+	<bean id="userDao" class="com.rsi.esk.dao.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="userService" class="com.rsi.esk.service.UserServiceImpl" >
+    	<property name="userDao" ref="userDao" />
+    	<property name="loginDao" ref="loginDao" />
+	</bean>
+
 </beans>

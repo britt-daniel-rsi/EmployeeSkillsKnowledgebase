@@ -1,25 +1,22 @@
 package com.rsi.esk.controller;
-import java.io.Serializable;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
 import org.springframework.stereotype.Controller;
 
-import com.rsi.esk.service.LoginService;
+import com.rsi.esk.service.UserService;
 
 @Controller
 @ManagedBean(name = "loginController", eager = true)
-public class LoginController extends BaseController implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class LoginController{
 	private String username;
 	private String password;
-	@ManagedProperty("#{loginService}")
-	private LoginService login; //This will be a UserService
-	public LoginService getLogin() {
+	@ManagedProperty("#{userService}")
+	private UserService login; //This will be a UserService
+	public UserService getLogin() {
 		return login;
 	}
-	public void setLogin(LoginService login) {
+	public void setLogin(UserService login) {
 		this.login = login;
 	}
 	public String checkCredentials(){
