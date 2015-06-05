@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.rsi.esk.dao.SkillTypeDaoImpl;
 import com.rsi.esk.domain.SkillType;
-
 public class SkillTypeServiceImpl implements SkillTypeService  {
 
 	private SkillTypeDaoImpl skillTypeDao;
@@ -24,7 +23,6 @@ public class SkillTypeServiceImpl implements SkillTypeService  {
 		return skillTypeDao;
 	}
 	
-	@Override
 	public void setSkillTypeDao(SkillTypeDaoImpl skillTypeDao){
 		this.skillTypeDao = skillTypeDao;
 	}

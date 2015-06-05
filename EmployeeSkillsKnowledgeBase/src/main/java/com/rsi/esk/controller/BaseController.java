@@ -8,4 +8,5 @@ public class BaseController {
     public static final String PAGES_FIND_EMPLOYEE_SUR = "FindEmployeeSur";
     public static final String PAGES_FIND_EMPLOYEE_ID = "FindEmployeeId";
     public static final String PAGES_SEARCH = "search";
+    public static final String PAGES_ADMIN = "Admin";
 }

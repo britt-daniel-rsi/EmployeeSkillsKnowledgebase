@@ -7,12 +7,11 @@ import com.rsi.esk.domain.SkillType;
 
 public interface SkillTypeService {
 
-	public abstract List<SkillType> getAllSkillTypes();
+	List<SkillType> getAllSkillTypes();
 
-	public abstract void addSkill(SkillType skill);
+	void addSkill(SkillType skill);
 
-	public abstract SkillTypeDaoImpl getSkillTypeDao();
+	SkillTypeDaoImpl getSkillTypeDao();
 
-	public abstract void setSkillTypeDao(SkillTypeDaoImpl skillTypeDao);
 
 }
