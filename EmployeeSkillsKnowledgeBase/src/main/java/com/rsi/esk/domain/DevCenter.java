@@ -6,18 +6,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 
 
 @Entity
-@Table(name = "dbo.dev_center")
+@Table(name = "esk.dev_center")
 public class DevCenter {
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
     @Column(name = "dev_center_id")
     private Integer Id;
-	@Column(name="description")
-	private String description;
 	@Column(name="name")
 	private String name;
 	@Column(name="address")
@@ -27,8 +26,10 @@ public class DevCenter {
 	@Column(name="city")
 	private String city;
 	@Column(name="state")
+	@Size(max=2, message="The state is two characters")
 	private String state;
 	@Column(name="zip_code")
+	@Size(max=5)
 	private String zipcode;
 
 	public Integer getId() {
@@ -37,14 +38,6 @@ public class DevCenter {
 
 	public void setId(Integer id) {
 		Id = id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public String getName() {

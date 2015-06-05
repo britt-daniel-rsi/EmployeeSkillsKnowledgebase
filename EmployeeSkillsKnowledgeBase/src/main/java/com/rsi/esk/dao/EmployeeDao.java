@@ -5,7 +5,6 @@ import java.util.List;
 import com.rsi.esk.domain.Employee;
 
 
-
 public interface EmployeeDao {
 	void save(Employee employee);
 	
