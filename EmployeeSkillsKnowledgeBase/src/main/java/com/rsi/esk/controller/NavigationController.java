@@ -42,4 +42,8 @@ public class NavigationController extends BaseController implements Serializable
 	public String moveToSaveDevCenterPage() {
 		return "saveDevCenter";
 	}
+	
+	public String moveToUserSettingsPage() {
+		return "userSettings";
+	}
 }
