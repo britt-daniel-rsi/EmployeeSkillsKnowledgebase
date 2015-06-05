@@ -78,10 +78,6 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="phoneTypeConverter" class="com.rsi.esk.converter.PhoneTypeConverter">
-		<property name="phoneTypeService" ref="phoneTypeService" />
-	</bean>
-
 	<bean id="employeeSkillService" class="com.rsi.esk.service.EmployeeSkillServiceImpl">
 		<property name="employeeSkillDao" ref="employeeSkillDao" />
 	</bean>

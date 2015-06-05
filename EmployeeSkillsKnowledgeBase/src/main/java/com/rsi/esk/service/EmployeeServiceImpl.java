@@ -22,8 +22,6 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable {
     }
 
     public void addEmployee(Employee employee) {
-        //		if(employee.getId() != null && employee.getId() > 0) {
-        employee.setId(employeeDao.getMaxId() + 1);
         employee.setCreateDate(Calendar.getInstance().getTime());
         System.out.println(employee.getId());
         getEmployeeDao().save(employee);
