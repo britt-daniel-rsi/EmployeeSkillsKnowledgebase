@@ -30,37 +30,50 @@ dependencies {
 runtime files('lib/sqljdbc4.jar')
 runtime fileTree(dir: 'lib', include: '*.jar')
 
-    compile 'jstl:jstl:1.2',
-    'org.apache.logging.log4j:log4j:2.3',
-    'org.slf4j:slf4j-api:1.7.12',
-    'ch.qos.logback:logback-classic:1.1.3',
-    'org.hibernate:hibernate-entitymanager:4.3.10.Final',
-    'org.hibernate:hibernate-core:4.3.10.Final',
-    'org.hibernate:hibernate-validator:4.3.10.Final',
-    'org.javassist:javassist:3.19.0-GA',
-    'dom4j:dom4j:1.6',
-    'commons-collections:commons-collections:3.2.1',
-    'mysql:mysql-connector-java:5.1.35',
-    'antlr:antlr:2.7.7',
-    'javax.servlet:javax.servlet-api:3.1.0',
-    'org.primefaces:primefaces:5.0',
-    'com.sun.faces:jsf-api:2.+',
-    'com.sun.faces:jsf-impl:2.+',
-	'org.apache.commons:commons-lang3:3.4',
-	'org.springframework.boot:spring-boot-starter-data-jpa:1.2.0.RELEASE',
-	'org.springframework.boot:spring-boot-starter-jdbc:1.2.0.RELEASE',
-    'org.springframework.boot:spring-boot-starter-aop:1.2.0.RELEASE',
-	'org.springframework:spring-web:$versionSpring',
-    'org.springframework:spring-webmvc:$versionSpring',
-    'org.springframework.data:spring-data-jpa:1.7.0.RELEASE',
-    'org.codehaus.groovy:groovy-all',
-    'org.springframework.boot:spring-boot-starter-web',
-    'org.springframework.boot:spring-boot-starter-actuator',
-    'org.apache.tomcat.embed:tomcat-embed-jasper'
+    compile("org.springframework.boot:spring-boot-starter-web")
+  	compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.2.0.RELEASE'
+    
+    compile group: "org.primefaces", name: "primefaces", version: "5.0"
+    compile group: "com.sun.faces", name: "jsf-api", version: "2.2.7"
+    compile group: "com.sun.faces", name: "jsf-impl", version: "2.2.7"
+    compile group: 'javax.el', name: 'el-api', version: '1.0'
+    compile "org.glassfish.web:el-impl:2.2"
 
+    compile "org.apache.tomcat.embed:tomcat-embed-core:8.0.9"
+    compile "org.apache.tomcat.embed:tomcat-embed-logging-juli:7.0.54"
+    compile "org.apache.tomcat.embed:tomcat-embed-jasper:7.0.54"
+    compile 'org.hibernate:hibernate-entitymanager:4.3.10.Final'
+    compile 'org.hibernate:hibernate-core:4.3.10.Final'
+    compile 'org.hibernate:hibernate-validator:4.3.10.Final'
+
+	compile 'org.apache.commons:commons-lang3:3.4'
+
+
+/*
+    compile 'jstl:jstl:1.2'
+    compile 'org.apache.logging.log4j:log4j:2.3'
+    compile 'org.slf4j:slf4j-api:1.7.12'
+    compile 'ch.qos.logback:logback-classic:1.1.3'
+
+    compile 'org.javassist:javassist:3.19.0-GA'
+    compile 'dom4j:dom4j:1.6'
+    compile 'commons-collections:commons-collections:3.2.1'
+    compile 'mysql:mysql-connector-java:5.1.35'
+    compile 'antlr:antlr:2.7.7'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+
+	compile 'org.springframework.boot:spring-boot-starter-jdbc:1.2.0.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-aop:1.2.0.RELEASE'
+	compile 'org.springframework:spring-web:$versionSpring'
+    compile 'org.springframework:spring-webmvc:$versionSpring'
+    compile 'org.springframework.data:spring-data-jpa:1.7.0.RELEASE'
+    compile 'org.codehaus.groovy:groovy-all'
+    compile 'org.springframework.boot:spring-boot-starter-actuator' */
+    
 
     testCompile 'junit:junit:4.12',
 	'org.springframework.boot:spring-boot-starter-test:1.2.0.RELEASE'
+	
 }
 
 task wrapper(type: Wrapper) {

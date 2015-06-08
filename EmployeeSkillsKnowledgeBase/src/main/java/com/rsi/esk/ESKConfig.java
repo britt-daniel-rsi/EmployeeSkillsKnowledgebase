@@ -3,6 +3,7 @@ package com.rsi.esk;
 import java.util.Locale;
 
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.boot.context.embedded.ServletListenerRegistrationBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,13 +11,25 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.mvc.UrlFilenameViewController;
+import org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import com.sun.faces.config.ConfigureListener;
 
 @Configuration
 public class ESKConfig extends WebMvcConfigurerAdapter {
-
+	
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/").setViewName("view");
+        registry.addViewController("/view").setViewName("view");
+	}
+	
 	@Bean
 	public PropertyPlaceholderConfigurer getPropertyPlaceHolderConfigurer() {
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
@@ -49,4 +62,26 @@ public class ESKConfig extends WebMvcConfigurerAdapter {
 		interceptor.setParamName("mylocale");
 		registry.addInterceptor(interceptor);
 	}
+	
+	@Bean
+	public ControllerClassNameHandlerMapping controllerClassNameHandlerMapping() {
+	    ControllerClassNameHandlerMapping hm = new ControllerClassNameHandlerMapping();
+	    hm.setOrder(-1);
+	    hm.setDefaultHandler (new UrlFilenameViewController() );
+	    return hm;
+	}
+	
+	 @Bean
+	    public InternalResourceViewResolver internalResourceViewResolver() {
+	        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+	        resolver.setPrefix("/WEB-INF/view");
+	        resolver.setSuffix(".xhtml");
+	        return resolver;
+	    }
+	 
+	 @Bean
+	 public ServletListenerRegistrationBean<ConfigureListener> jsfConfigureListener() {
+		 return new ServletListenerRegistrationBean<ConfigureListener>(new ConfigureListener());
+	 }
+
 }
