@@ -13,5 +13,4 @@ public interface SkillTypeService {
 
 	SkillTypeDaoImpl getSkillTypeDao();
 
-
 }

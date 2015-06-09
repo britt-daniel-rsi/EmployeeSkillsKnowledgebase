@@ -15,7 +15,8 @@ public class SkillTypeServiceImpl implements SkillTypeService  {
 	
 	@Override
 	public void addSkill(SkillType skill){
-		skillTypeDao.save(skill);
+		if(!getAllSkillTypes().contains(skill))
+			skillTypeDao.save(skill);
 	}
 	
 	@Override
@@ -26,4 +27,5 @@ public class SkillTypeServiceImpl implements SkillTypeService  {
 	public void setSkillTypeDao(SkillTypeDaoImpl skillTypeDao){
 		this.skillTypeDao = skillTypeDao;
 	}
+	
 }

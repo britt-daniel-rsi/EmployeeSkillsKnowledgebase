@@ -1,0 +1,28 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<ui:define name="title">Admin Page</ui:define>
+	<ui:define name="content">
+			<table id="create-user">
+				<tr>
+					<td><h:outputText value="Username: " /></td>
+					<td><h:inputText id="username"
+							value="#{adminController.userName}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Password: " /></td>
+					<td><h:inputSecret id="password"
+							value="#{adminController.password}" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td style="float:right;">
+					<h:commandButton value="Add User"
+							action="#{adminController.addUser}">
+					</h:commandButton></td>
+				</tr>
+			</table>
+	</ui:define>
+</ui:composition>
