@@ -1,15 +1,18 @@
 package com.rsi.esk.dao;
 
 
-import com.rsi.esk.domain.PhoneType;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.rsi.esk.domain.PhoneType;
 
-
+@Transactional
+@Repository
 public class PhoneTypeDaoImpl implements PhoneTypeDao {
     private SessionFactory sessionFactory;
 

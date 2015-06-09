@@ -6,10 +6,14 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rsi.esk.domain.EmployeeSkill;
 import com.rsi.esk.util.NumberUtils;
 
+@Transactional
+@Repository
 public class EmployeeSkillDaoImpl implements EmployeeSkillDao {
     private SessionFactory sessionFactory;
 

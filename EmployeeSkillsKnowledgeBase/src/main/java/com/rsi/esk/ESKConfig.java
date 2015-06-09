@@ -26,6 +26,7 @@ public class ESKConfig extends WebMvcConfigurerAdapter {
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/").setViewName("forward:/index.xhtml");
 		registry.addViewController("/").setViewName("view");
         registry.addViewController("/view").setViewName("view");
 	}

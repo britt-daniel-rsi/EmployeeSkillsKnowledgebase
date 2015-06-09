@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rsi.esk.domain.User;
+import com.rsi.esk.util.EncryptionUtils;
 
 @Transactional
 @Repository
@@ -77,10 +78,10 @@ public class UserDaoImpl extends HibernateDao implements UserDao{
 	public Boolean checkPassword(String userName, String password) {
     	Session session = getSessionFactory().openSession();
 		try {
-			byte[] hashedPass = SHA1(password);
-			System.out.println(bytesToHex(hashedPass));
+			byte[] hashedPass = EncryptionUtils.SHA1(password);
+			System.out.println(EncryptionUtils.bytesToHex(hashedPass));
 	        SQLQuery query = session.createSQLQuery("select user_password from esk.user where user_name =" + userName);        
-	        if(bytesToHex((byte[]) query.list().get(0)).equals(bytesToHex(hashedPass))){
+	        if(EncryptionUtils.bytesToHex((byte[]) query.list().get(0)).equals(EncryptionUtils.bytesToHex(hashedPass))){
 	        	session.close();
 	        	return true;
 	        }
@@ -92,22 +93,6 @@ public class UserDaoImpl extends HibernateDao implements UserDao{
 		return false;
     }
     
-	private static byte[] SHA1(String text) throws NoSuchAlgorithmException, UnsupportedEncodingException  { 
-	    MessageDigest md = MessageDigest.getInstance("SHA-1");
-	    byte[] sha1hash = new byte[40];
-	    md.update(text.getBytes());
-	    sha1hash = md.digest();
-	    return sha1hash;
-	} 
-	private static String bytesToHex(byte[] b) {
-	      char hexDigit[] = {'0', '1', '2', '3', '4', '5', '6', '7',
-	                         '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-	      StringBuffer buf = new StringBuffer();
-	      for (int j=0; j<b.length; j++) {
-	         buf.append(hexDigit[(b[j] >> 4) & 0x0f]);
-	         buf.append(hexDigit[b[j] & 0x0f]);
-	      }
-	      return buf.toString();
-	   }
+
 
 }

@@ -1,40 +1,34 @@
 package com.rsi.esk.controller;
 
-import com.rsi.esk.domain.Phone;
-import com.rsi.esk.domain.PhoneType;
-import com.rsi.esk.domain.Employee;
-import com.rsi.esk.service.PhoneService;
-import com.rsi.esk.service.PhoneTypeService;
-import com.rsi.esk.service.EmployeeService;
-
-import org.springframework.stereotype.Controller;
-
 import java.io.Serializable;
-
 import java.sql.Timestamp;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import com.rsi.esk.domain.Employee;
+import com.rsi.esk.domain.Phone;
+import com.rsi.esk.domain.PhoneType;
+import com.rsi.esk.service.EmployeeService;
+import com.rsi.esk.service.PhoneService;
+import com.rsi.esk.service.PhoneTypeService;
 
 
 @Controller
-@ManagedBean(name = "listEmployeeController", eager = true)
 public class ListEmployeeController extends BaseController implements Serializable {
     private static final long serialVersionUID = 1L;
-    @ManagedProperty(value = "#{employeeService}")
+    @Autowired
     private EmployeeService employeeService;
-    @ManagedProperty(value = "#{phoneService}")
+    @Autowired
     private PhoneService phoneService;
-    @ManagedProperty(value = "#{phoneTypeService}")
+    @Autowired
     private PhoneTypeService phoneTypeService;
     private List<Phone> phoneList;
     private Map<String, PhoneType> phoneTypes;

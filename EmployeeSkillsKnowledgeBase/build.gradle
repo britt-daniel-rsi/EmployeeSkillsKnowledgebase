@@ -83,3 +83,8 @@ task wrapper(type: Wrapper) {
 bootRepackage {
    mainClass='com.rsi.esk.ESKApplication'
 }
+
+
+applicationDefaultJvmArgs = [
+   "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
+]

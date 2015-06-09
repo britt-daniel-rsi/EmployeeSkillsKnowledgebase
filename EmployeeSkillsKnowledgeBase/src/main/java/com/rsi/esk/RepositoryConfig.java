@@ -1,4 +1,4 @@
-package com.rsi.esk.dao;
+package com.rsi.esk;
 
 import java.util.Properties;
 

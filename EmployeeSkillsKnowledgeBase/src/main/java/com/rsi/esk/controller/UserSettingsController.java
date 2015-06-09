@@ -1,16 +1,13 @@
 package com.rsi.esk.controller;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.rsi.esk.service.UserService;
 
 @Controller
-@ManagedBean(name = "userSettingsController", eager = true)
 public class UserSettingsController extends BaseController {
-	@ManagedProperty(value = "#{userService}")
+	@Autowired
 	private UserService userService;
 	String passwordCurrent;
 	String passwordNew;

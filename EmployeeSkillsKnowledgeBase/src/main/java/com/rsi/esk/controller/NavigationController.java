@@ -2,14 +2,12 @@ package com.rsi.esk.controller;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.springframework.stereotype.Controller;
 
 
 @Controller
-@ManagedBean(name = "navigationController", eager = true)
 @SessionScoped
 public class NavigationController extends BaseController implements Serializable {
 	private static final long serialVersionUID = 1L;
