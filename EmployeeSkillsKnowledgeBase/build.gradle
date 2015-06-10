@@ -12,11 +12,24 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+def getVersionName = { ->
+    def majorVersion = 0
+    def minorVersion = 1
+    def buildNumber = 91
+    return ("${majorVersion}.${minorVersion}.${buildNumber}")
+}
+
+war {
+    baseName = 'ESK'
+    version =  getVersionName()
+}
 
 //noinspection GroovyAssignabilityCheck
 jar {
-    baseName = 'gs-spring-boot'
-    version = '0.1.0'
+    baseName = 'ESK'
+    version = getVersionName()
 }
 
 repositories {
