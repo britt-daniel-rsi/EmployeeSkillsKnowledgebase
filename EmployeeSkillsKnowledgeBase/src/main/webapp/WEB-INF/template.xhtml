@@ -7,6 +7,13 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
     <h:head>
+    	<!-- favicon-96x96.png - For Google TV. -->
+		<link rel="icon" type="image/png" href="#{request.contextPath}resources/images/favicon-96x96.png"/>
+		<!-- favicon-16x16.png - The classic favicon, displayed in the tabs. -->
+		<link rel="icon" type="image/png" href="#{request.contextPath}resources/images/facicon-3.png"/>
+		<!-- favicon-32x32.png - For Safari on Mac OS. -->
+		<link rel="icon" type="image/png" href="#{request.contextPath}resources/images/favicon-32x32.png"/>
+
         <title><ui:insert name="title">Default title</ui:insert></title>
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
@@ -14,7 +21,7 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" />
         <ui:insert name="scripts">   </ui:insert>
         <ui:insert name="links">     </ui:insert>
-       
+
     </h:head>
     <h:body>
     <div id="wrapper">
@@ -22,7 +29,7 @@
         <h:form>
         <table>
         	<tr>
-        		<td rowspan="2"><img src="https://www.ruralsourcing.com/wp-content/uploads/2014/07/RSI-Logo-300x134.png" width="200px" alt="RSI logo"/></td>
+        		<td rowspan="2"><h:graphicImage value="resources/images/RSI_logo182x72.png"/></td>
         	  	<td class="right"><p:clock/></td>
 		    </tr>
 		    <tr>

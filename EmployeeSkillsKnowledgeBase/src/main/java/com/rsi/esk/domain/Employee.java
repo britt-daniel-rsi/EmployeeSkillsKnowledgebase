@@ -34,7 +34,7 @@ public class Employee {
 	@Column(name = "sex")
 	private String sex;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "dev_center_id")
+	@JoinColumn(name = "dev_center_id", nullable=false)
 	private DevCenter devCenter;
 	@Column(name = "description")
 	private String description;
@@ -110,6 +110,8 @@ public class Employee {
 	}
 
 	public DevCenter getDevCenter() {
+		if(devCenter == null)
+			devCenter = new DevCenter();
 		return devCenter;
 	}
 

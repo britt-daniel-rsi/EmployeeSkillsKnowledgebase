@@ -5,20 +5,15 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import com.rsi.esk.domain.User;
 import com.rsi.esk.util.EncryptionUtils;
 
-public class LoginDaoImpl implements LoginDao{
-    private SessionFactory sessionFactory;
+public class LoginDaoImpl extends HibernateDao implements LoginDao{
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 	@Override
 	public boolean matchUserToPass(String username, String password) {
-		Session session = sessionFactory.openSession();
+		Session session = getSessionFactory().openSession();
 		boolean correct = false;
 		try {
 			byte[] hashedPass = EncryptionUtils.SHA1(password);

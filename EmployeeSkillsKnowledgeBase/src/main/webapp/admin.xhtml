@@ -1,0 +1,84 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:define name="title">Admin</ui:define>
+	<ui:define name="content">
+		<h:form id="form">
+			<table>
+				<tr>
+					<td><h:outputText value="Name: " /></td>
+					<td><h:inputText id="name"
+							value="#{saveDevCenterController.center.name}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Address: " /></td>
+					<td><h:inputText id="address"
+							value="#{saveDevCenterController.center.address}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Address 2: " /></td>
+					<td><h:inputText id="address2"
+							value="#{saveDevCenterController.center.address2}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="City: " /></td>
+					<td><h:inputText id="city"
+							value="#{saveDevCenterController.center.city}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="State: " /></td>
+					<td><h:inputText id="state"
+							value="#{saveDevCenterController.center.state}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Zip: " /></td>
+					<td><h:inputText id="zip"
+							value="#{saveDevCenterController.center.zipcode}" /></td>
+				</tr>
+				<tr>
+					<td><h:commandButton value="Save Center"
+							actionListener="#{saveDevCenterController.saveCenter}">
+						</h:commandButton></td>
+				</tr>
+				<tr></tr>
+				<tr>
+					<td><h:outputText value="Skill Type: " /></td>
+					<td><h:inputText id="skillName"
+							value="#{adminController.skillType.skillName}" /></td>
+				</tr>
+				<tr>
+					<td><h:commandButton value="Save Skill Type"
+							actionListener="#{adminController.addSkill}">
+						</h:commandButton></td>
+				</tr>
+				<tr></tr>
+				<tr>
+					<td><h:outputText value="User Name: " /></td>
+					<td><h:inputText id="userName"
+							value="#{adminController.user.userName}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="User Password: " /></td>
+					<td><h:inputText id="userPassowrd"
+							value="#{adminController.user.userPassword}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Access level: " /></td>
+					<!-- TODO mumbo jumbo -->
+				</tr>
+				<tr>
+					<td><h:outputText value="Employee ID: " /></td>
+					<!-- TODO mumbo jumbo -->
+				</tr>
+				<tr>
+					<td><h:commandButton value="Save User"
+							actionListener="#{adminController.addUser}">
+						</h:commandButton></td>
+				</tr>
+			</table>
+		</h:form>
+	</ui:define>
+</ui:composition>        

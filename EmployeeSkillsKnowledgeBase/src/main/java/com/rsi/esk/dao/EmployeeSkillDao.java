@@ -8,7 +8,6 @@ import com.rsi.esk.domain.EmployeeSkill;
 
 public interface EmployeeSkillDao {
 
-	void setSessionFactory(SessionFactory sessionFactory);
 
 	Long getMaxId();
 
