@@ -1,18 +1,24 @@
 package com.rsi.esk.service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-
-import javax.faces.context.ExternalContext;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.rsi.esk.dao.UserDao;
-import com.rsi.esk.domain.User;
+import com.rsi.esk.domain.UserRole;
 
-@Component
-public class UserServiceImpl implements UserService {
+@Component("userService")
+public class UserServiceImpl implements UserDetailsService {
 
 	
 	@Autowired
@@ -23,45 +29,32 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void addUser(User user) {
-        user.setId(userDao.getMaxId() + 1);
-        System.out.println(user.getId());
-        userDao.save(user);
-    }
-
-	@Override
-	public List<User> getAllUsers() {
-        return userDao.list();
-    }
-
-	@Override
-	public List<User> userNameSearch(String userName) {
-        return userDao.userNameSearch(userName);
-    }
-
-	@Override
-	public List<User> IdSearch(Long id) {
-        return userDao.IdSearch(id);
-    }
-
-
-	@Override
-	public boolean validate(String username, String password) {
-		if(password.equals("") || password == null){
-			return false;
-		}
-		if(userDao.checkPassword(username, password)){
-			//Establish a session
-			ExternalContext externalContext = null;
-			@SuppressWarnings("null")
-			Map<String, Object> sessionMap = externalContext.getSessionMap();
-			sessionMap.put("User", sessionMap);
-			return true;
-		}
-		else{
-
-			return false;
-		}
+	public UserDetails loadUserByUsername(String userName)
+			throws UsernameNotFoundException {
+		com.rsi.esk.domain.User user = userDao.findByUserName(userName);
 		
+		List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRoles());
+		
+		return buildUserForAuthentication(user, authorities);
 	}
+	
+	private UserDetails buildUserForAuthentication(com.rsi.esk.domain.User user, 
+			List<GrantedAuthority> authorities) {
+			return new User(user.getUserName(), user.getUserPassword(), 
+				user.isActive(), true, true, true, authorities);
+		}
+	 
+		private List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
+	 
+			Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
+	 
+			// Build user's authorities
+			for (UserRole userRole : userRoles) {
+				setAuths.add(new SimpleGrantedAuthority(userRole.getAccessLevel().getDescription()));
+			}
+	 
+			List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
+	 
+			return Result;
+		}
 }

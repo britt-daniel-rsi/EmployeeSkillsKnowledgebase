@@ -2,6 +2,7 @@ package com.rsi.esk.dao;
 
 import java.util.List;
 
+import com.rsi.esk.criteria.EmployeeSearchCriteria;
 import com.rsi.esk.domain.Employee;
 
 public interface EmployeeDao {
@@ -15,5 +16,7 @@ public interface EmployeeDao {
 	List<Employee> SurnameSearch(String surname);
 
 	List<Employee> IdSearch(Long id);
+
+	List<Employee> search(EmployeeSearchCriteria criteria);
 
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <var name="employeeSearchCriteria" class="com.rsi.esk.domain.EmployeeSearchCriteria" />
+
+	<view-state id="showEmployeeSearchPage">
+		<on-render>
+			<evaluate expression="employeeService.search(employeeSearchCriteria)" result="viewScope.employeeList" result-type="dataModel" />
+		</on-render>
+        <transition on="searchEmployee" to="showEmployeeSearchPage">
+        </transition>
+    </view-state>
+
+    <view-state id="showListEmployeePage" >
+        <on-render>
+            <evaluate expression="employeeService.getAllEmployees()" result="viewScope.employeeList" result-type="dataModel" />
+        </on-render>
+    </view-state>
+
+</flow>

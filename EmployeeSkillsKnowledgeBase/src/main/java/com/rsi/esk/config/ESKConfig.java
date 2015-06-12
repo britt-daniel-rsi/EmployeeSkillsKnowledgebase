@@ -1,6 +1,7 @@
-package com.rsi.esk;
+package com.rsi.esk.config;
 
 import java.util.Locale;
+import java.util.Properties;
 
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.boot.context.embedded.ServletListenerRegistrationBean;
@@ -9,28 +10,29 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.faces.mvc.JsfView;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.mvc.UrlFilenameViewController;
-import org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import com.sun.faces.config.ConfigureListener;
 
 @Configuration
 public class ESKConfig extends WebMvcConfigurerAdapter {
-	
+
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("forward:/index.xhtml");
 		registry.addViewController("/").setViewName("view");
-        registry.addViewController("/view").setViewName("view");
+		registry.addViewController("/view").setViewName("view");
+		registry.addViewController("/login").setViewName("login");
 	}
-	
+
 	@Bean
 	public PropertyPlaceholderConfigurer getPropertyPlaceHolderConfigurer() {
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
@@ -63,26 +65,49 @@ public class ESKConfig extends WebMvcConfigurerAdapter {
 		interceptor.setParamName("mylocale");
 		registry.addInterceptor(interceptor);
 	}
-	
+
+//	@Bean
+//	public ControllerClassNameHandlerMapping ControllerClassNameHandlerMapping() {
+//		ControllerClassNameHandlerMapping hm = new ControllerClassNameHandlerMapping();
+//		hm.setOrder(2);
+//		hm.setDefaultHandler(new UrlFilenameViewController());
+//		return hm;
+//	}
+
 	@Bean
-	public ControllerClassNameHandlerMapping controllerClassNameHandlerMapping() {
-	    ControllerClassNameHandlerMapping hm = new ControllerClassNameHandlerMapping();
-	    hm.setOrder(-1);
-	    hm.setDefaultHandler (new UrlFilenameViewController() );
-	    return hm;
+	public SimpleUrlHandlerMapping simpleUrlHandlerMapping() {
+		SimpleUrlHandlerMapping hm = new SimpleUrlHandlerMapping();
+		Properties mappings = new Properties();
+
+		mappings.put("/index", "flowController");
+		mappings.put("/admin", "flowController");
+		mappings.put("/searchEmployee", "flowController");
+		mappings.put("/login", "flowController");
+		mappings.put("/saveEmployee", "flowController");
+		mappings.put("/userSettings", "flowController");
+		mappings.put("/devCenter", "flowController");
+		mappings.put("/saveDevCenter", "flowController");
+
+		hm.setMappings(mappings);
+		hm.setOrder(1);
+		hm.setDefaultHandler(new UrlFilenameViewController());
+
+		return hm;
 	}
-	
-	 @Bean
-	    public InternalResourceViewResolver internalResourceViewResolver() {
-	        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-	        resolver.setPrefix("/WEB-INF/view");
-	        resolver.setSuffix(".xhtml");
-	        return resolver;
-	    }
-	 
-	 @Bean
-	 public ServletListenerRegistrationBean<ConfigureListener> jsfConfigureListener() {
-		 return new ServletListenerRegistrationBean<ConfigureListener>(new ConfigureListener());
-	 }
+
+	@Bean
+	public UrlBasedViewResolver faceletsViewResolver() {
+		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
+		resolver.setViewClass(JsfView.class);
+		resolver.setPrefix("/WEB-INF/");
+		resolver.setSuffix(".xhtml");
+		return resolver;
+	}
+
+	@Bean
+	public ServletListenerRegistrationBean<ConfigureListener> jsfConfigureListener() {
+		return new ServletListenerRegistrationBean<ConfigureListener>(
+				new ConfigureListener());
+	}
 
 }

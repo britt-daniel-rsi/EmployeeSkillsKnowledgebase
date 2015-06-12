@@ -1,4 +1,4 @@
-package com.rsi.esk;
+package com.rsi.esk.config;
 
 import java.util.Properties;
 

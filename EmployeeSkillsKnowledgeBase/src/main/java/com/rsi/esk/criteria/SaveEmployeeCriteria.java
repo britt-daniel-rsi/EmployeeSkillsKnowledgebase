@@ -1,4 +1,4 @@
-package com.rsi.esk.controller;
+package com.rsi.esk.criteria;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +9,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 import com.rsi.esk.converter.DevCenterConverter;
 import com.rsi.esk.converter.PhoneTypeConverter;
@@ -22,9 +21,9 @@ import com.rsi.esk.service.EmployeeService;
 import com.rsi.esk.service.PhoneService;
 import com.rsi.esk.service.PhoneTypeService;
 
-@Controller
+
 @SessionScoped
-public class SaveEmployeeController extends BaseController {
+public class SaveEmployeeCriteria {
 	@Autowired
     private EmployeeService employeeService;
 	@Autowired

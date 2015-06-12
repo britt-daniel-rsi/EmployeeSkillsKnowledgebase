@@ -48,10 +48,19 @@ dependencies {
 
     compile("org.springframework.boot:spring-boot-starter-web")
     compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.2.0.RELEASE'
+	compile 'org.springframework.boot:spring-boot-starter-security:1.2.0.RELEASE'
+	
+	compile 'org.springframework.webflow:spring-webflow:2.4.0.RELEASE'
+	compile 'org.springframework.webflow:spring-faces:2.4.0.RELEASE'	
+	
+    compile 'org.springframework:spring-web:4.0.0.RELEASE'
+    compile 'org.springframework:spring-webmvc:4.0.0.RELEASE'
 
     compile group: "org.primefaces", name: "primefaces", version: "5.0"
     compile group: "com.sun.faces", name: "jsf-api", version: "2.2.7"
     compile group: "com.sun.faces", name: "jsf-impl", version: "2.2.7"
+
+    
     compile group: 'javax.el', name: 'el-api', version: '1.0'
     compile "org.glassfish.web:el-impl:2.2"
 
@@ -92,7 +101,7 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
+    gradleVersion = '2.4'
 }
 
 bootRepackage {

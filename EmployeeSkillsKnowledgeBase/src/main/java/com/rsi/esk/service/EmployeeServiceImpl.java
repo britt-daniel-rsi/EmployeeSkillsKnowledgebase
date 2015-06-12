@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.rsi.esk.criteria.EmployeeSearchCriteria;
 import com.rsi.esk.dao.EmployeeDao;
 import com.rsi.esk.domain.Employee;
 
@@ -37,6 +38,11 @@ public class EmployeeServiceImpl implements EmployeeService, Serializable {
 
 	public List<Employee> IdSearch(Long id) {
 		return employeeDao.IdSearch(id);
+	}
+
+	@Override
+	public List<Employee> search(EmployeeSearchCriteria criteria) {
+		return employeeDao.search(criteria);
 	}
 
 }

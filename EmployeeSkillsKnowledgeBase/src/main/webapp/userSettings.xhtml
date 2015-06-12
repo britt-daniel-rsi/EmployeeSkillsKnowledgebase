@@ -12,21 +12,21 @@
 				<tr>
 					<td><h:outputText value="Current Password: " /></td>
 					<td><h:inputText id="passwordCurrent"
-							value="#{userSettingsController.passwordCurrent}" /></td>
+							value="#{userSettingsCriteria.passwordCurrent}" /></td>
 				</tr>
 				<tr>
 					<td><h:outputText value="New Password: " /></td>
 					<td><h:inputText id="passwordNew"
-							value="#{userSettingsController.passwordNew}" /></td>
+							value="#{userSettingsCriteria.passwordNew}" /></td>
 				</tr>
 				<tr>
 					<td><h:outputText value="Retype New Password: " /></td>
 					<td><h:inputText id="passwordNewRe"
-							value="#{userSettingsController.passwordNewRe}" /></td>
+							value="#{userSettingsCriteria.passwordNewRe}" /></td>
 				</tr>
 				<tr>
 					<td><h:commandButton value="Update Password"
-							action="#{userSettingsController.checkCredentials}">
+							action="#{userSettingsCriteria.checkCredentials}">
 						</h:commandButton></td>
 				</tr>
 				<tr>

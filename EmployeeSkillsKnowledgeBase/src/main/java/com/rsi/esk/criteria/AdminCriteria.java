@@ -1,7 +1,6 @@
-package com.rsi.esk.controller;
+package com.rsi.esk.criteria;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 import com.rsi.esk.domain.Employee;
 import com.rsi.esk.domain.SkillType;
@@ -10,8 +9,7 @@ import com.rsi.esk.service.SkillTypeService;
 
 //TODO change to userServices not employee
 
-@Controller
-public class AdminController extends BaseController{
+public class AdminCriteria{
 	@Autowired
 	private SkillTypeService skillTypeService;
 	@Autowired

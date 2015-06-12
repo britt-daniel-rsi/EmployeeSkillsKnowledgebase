@@ -12,17 +12,17 @@
 				<tr>
 					<td><h:outputText value="Username: " /></td>
 					<td><h:inputText id="username"
-							value="#{loginController.username}" /></td>
+							value="#{loginCriteria.username}" /></td>
 				</tr>
 				<tr>
 					<td><h:outputText value="Password: " /></td>
 					<td><h:inputSecret id="password"
-							value="#{loginController.password}" /></td>
+							value="#{loginCriteria.password}" /></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td style="float:right;"><h:commandButton value="Login"
-							action="#{loginController.checkCredentials}">
+							action="#{loginCriteria.checkCredentials}">
 					</h:commandButton></td>
 				</tr>
 			</table>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <var name="devCenter" class="com.rsi.esk.domain.DevCenter" />
+    <var name="skillType" class="com.rsi.esk.domain.skillType" />
+
+	<view-state id="showAdminPage">
+        <transition on="addDevCenter" to="devCenterAdd">
+        </transition>
+        <transition on="addSkillType" to="skillTypeAdd">
+        </transition>
+    </view-state>
+
+    <action-state id="skillTypeAdd">
+		<on-render>
+			<evaluate expression="skillTypeService.addSkill(skillType)"/>
+		</on-render>
+        <transition on="success" to="showAdminPage"/>
+        <transition on="error" to="showAdminPage?error"/>
+    </action-state>
+    
+    <action-state id="devCenterAdd">
+		<on-render>
+			<evaluate expression="devCenterService.addDevCenter(devCenter)"/>
+		</on-render>
+        <transition on="success" to="showAdminPage"/>
+        <transition on="error" to="showAdminPage?error"/>
+    </action-state>
+
+</flow>

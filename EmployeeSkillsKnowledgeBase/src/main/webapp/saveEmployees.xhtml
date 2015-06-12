@@ -16,17 +16,17 @@
 				<tr>
 					<td><h:outputText value="First Name: " /></td>
 					<td><h:inputText id="name"
-							value="#{saveEmployeeController.employee.name}" /></td>
+							value="#{saveEmployeeCriteria.employee.name}" /></td>
 				</tr>
 				<tr>
 					<td><h:outputText value="Last Name: " /></td>
 					<td><h:inputText id="surname"
-							value="#{saveEmployeeController.employee.surname}" /></td>
+							value="#{saveEmployeeCriteria.employee.surname}" /></td>
 				</tr>
 				<tr>
 					<td><h:outputText value="Sex: " /></td>
 					<td><h:selectOneRadio id="sex"
-							value="#{saveEmployeeController.employee.sex}"
+							value="#{saveEmployeeCriteria.employee.sex}"
 							layout="pageDirection">
 							<f:selectItem itemValue="M" itemLabel="Male" />
 							<f:selectItem itemValue="F" itemLabel="Female" />
@@ -35,7 +35,7 @@
 				<tr>
 					<td><h:outputText value="Birth Date: " /></td>
 					<td><h:inputText id="birthDate"
-							value="#{saveEmployeeController.employee.birthDate}">
+							value="#{saveEmployeeCriteria.employee.birthDate}">
 							<f:convertDateTime pattern="MM/dd/yyyy" />
 						</h:inputText></td>
 
@@ -43,22 +43,22 @@
 				<tr>
 					<td><h:outputText value="Dev Center: " /></td>
 					<td><h:selectOneMenu
-							value="#{saveEmployeeController.employee.devCenter}">
-							<f:selectItems value="#{saveEmployeeController.devCenterMap}" />
+							value="#{saveEmployeeCriteria.employee.devCenter}">
+							<f:selectItems value="#{saveEmployeeCriteria.devCenterMap}" />
 							<f:converter converterId="devCenterConverter"
-								binding="#{saveEmployeeController.devCenterConverter}" />
+								binding="#{saveEmployeeCriteria.devCenterConverter}" />
 						</h:selectOneMenu></td>
 				</tr>
 				<tr>
 					<td><h:outputText value="Phone Number: " /></td>
 					<h:panelGrid id="saveEmployee_phonePanelGrid">
-						<ui:repeat value="#{saveEmployeeController.phones}" var="phone"
+						<ui:repeat value="#{saveEmployeeCriteria.phones}" var="phone"
 							varStatus="saveEmployee_phone">
 							<h:inputText value="#{phone.number}" />
 							<h:selectOneMenu value="#{phone.phoneType}">
-								<f:selectItems value="#{saveEmployeeController.phoneTypes}" />
+								<f:selectItems value="#{saveEmployeeCriteria.phoneTypes}" />
 								<f:converter converterId="phoneTypeConverter"
-									binding="#{saveEmployeeController.phoneTypeConverter}" />
+									binding="#{saveEmployeeCriteria.phoneTypeConverter}" />
 							</h:selectOneMenu>
 							<br />
 						</ui:repeat>
@@ -67,11 +67,11 @@
 				<tr>
 					<td><h:commandButton value="Extend">
 							<f:ajax 
-								listener="#{saveEmployeeController.extendPhones}"
+								listener="#{saveEmployeeCriteria.extendPhones}"
 								render="saveEmployee_phonePanelGrid" />
 						</h:commandButton></td>
 					<td><h:commandButton value="Save Employee"
-							actionListener="#{saveEmployeeController.saveEmployee}">
+							actionListener="#{saveEmployeeCriteria.saveEmployee}">
 						</h:commandButton></td>
 				</tr>
 

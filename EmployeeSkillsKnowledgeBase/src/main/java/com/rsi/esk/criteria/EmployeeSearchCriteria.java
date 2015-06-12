@@ -1,4 +1,4 @@
-package com.rsi.esk.domain;
+package com.rsi.esk.criteria;
 
 import java.util.Date;
 

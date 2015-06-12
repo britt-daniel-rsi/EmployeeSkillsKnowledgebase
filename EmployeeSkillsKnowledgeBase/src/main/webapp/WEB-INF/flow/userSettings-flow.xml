@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <var name="bookSearchCriteria" class="net.javabeat.spring.webflow.jsf.book.BookSearchCriteria" />
+
+	<view-state id="bookMain">
+		<on-render>
+			<evaluate expression="bookService.findAllBooks()" result="viewScope.allBooks" result-type="dataModel" />
+		</on-render>
+        <transition on="addBooks" to="bookAdd">
+        </transition>
+    </view-state>
+
+    <view-state id="bookAdd">
+		<on-render>
+			<evaluate expression="bookService.createBook(bookSearchCriteria.name, bookSearchCriteria.category,
+            bookSearchCriteria.author, bookSearchCriteria.price)"/>
+		</on-render>
+    </view-state>
+
+</flow>
