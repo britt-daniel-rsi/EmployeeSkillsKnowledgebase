@@ -5,10 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.dom4j.tree.AbstractEntity;
+
 
 @Entity
 @Table(schema = "esk", name = "phone_type")
-public class PhoneType {
+public class PhoneType extends AbstractEntity{
+
+	private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "phone_type_id")
     private Long id;

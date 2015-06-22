@@ -1,48 +1,41 @@
 package com.rsi.esk.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import java.net.URI;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.rsi.esk.domain.User;
 import com.rsi.esk.service.UserService;
 
-@Controller
+@Component
+@RestController
+@Path("/user")
 public class UserSettingsController extends BaseController {
 	@Autowired
 	private UserService userService;
-	String passwordCurrent;
-	String passwordNew;
-	String passwordNewRe;
-	String username;
-
-	public UserService getUserService() {
-		return userService;
+	
+	@POST
+	public Response save(User user) {
+		Long userId = userService.save(user);
+		
+		URI location = uriInfo.getAbsolutePathBuilder().path("{id}").resolveTemplate("id", userId).build();
+		return Response.created(location).build();
+	}
+	
+	@GET
+	@Path("/find")
+    @Produces({"application/json"})
+	public User findById(@QueryParam("id") Long id) {
+		return userService.findById(id);
 	}
 
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-
-	public String getPasswordCurrent() {
-		return passwordCurrent;
-	}
-
-	public void setPasswordCurrent(String passwordCurrent) {
-		this.passwordCurrent = passwordCurrent;
-	}
-
-	public String getPasswordNew() {
-		return passwordNew;
-	}
-
-	public void setPasswordNew(String passwordNew) {
-		this.passwordNew = passwordNew;
-	}
-
-	public String getPasswordNewRe() {
-		return passwordNewRe;
-	}
-
-	public void setPasswordNewRe(String passwordNewRe) {
-		this.passwordNewRe = passwordNewRe;
-	}
 }

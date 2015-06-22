@@ -2,9 +2,11 @@ package com.rsi.esk.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -71,6 +73,16 @@ public class UserDaoImpl extends HibernateDao implements UserDao{
 
         return userList;
     }
+
+	@Override
+	public User findById(Long id) {
+		Session session = getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(User.class);
+        
+        criteria.add(Restrictions.eq("id", id));
+
+        return (User)criteria.uniqueResult();
+	}
 
 
     

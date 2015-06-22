@@ -9,9 +9,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.dom4j.tree.AbstractEntity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "esk_user_role_xref", schema = "esk")
-public class UserRole {
+public class UserRole extends AbstractEntity{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "user_role_id")
@@ -26,6 +32,7 @@ public class UserRole {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private User user;
 
 	public Long getId() {

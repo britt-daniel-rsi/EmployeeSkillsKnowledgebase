@@ -7,5 +7,5 @@ import com.rsi.esk.domain.DevCenter;
 public interface DevCenterService {
 	List<DevCenter> getAllDevCenters();
 	
-	void addCenter(DevCenter center);
+	Long save(DevCenter center);
 }

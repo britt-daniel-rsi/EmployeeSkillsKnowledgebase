@@ -5,9 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.dom4j.tree.AbstractEntity;
+
 @Entity
 @Table(schema = "esk", name = "access_level")
-public class AccessLevel {
+public class AccessLevel extends AbstractEntity{
+
+	private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "access_level_id")
     private Long id;

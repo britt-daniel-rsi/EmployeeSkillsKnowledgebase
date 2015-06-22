@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,9 +14,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.dom4j.tree.AbstractEntity;
+
 @Entity
 @Table(schema = "esk", name = "employee")
-public class Employee {
+public class Employee extends AbstractEntity{
+
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name = "employee_id")
@@ -33,14 +36,14 @@ public class Employee {
 	private Date birthDate;
 	@Column(name = "sex")
 	private String sex;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "dev_center_id")
 	private DevCenter devCenter;
 	@Column(name = "description")
 	private String description;
 	@Column(name = "create_timestamp")
 	private Date createDate;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "employee")
+	@OneToMany( mappedBy = "employee")
 	private List<Phone> phoneList;
 
 	public Employee() {

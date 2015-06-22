@@ -20,8 +20,9 @@ public class DevCenterServiceImpl implements DevCenterService {
 	}
 
 	@Override
-	public void addCenter(DevCenter center) {
+	public Long save(DevCenter center) {
 		devCenterDao.save(center);
+		return center.getId();
 	}
 
 	public DevCenterDao getDevCenterDao() {

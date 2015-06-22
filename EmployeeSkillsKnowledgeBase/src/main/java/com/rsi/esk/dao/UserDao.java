@@ -16,4 +16,6 @@ public interface UserDao {
 
 	List<User> IdSearch(Long id);
 
+	User findById(Long id);
+
 }

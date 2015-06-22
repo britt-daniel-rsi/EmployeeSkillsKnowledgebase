@@ -5,7 +5,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,9 +12,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.dom4j.tree.AbstractEntity;
+
 @Entity
 @Table(name = "esk_user", schema = "esk")
-public class User {
+public class User extends AbstractEntity{
+
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name = "user_id")
 	private Long id;
@@ -31,7 +34,7 @@ public class User {
 
 	@Column(name = "create_timestamp")
 	private Date createDate;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "employee_id", nullable = false)
 	private Employee employee;
 

@@ -6,9 +6,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.dom4j.tree.AbstractEntity;
+
 @Entity
 @Table(schema = "esk", name = "skill_type")
-public class SkillType {
+public class SkillType extends AbstractEntity{
+
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name = "skill_type_id", unique = true, nullable = false)
 	private Long Id;

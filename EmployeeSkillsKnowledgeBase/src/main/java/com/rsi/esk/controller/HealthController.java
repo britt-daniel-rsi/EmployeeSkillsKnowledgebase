@@ -17,11 +17,11 @@ public class HealthController {
     @GET
     @Produces({"application/json"})
     public Health jersey() {
-        return Health.up().status("Jersey: Up and Running!").build();
+        return Health.up().status("ESK: Jersey: Up and Running!").build();
     }
 
     @RequestMapping(value = "/spring-health", produces = "application/json")
     public Health springMvc() {
-        return Health.up().status("Spring MVC: Up and Running!").build();
+        return Health.up().status("ESK: Spring MVC: Up and Running!").build();
     }
 }

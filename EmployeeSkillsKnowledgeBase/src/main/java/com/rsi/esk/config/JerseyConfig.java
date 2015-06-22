@@ -10,7 +10,7 @@ import com.rsi.esk.controller.DevCenterController;
 import com.rsi.esk.controller.HealthController;
 
 @Configuration
-@ApplicationPath("/jersey")
+@ApplicationPath("/ESK/jersey")
 public class JerseyConfig extends ResourceConfig {
 	public JerseyConfig() {
 		packages("com.rsi.esk.controller");

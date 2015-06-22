@@ -2,18 +2,22 @@ package com.rsi.esk.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import org.dom4j.tree.AbstractEntity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(schema = "esk", name = "employee_phone")
-public class Phone {
+public class Phone extends AbstractEntity{
+
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name = "phone_id", unique = true, nullable = false)
 	private Long Id;
@@ -21,11 +25,12 @@ public class Phone {
 	@Pattern(regexp = "\\(\\d{3}\\)\\d{3}-\\d{4}")
 	@Column(name = "phone_number")
 	private String number;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "phone_type_id")
 	private PhoneType phoneType;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "employee_id", nullable = false)
+	@JsonIgnore
 	private Employee employee;
 
 	public Phone() {

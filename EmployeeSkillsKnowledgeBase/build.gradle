@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         mavenCentral()
+        jcenter()
          maven {
           url "https://plugins.gradle.org/m2/"
        }
@@ -8,7 +9,8 @@ buildscript {
     //noinspection GroovyAssignabilityCheck
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
-         classpath "com.moowork.gradle:gradle-node-plugin:0.9"
+        classpath "com.eriwen:gradle-js-plugin:1.12.1"
+        classpath 'com.eriwen:gradle-css-plugin:1.11.1'
   }
     
 }
@@ -18,7 +20,9 @@ apply plugin: "eclipse"
 apply plugin: "idea"
 apply plugin: "spring-boot"
 apply plugin: "war"
-apply plugin: "com.moowork.node"
+apply plugin: "js"
+apply plugin: "css"
+
 
 def versionSpring = "4.1.2.RELEASE"
 def versionSpringboot = "1.2.0.RELEASE"
@@ -55,8 +59,16 @@ dependencies {
     runtime files("lib/sqljdbc4.jar")
     runtime fileTree(dir: "lib", include: "*.jar")
 
-    compile("org.springframework.boot:spring-boot-starter-web:$versionSpringboot")
-
+    compile "org.springframework.boot:spring-boot-starter-web:$versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-data-jpa:$versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-actuator:$versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-jetty:$versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-security:$versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-logging:$versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-jersey:$versionSpringboot",
+            "org.springframework:spring-web:$versionSpring",
+            "org.springframework:spring-webmvc:$versionSpring",
+            "javax.validation:validation-api"
 
     compile group: "javax.el", name: "el-api", version: "1.0"
     compile "org.glassfish.web:el-impl:2.2"
@@ -70,20 +82,12 @@ dependencies {
 
     compile "org.apache.commons:commons-lang3:3.4"
     
-    compile "org.springframework.boot:spring-boot-starter-data-jpa:$versionSpringboot",
-            "org.springframework.boot:spring-boot-starter-actuator:$versionSpringboot",
-            "org.springframework.boot:spring-boot-starter-jetty:$versionSpringboot",
-            "org.springframework.boot:spring-boot-starter-security:$versionSpringboot",
-            "org.springframework.boot:spring-boot-starter-logging:$versionSpringboot",
-            "org.springframework.boot:spring-boot-starter-jersey:$versionSpringboot",
-            "org.springframework:spring-web:$versionSpring",
-            "org.springframework:spring-webmvc:$versionSpring",
+    //JS/CSS Dependencies
+    compile 'org.webjars.bower:angularjs:1.4.0'
+    compile 'org.webjars:bootstrap:3.3.5'
+    compile 'org.webjars:jquery:2.1.4'
 
-            "javax.validation:validation-api"
 
- 
-    
-    
     // Utilities
     compile("com.google.guava:guava:18.0")
 
@@ -100,74 +104,6 @@ task wrapper(type: Wrapper) {
 bootRepackage {
     mainClass = "com.rsi.esk.ESKApplication"
 }
-
-node {
-    version = "0.12.2"
-    npmVersion = "2.7.5"
-    download = true
-}
-
-task npmCacheConfig(type: NpmTask) {
-    description = "Configure the NPM cache"
-    def npmCacheDir = "${gradle.getGradleUserHomeDir()}/caches/npm"
-    outputs.files file(npmCacheDir)
-    args = [ "config", "set", "cache", npmCacheDir ]
-}
-
-task npmPackages(type: NpmTask, dependsOn: npmCacheConfig) {
-    description = "Install Node.js packages"
-    args = [ "install" ]
-    inputs.files file("package.json")
-    outputs.files file("node_modules")
-}
-
-
-
-
-task bowerInstall(type: NodeTask) {
-    script = file("node_modules/bower/bin/bower")
-    args = ["--config.storage.cache=${gradle.getGradleUserHomeDir()}/caches/bower/cache",
-            "--config.storage.packages=${gradle.getGradleUserHomeDir()}/caches/bower/packages",
-            "--config.storage.registry=${gradle.getGradleUserHomeDir()}/caches/bower/registry",
-            "install"]
-    inputs.files file("bower.json")
-    outputs.files file("bower_components")
-    dependsOn npmPackages
-}
-
-task bowerSyncJavascript(type: Sync) {
-    from "bower_components"
-    into "grails-app/assets/javascripts/bower_components"
-    exclude "**/*.min.js"
-    exclude "**/angular*/index.js"
-    exclude "**/angular*/ng*.js"
-    include "jquery/dist/jquery.js"
-    include "angular*/**/*.js"
-    dependsOn bowerInstall
-}
-
-task bowerSyncStylesheets(type: Sync) {
-    from "bower_components"
-    into "grails-app/assets/stylesheets/bower_components"
-    include "angular*/**/*.css"
-    include "animate.css/animate.css"
-    dependsOn bowerInstall
-}
-
-task bowerPackages() {
-    dependsOn bowerSyncJavascript, bowerSyncStylesheets
-}
-
-
-//processResources.dependsOn bowerPackages
-run.dependsOn bowerPackages
-
-clean.delete << file("grails-app/assets/javascripts/bower_components")
-clean.delete << file("grails-app/assets/stylesheets/bower_components")
-clean.delete << file("node_modules")
-clean.delete << file("bower_components")
-
-
 
 applicationDefaultJvmArgs = [
         "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"

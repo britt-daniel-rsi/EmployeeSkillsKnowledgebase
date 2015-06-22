@@ -19,10 +19,11 @@ import org.springframework.web.client.RestTemplate;
 public class Test_HealthControllerIntegration {
 
 
-	    private RestTemplate restTemplate = new TestRestTemplate();
+	    private RestTemplate restTemplate = new TestRestTemplate("britt","123");
 
 	    @Test
 	    public void health() {
+	    	
 	        ResponseEntity<String> entity = 
 	                restTemplate.getForEntity("http://localhost:9000/jersey/health", String.class);
 
