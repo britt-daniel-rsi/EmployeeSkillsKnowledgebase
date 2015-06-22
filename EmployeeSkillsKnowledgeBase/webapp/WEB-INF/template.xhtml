@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title><ui:insert name="title">Default title</ui:insert></title>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" />
+        <ui:insert name="scripts">   </ui:insert>
+        <ui:insert name="links">     </ui:insert>
+       
+    </h:head>
+    <h:body>
+    <div id="wrapper">
+        <div id="menu">		
+        <h:form>
+        <table>
+        	<tr>
+        		<td rowspan="2"><img src="https://www.ruralsourcing.com/wp-content/uploads/2014/07/RSI-Logo-300x134.png" width="200px" alt="RSI logo"/></td>
+        	  	<td class="right"><p:clock/></td>
+		    </tr>
+		    <tr>
+		    	<td class="right">
+		    		<h:commandButton id="loginLink" value="Logout" action="#{loginController.logout}"/>
+		    		<h:commandButton id="indexLink" value="Home Page" outcome="index"/>
+		        	<h:commandButton id="listEmployeesLink" value="List Employees" outcome="listEmployees"/>
+					<h:commandButton id="searchEmployeesLink" value="Search" outcome="searchEmployees" />
+					<h:commandButton id="saveEmployeesLink" value="Save Employee" outcome="saveEmployees" />
+					<h:commandButton id="devCentersLink" value="Development Centers" outcome="listDevCenters" />
+					<h:commandButton id="saveDevCenterLink" value="Save Development Center" outcome="saveDevCenters" />
+					<h:commandButton id="userSettingsLink" value="User Settings" outcome="userSettings" />
+				</td> 
+		    </tr>
+        </table>
+        </h:form>
+		</div>
+        <div id="content"><h:messages /><ui:insert name="content"></ui:insert></div>
+        <div id="footer"><p>Copyright 2014 <strong>Rural Sourcing, Inc.,</strong> All rights reserved.</p></div>
+    </div>
+    </h:body>
+</html>

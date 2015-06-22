@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/template.xhtml">
+
+	<ui:define name="title">Save Employees</ui:define>
+	<ui:define name="content">
+		<script>
+			$(function() {
+				$("#form\\:birthDate").datepicker();
+			});
+		</script>
+		<h:form id="form">
+			<table>
+				<tr>
+					<td><h:outputText value="First Name: " /></td>
+					<td><h:inputText id="name"
+							value="#{saveEmployeeController.employee.name}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Last Name: " /></td>
+					<td><h:inputText id="surname"
+							value="#{saveEmployeeController.employee.surname}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Sex: " /></td>
+					<td><h:selectOneRadio id="sex"
+							value="#{saveEmployeeController.employee.sex}"
+							layout="pageDirection">
+							<f:selectItem itemValue="M" itemLabel="Male" />
+							<f:selectItem itemValue="F" itemLabel="Female" />
+						</h:selectOneRadio></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Birth Date: " /></td>
+					<td><h:inputText id="birthDate"
+							value="#{saveEmployeeController.employee.birthDate}">
+							<f:convertDateTime pattern="MM/dd/yyyy" />
+						</h:inputText></td>
+
+				</tr>
+				<tr>
+					<td><h:outputText value="Dev Center: " /></td>
+					<td><h:selectOneMenu
+							value="#{saveEmployeeController.employee.devCenter}">
+							<f:selectItems value="#{saveEmployeeController.devCenterMap}" />
+							<f:converter converterId="devCenterConverter"
+								binding="#{saveEmployeeController.devCenterConverter}" />
+						</h:selectOneMenu></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Phone Number: " /></td>
+					<h:panelGrid id="saveEmployee_phonePanelGrid">
+						<ui:repeat value="#{saveEmployeeController.phones}" var="phone"
+							varStatus="saveEmployee_phone">
+							<h:inputText value="#{phone.number}" />
+							<h:selectOneMenu value="#{phone.phoneType}">
+								<f:selectItems value="#{saveEmployeeController.phoneTypes}" />
+								<f:converter converterId="phoneTypeConverter"
+									binding="#{saveEmployeeController.phoneTypeConverter}" />
+							</h:selectOneMenu>
+							<br />
+						</ui:repeat>
+					</h:panelGrid>
+				</tr>
+				<tr>
+					<td><h:commandButton value="Extend">
+							<f:ajax listener="#{saveEmployeeController.extendPhones}"
+								render="saveEmployee_phonePanelGrid" />
+						</h:commandButton></td>
+					<td><h:commandButton value="Save Employee"
+							actionListener="#{saveEmployeeController.saveEmployee}">
+						</h:commandButton></td>
+				</tr>
+
+			</table>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

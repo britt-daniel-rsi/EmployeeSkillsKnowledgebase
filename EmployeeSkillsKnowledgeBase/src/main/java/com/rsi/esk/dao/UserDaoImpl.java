@@ -1,8 +1,5 @@
 package com.rsi.esk.dao;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
@@ -10,9 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import com.rsi.esk.domain.User;
-import com.rsi.esk.util.EncryptionUtils;
 
 @Transactional
 @Repository
@@ -53,13 +50,15 @@ public class UserDaoImpl extends HibernateDao implements UserDao{
 
 	@Override
 	@SuppressWarnings("unchecked")
-    public List<User> userNameSearch(String userName) {
+    public User findByUserName(String userName) {
         Session session = getSessionFactory().openSession();
         List<User> userList = session.createQuery(
                 "from User where userName='" + userName + "'").list();
         session.close();
-
-        return userList;
+        if(!CollectionUtils.isEmpty(userList)) {
+        	return userList.get(0);
+        }
+        return null;
     }
 
 	@Override
@@ -74,24 +73,6 @@ public class UserDaoImpl extends HibernateDao implements UserDao{
     }
 
 
-    @Override
-	public Boolean checkPassword(String userName, String password) {
-    	Session session = getSessionFactory().openSession();
-		try {
-			byte[] hashedPass = EncryptionUtils.SHA1(password);
-			System.out.println(EncryptionUtils.bytesToHex(hashedPass));
-	        SQLQuery query = session.createSQLQuery("select user_password from esk.user where user_name =" + userName);        
-	        if(EncryptionUtils.bytesToHex((byte[]) query.list().get(0)).equals(EncryptionUtils.bytesToHex(hashedPass))){
-	        	session.close();
-	        	return true;
-	        }
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return false;
-    }
     
 
 

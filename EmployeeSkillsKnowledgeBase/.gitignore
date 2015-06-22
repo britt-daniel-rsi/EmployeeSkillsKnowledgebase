@@ -1,6 +1,8 @@
 /build
-
+/node_modules
+bower_components
 /target
 /.gradle
 /.springbeans
 /.idea
+/lib

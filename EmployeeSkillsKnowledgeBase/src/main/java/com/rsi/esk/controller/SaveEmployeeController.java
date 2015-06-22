@@ -6,13 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.SessionScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.rsi.esk.converter.DevCenterConverter;
-import com.rsi.esk.converter.PhoneTypeConverter;
 import com.rsi.esk.domain.DevCenter;
 import com.rsi.esk.domain.Employee;
 import com.rsi.esk.domain.Phone;
@@ -23,7 +20,6 @@ import com.rsi.esk.service.PhoneService;
 import com.rsi.esk.service.PhoneTypeService;
 
 @Controller
-@SessionScoped
 public class SaveEmployeeController extends BaseController {
 	@Autowired
     private EmployeeService employeeService;
@@ -147,11 +143,5 @@ public class SaveEmployeeController extends BaseController {
 		this.devCenterService = devCenterService;
 	}
 	
-	public DevCenterConverter getDevCenterConverter() {
-		return new DevCenterConverter(getDevCenters());
-	}
-	
-	public PhoneTypeConverter getPhoneTypeConverter() {
-		return new PhoneTypeConverter(getPhoneTypeService());
-	}
+
 }

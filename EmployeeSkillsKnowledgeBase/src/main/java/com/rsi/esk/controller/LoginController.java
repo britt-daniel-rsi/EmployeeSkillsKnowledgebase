@@ -16,14 +16,7 @@ public class LoginController{
 	public void setLogin(UserService login) {
 		this.login = login;
 	}
-	public String checkCredentials(){
-		if(login.validate(getUsername(), getPassword())){
-			return "success";
-		}
-		else{
-			return "failure";
-		}
-	}
+
 	public String getUsername() {
 		return username;
 	}

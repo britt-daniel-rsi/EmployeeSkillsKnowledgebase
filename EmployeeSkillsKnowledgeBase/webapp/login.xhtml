@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/template.xhtml">
+    
+    <ui:define name="title">Login</ui:define>
+	<ui:define name="content">
+	<div id="background"> <!-- In case we want to add a jaw-dropping background -->
+		<h:form id="form">
+			<table id="login">
+				<tr>
+					<td><h:outputText value="Username: " /></td>
+					<td><h:inputText id="username"
+							value="#{loginController.username}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Password: " /></td>
+					<td><h:inputSecret id="password"
+							value="#{loginController.password}" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td style="float:right;"><h:commandButton value="Login"
+							action="#{loginController.login}">
+					</h:commandButton></td>
+				</tr>
+			</table>
+		</h:form>
+	</div>
+	</ui:define>
+</ui:composition>
+</html>

@@ -6,8 +6,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import javax.faces.bean.RequestScoped;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +16,6 @@ import com.rsi.esk.util.NumberUtils;
 
 
 @Controller
-@RequestScoped
 public class SearchController extends BaseController implements Serializable {
     private static final long serialVersionUID = 1L;
     @Autowired

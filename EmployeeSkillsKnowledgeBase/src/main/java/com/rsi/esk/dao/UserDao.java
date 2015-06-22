@@ -12,9 +12,7 @@ public interface UserDao {
 
 	List<User> list();
 
-	List<User> userNameSearch(String userName);
-
-	Boolean checkPassword(String userName, String password);
+	User findByUserName(String userName);
 
 	List<User> IdSearch(Long id);
 

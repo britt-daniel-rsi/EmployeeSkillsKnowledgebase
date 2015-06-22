@@ -20,7 +20,6 @@ import com.rsi.esk.service.EmployeeService;
 import com.rsi.esk.service.PhoneService;
 import com.rsi.esk.service.PhoneTypeService;
 
-
 @Controller
 public class ListEmployeeController extends BaseController implements Serializable {
     private static final long serialVersionUID = 1L;

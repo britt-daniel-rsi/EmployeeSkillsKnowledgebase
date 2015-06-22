@@ -8,12 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.dom4j.tree.AbstractEntity;
+
 
 
 @Entity
 @Table(schema = "esk", name = "dev_center")
 
-public class DevCenter {
+public class DevCenter extends AbstractEntity{
+
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
     @Column(name = "dev_center_id")

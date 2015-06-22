@@ -14,16 +14,6 @@ public class UserSettingsController extends BaseController {
 	String passwordNewRe;
 	String username;
 
-	public String checkCredentials() {
-		// I need to get the username from some persistent storage and place it
-		// in the input below
-		if (userService.validate(username, getPasswordCurrent())) {
-			return "success";
-		} else {
-			return "failure";
-		}
-	}
-
 	public UserService getUserService() {
 		return userService;
 	}
