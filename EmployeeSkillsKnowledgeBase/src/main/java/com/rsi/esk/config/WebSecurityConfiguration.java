@@ -10,36 +10,46 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 import com.rsi.esk.service.UserService;
 
 @Configuration
 class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
- 
-  @Autowired
-  UserService userService;
- 
-  @Override
-  public void init(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userDetailsService());
-  }
- 
-  @Bean
-  UserDetailsService userDetailsService() {
-    return new UserDetailsService() {
- 
-      @Override
-      public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        com.rsi.esk.domain.User user = userService.findByUserName(username);
-        if(user != null) {
-        return new User(user.getUserName(), user.getUserPassword(), true, true, true, true,
-                AuthorityUtils.createAuthorityList("USER"));
-        } else {
-          throw new UsernameNotFoundException("could not find the user '"
-                  + username + "'");
-        }
-      }
-      
-    };
-  }
+
+	@Autowired
+	UserService userService;
+
+	@Override
+	public void init(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+	}
+
+	@Bean
+	PasswordEncoder passwordEncoder() {
+		return new StandardPasswordEncoder();
+	}
+
+	@Bean
+	UserDetailsService userDetailsService() {
+		return new UserDetailsService() {
+
+			@Override
+			public UserDetails loadUserByUsername(String username)
+					throws UsernameNotFoundException {
+				com.rsi.esk.domain.User user = userService
+						.findByUserName(username);
+				if (user != null) {
+					return new User(user.getUserName(), user.getUserPassword(),
+							true, true, true, true,
+							AuthorityUtils.createAuthorityList("USER"));
+				} else {
+					throw new UsernameNotFoundException(
+							"could not find the user '" + username + "'");
+				}
+			}
+
+		};
+	}
 }

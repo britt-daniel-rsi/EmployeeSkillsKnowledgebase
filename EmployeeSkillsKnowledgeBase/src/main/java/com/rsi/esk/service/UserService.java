@@ -9,5 +9,5 @@ public interface UserService {
 	
 	User findById(Long id);
 	
-	Long save(User user);
+	Long saveOrUpdate(User user);
 }

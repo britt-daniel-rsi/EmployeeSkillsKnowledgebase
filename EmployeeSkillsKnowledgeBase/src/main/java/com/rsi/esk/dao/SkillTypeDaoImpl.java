@@ -16,7 +16,7 @@ public class SkillTypeDaoImpl extends HibernateDao implements SkillTypeDao{
     @Override
 	@SuppressWarnings("unchecked")
     public List<SkillType> list() {
-        Session session = getSessionFactory().openSession();
+        Session session = getSessionFactory().getCurrentSession();
         List<SkillType> skillList = session.createQuery("from SkillType").list();
         session.close();
 
@@ -25,7 +25,7 @@ public class SkillTypeDaoImpl extends HibernateDao implements SkillTypeDao{
     
   
 	public SkillType getSkillTypeByDescription(String description) {
-        Session session = getSessionFactory().openSession();
+        Session session = getSessionFactory().getCurrentSession();
         Query query = session.createQuery(
                 "from SkillType where type = :skillType");
         query.setParameter("skillType", description);
@@ -35,7 +35,7 @@ public class SkillTypeDaoImpl extends HibernateDao implements SkillTypeDao{
 
   
 	public SkillType getSkillTypeById(Long id) {
-        Session session = getSessionFactory().openSession();
+        Session session = getSessionFactory().getCurrentSession();
         Query query = session.createQuery(
                 "from SkillType where idskilltype = :skillTypeId");
         query.setParameter("skillTypeId", id);
@@ -45,7 +45,7 @@ public class SkillTypeDaoImpl extends HibernateDao implements SkillTypeDao{
 	
 	@Override
     public void save(SkillType skillType) {
-        Session session = getSessionFactory().openSession();
+        Session session = getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
         session.persist(skillType);
         tx.commit();

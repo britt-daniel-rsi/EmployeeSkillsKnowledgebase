@@ -3,13 +3,12 @@ package com.rsi.esk.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
 
 import com.rsi.esk.domain.User;
 
@@ -19,23 +18,23 @@ public class UserDaoImpl extends HibernateDao implements UserDao{
 
 
 	@Override
-	@SuppressWarnings("rawtypes")
-    public Long getMaxId() {
-        Session session = getSessionFactory().openSession();
-        SQLQuery query = session.createSQLQuery(
-                "select max(user_id) from esk.user");
-        List maxIds = query.list();
-        System.out.println(maxIds.get(0));
+    public Long getNextId() {
+        Session session = getSessionFactory().getCurrentSession();
+        
+        Criteria criteria = session.createCriteria(User.class)
+        		.setProjection(Projections.max("id"));
+        Long maxId = (Long)criteria.uniqueResult();
         session.close();
 
-        return (Long) maxIds.get(0);
+        return maxId;
     }
 
 	@Override
-	public void save(User user) {
-        Session session = getSessionFactory().openSession();
+	public void saveOrUpdate(User user) {
+        Session session = getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
-        session.persist(user);
+        session.saveOrUpdate(user);
+
         tx.commit();
         session.close();
     }
@@ -43,49 +42,34 @@ public class UserDaoImpl extends HibernateDao implements UserDao{
 	@Override
 	@SuppressWarnings("unchecked")
     public List<User> list() {
-        Session session = getSessionFactory().openSession();
-        List<User> userList = session.createQuery("from User").list();
+        Session session = getSessionFactory().getCurrentSession();
+        List<User> userList = session.createCriteria(User.class).list();
         session.close();
 
         return userList;
     }
 
 	@Override
-	@SuppressWarnings("unchecked")
     public User findByUserName(String userName) {
-        Session session = getSessionFactory().openSession();
-        List<User> userList = session.createQuery(
-                "from User where userName='" + userName + "'").list();
+        Session session = getSessionFactory().getCurrentSession();
+        
+        Criteria criteria = session.createCriteria(User.class)
+        		.add(Restrictions.eq("userName",userName));
+        
+        User user = (User)(criteria.uniqueResult());
         session.close();
-        if(!CollectionUtils.isEmpty(userList)) {
-        	return userList.get(0);
-        }
-        return null;
-    }
-
-	@Override
-	@SuppressWarnings("unchecked")
-    public List<User> IdSearch(Long id) {
-        Session session = getSessionFactory().openSession();
-        List<User> userList = session.createQuery(
-                "from User where id='" + id + "'").list();
-        session.close();
-
-        return userList;
+        return user;
     }
 
 	@Override
 	public User findById(Long id) {
-		Session session = getSessionFactory().openSession();
+		Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(User.class);
         
         criteria.add(Restrictions.eq("id", id));
+        
 
-        return (User)criteria.uniqueResult();
+        return (User)(criteria.uniqueResult());
 	}
-
-
-    
-
-
+  
 }

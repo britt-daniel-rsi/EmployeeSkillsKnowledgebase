@@ -17,7 +17,7 @@ public class PhoneDaoImpl extends HibernateDao implements PhoneDao {
 
 	@SuppressWarnings("rawtypes")
 	public Long getMaxId() {
-		Session session = getSessionFactory().openSession();
+		Session session = getSessionFactory().getCurrentSession();
 		SQLQuery query = session
 				.createSQLQuery("select max(phone_id) from esk.employee_phone");
 		List maxIds = query.list();
@@ -34,7 +34,7 @@ public class PhoneDaoImpl extends HibernateDao implements PhoneDao {
 	}
 
 	public void save(Phone phone) {
-		Session session = getSessionFactory().openSession();
+		Session session = getSessionFactory().getCurrentSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(phone);
 		tx.commit();
@@ -43,7 +43,7 @@ public class PhoneDaoImpl extends HibernateDao implements PhoneDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Phone> list() {
-		Session session = getSessionFactory().openSession();
+		Session session = getSessionFactory().getCurrentSession();
 		List<Phone> phoneList = session.createQuery("from Phone").list();
 		session.close();
 

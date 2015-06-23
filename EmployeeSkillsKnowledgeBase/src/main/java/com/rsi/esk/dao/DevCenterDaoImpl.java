@@ -17,7 +17,7 @@ public class DevCenterDaoImpl extends HibernateDao implements DevCenterDao {
     @SuppressWarnings("unchecked")
 	public List<DevCenter> list() {
 
-        Session session = getSessionFactory().openSession();
+        Session session = getSessionFactory().getCurrentSession();
         List<DevCenter> personList = session.createQuery("from DevCenter").list();
         session.close();
 
@@ -25,7 +25,7 @@ public class DevCenterDaoImpl extends HibernateDao implements DevCenterDao {
     }
 
 	public void save(DevCenter center) {
-        Session session = getSessionFactory().openSession();
+        Session session = getSessionFactory().getCurrentSession();
         Transaction tx = session.beginTransaction();
         session.persist(center);
         tx.commit();

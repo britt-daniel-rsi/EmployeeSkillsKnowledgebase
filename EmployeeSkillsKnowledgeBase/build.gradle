@@ -47,7 +47,6 @@ jar {
 
 repositories {
     mavenCentral()
-    maven { url "http://repository.primefaces.org" }
 }
 
 sourceCompatibility = 1.7

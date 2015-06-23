@@ -24,8 +24,9 @@ public class UserSettingsController extends BaseController {
 	private UserService userService;
 	
 	@POST
+	@Path("/save")
 	public Response save(User user) {
-		Long userId = userService.save(user);
+		Long userId = userService.saveOrUpdate(user);
 		
 		URI location = uriInfo.getAbsolutePathBuilder().path("{id}").resolveTemplate("id", userId).build();
 		return Response.created(location).build();

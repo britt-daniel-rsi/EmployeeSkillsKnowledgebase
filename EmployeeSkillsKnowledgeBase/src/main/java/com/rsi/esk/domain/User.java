@@ -35,7 +35,7 @@ public class User extends AbstractEntity{
 	@Column(name = "create_timestamp")
 	private Date createDate;
 	@ManyToOne
-	@JoinColumn(name = "employee_id", nullable = false)
+	@JoinColumn(name = "employee_id")
 	private Employee employee;
 
 	public Long getId() {

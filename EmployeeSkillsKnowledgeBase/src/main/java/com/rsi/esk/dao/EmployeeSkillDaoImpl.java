@@ -25,7 +25,7 @@ public class EmployeeSkillDaoImpl implements EmployeeSkillDao {
     @Override
 	@SuppressWarnings("rawtypes")
     public Long getMaxId() {
-        Session session = this.sessionFactory.openSession();
+        Session session = this.sessionFactory.getCurrentSession();
         SQLQuery query = session.createSQLQuery(
                 "select max(employee_skill_id) from esk.employee_skill_xref");
         List maxIds = query.list();
@@ -43,7 +43,7 @@ public class EmployeeSkillDaoImpl implements EmployeeSkillDao {
 
     @Override
 	public void save(EmployeeSkill employeeSkill) {
-        Session session = this.sessionFactory.openSession();
+        Session session = this.sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
         session.persist(employeeSkill);
         tx.commit();
@@ -53,7 +53,7 @@ public class EmployeeSkillDaoImpl implements EmployeeSkillDao {
     @Override
 	@SuppressWarnings("unchecked")
     public List<EmployeeSkill> list() {
-        Session session = this.sessionFactory.openSession();
+        Session session = this.sessionFactory.getCurrentSession();
         List<EmployeeSkill> employeeSkillList = session.createQuery("from EmployeeSkill").list();
         session.close();
         return employeeSkillList;

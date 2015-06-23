@@ -17,7 +17,7 @@ public class EmployeeDaoImpl extends HibernateDao implements EmployeeDao {
 
     @SuppressWarnings("rawtypes")
     public Long getMaxId() {
-        Session session = getSessionFactory().openSession();
+        Session session = getSessionFactory().getCurrentSession();
         SQLQuery query = session.createSQLQuery(
                 "select max(employee_id) from esk.employee");
         List maxIds = query.list();
@@ -28,7 +28,7 @@ public class EmployeeDaoImpl extends HibernateDao implements EmployeeDao {
     }
 
     public void save(Employee employee) {
-        Session session = getSessionFactory().openSession();
+        Session session = getSessionFactory().getCurrentSession();
 
         Transaction tx = session.beginTransaction();
         session.persist(employee);
@@ -38,7 +38,7 @@ public class EmployeeDaoImpl extends HibernateDao implements EmployeeDao {
 
     @SuppressWarnings("unchecked")
     public List<Employee> list() {
-        Session session = getSessionFactory().openSession();
+        Session session = getSessionFactory().getCurrentSession();
         List<Employee> personList = session.createQuery("from Employee").list();
         session.close();
 
@@ -47,7 +47,7 @@ public class EmployeeDaoImpl extends HibernateDao implements EmployeeDao {
 
     @SuppressWarnings("unchecked")
     public List<Employee> SurnameSearch(String surname) {
-        Session session = getSessionFactory().openSession();
+        Session session = getSessionFactory().getCurrentSession();
         List<Employee> personList = session.createQuery(
                 "from Employee where surname='" + surname + "'").list();
         session.close();
@@ -57,7 +57,7 @@ public class EmployeeDaoImpl extends HibernateDao implements EmployeeDao {
 
     @SuppressWarnings("unchecked")
     public List<Employee> IdSearch(Long id) {
-        Session session = getSessionFactory().openSession();
+        Session session = getSessionFactory().getCurrentSession();
 
         List<Employee> personList = session.createQuery(
                 "from Employee where id='" + id + "'").list();

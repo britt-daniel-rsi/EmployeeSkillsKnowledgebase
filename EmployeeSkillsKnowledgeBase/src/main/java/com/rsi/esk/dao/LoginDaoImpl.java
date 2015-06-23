@@ -18,7 +18,7 @@ public class LoginDaoImpl implements LoginDao{
     }
 	@Override
 	public boolean matchUserToPass(String username, String password) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		boolean correct = false;
 		try {
 			byte[] hashedPass = EncryptionUtils.SHA1(password);
