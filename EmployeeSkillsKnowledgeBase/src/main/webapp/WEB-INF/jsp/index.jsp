@@ -4,6 +4,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Insert title here</title>
+        <script src="/webjars/jquery/2.1.4/jquery.js" ></script>
+        <script>
+       (function() { $.getJSON( "ESK/jersey/user/list", function( data ) {
+        	  var items = [];
+        	  $.each( data, function( key, val ) {
+        	    items.push( "<li id='" + key + "'>" + val + "</li>" );
+        	  });
+        	 
+        	  $( "<ul/>", {
+        	    "class": "my-new-list",
+        	    html: items.join( "" )
+        	  }).appendTo( "body" );
+        	});
+       })();
+        </script>
     </head>
     <body>
         <%= new java.util.Date() %>

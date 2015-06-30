@@ -1,6 +1,7 @@
 package com.rsi.esk.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -37,6 +38,13 @@ public class UserSettingsController extends BaseController {
     @Produces({"application/json"})
 	public User findById(@QueryParam("id") Long id) {
 		return userService.findById(id);
+	}
+	
+	@GET
+	@Path("/list")
+	@Produces({"application/json"})
+	public List<User> listUsers() {
+		return userService.list();
 	}
 
 }

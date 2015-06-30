@@ -1,5 +1,7 @@
 package com.rsi.esk.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -38,6 +40,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findById(Long id) {
 		return userDao.findById(id);
+	}
+	
+	@Override
+	public List<User> list() {
+		return userDao.list();
 	}
 
 }
