@@ -8,11 +8,10 @@ import com.rsi.esk.dao.UserDao;
 import com.rsi.esk.domain.User;
 import com.rsi.esk.util.NumberUtils;
 
-
-@Component
+@Component()
 public class UserServiceImpl implements UserService {
-@Autowired
-    private UserDao userDao;
+	@Autowired
+	private UserDao userDao;
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
@@ -22,17 +21,17 @@ public class UserServiceImpl implements UserService {
 	public User findByUserName(String userName) {
 		return userDao.findByUserName(userName);
 	}
-	
+
 	@Override
 	public Long saveOrUpdate(User user) {
-		if(!NumberUtils.hasLong(user.getId())) {
+		if (!NumberUtils.hasLong(user.getId())) {
 			user.setId(userDao.getNextId());
 		}
 		StandardPasswordEncoder pwe = new StandardPasswordEncoder();
 		String password = user.getUserPassword();
 		user.setUserPassword(pwe.encode(password));
 		userDao.saveOrUpdate(user);
-		
+
 		return user.getId();
 	}
 
@@ -40,5 +39,5 @@ public class UserServiceImpl implements UserService {
 	public User findById(Long id) {
 		return userDao.findById(id);
 	}
-		
+
 }

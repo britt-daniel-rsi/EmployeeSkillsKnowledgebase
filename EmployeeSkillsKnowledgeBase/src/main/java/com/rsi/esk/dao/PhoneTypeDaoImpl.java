@@ -17,7 +17,7 @@ public class PhoneTypeDaoImpl extends HibernateDao implements PhoneTypeDao {
 
     @SuppressWarnings("unchecked")
     public List<PhoneType> list() {
-        Session session = getSessionFactory().getCurrentSession();
+        Session session = getSessionFactory().openSession();
         List<PhoneType> phoneList = session.createQuery("from PhoneType").list();
         session.close();
 
@@ -25,7 +25,7 @@ public class PhoneTypeDaoImpl extends HibernateDao implements PhoneTypeDao {
     }
 
     public PhoneType getPhoneTypeByDescription(String description) {
-        Session session = getSessionFactory().getCurrentSession();
+        Session session = getSessionFactory().openSession();
         Query query = session.createQuery(
                 "from PhoneType where phone_type_desc = :description");
         query.setParameter("description", description);
@@ -34,7 +34,7 @@ public class PhoneTypeDaoImpl extends HibernateDao implements PhoneTypeDao {
     }
 
     public PhoneType getPhoneTypeById(Long id) {
-        Session session = getSessionFactory().getCurrentSession();
+        Session session = getSessionFactory().openSession();
         Query query = session.createQuery(
                 "from PhoneType where phone_type_id = :id");
         query.setParameter("id", id);
