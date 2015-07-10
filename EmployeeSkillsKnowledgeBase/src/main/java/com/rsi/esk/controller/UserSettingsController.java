@@ -36,8 +36,8 @@ public class UserSettingsController extends BaseController {
 	@GET
 	@Path("/find")
     @Produces({"application/json"})
-	public User findById(@QueryParam("id") Long id) {
-		return userService.findById(id);
+	public User findById(@QueryParam("id") String id) {
+		return userService.loadUserByUserId(id);
 	}
 	
 	@GET

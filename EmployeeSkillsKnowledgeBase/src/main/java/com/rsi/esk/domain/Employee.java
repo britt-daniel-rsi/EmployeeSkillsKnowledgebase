@@ -1,5 +1,6 @@
 package com.rsi.esk.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -14,11 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.dom4j.tree.AbstractEntity;
-
 @Entity
 @Table(schema = "esk", name = "employee")
-public class Employee extends AbstractEntity{
+public class Employee implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id

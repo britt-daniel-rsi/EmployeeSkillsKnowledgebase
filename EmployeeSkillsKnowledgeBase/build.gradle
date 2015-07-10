@@ -69,9 +69,13 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-security:$versionSpringboot",
             "org.springframework.boot:spring-boot-starter-logging:$versionSpringboot",
             "org.springframework.boot:spring-boot-starter-jersey:$versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-social-facebook:$versionSpringboot",
             "org.springframework:spring-web:$versionSpring",
             "org.springframework:spring-webmvc:$versionSpring",
             "javax.validation:validation-api"
+
+
+  compile('org.springframework.social:spring-social-security:1.1.0.RELEASE')
 
     compile group: "javax.el", name: "el-api", version: "1.0"
     compile "org.glassfish.web:el-impl:2.2"
@@ -83,10 +87,13 @@ dependencies {
     compile "org.hibernate:hibernate-validator:4.3.10.Final"
 
     compile "org.apache.commons:commons-lang3:3.4"
+    compile 'io.jsonwebtoken:jjwt:0.5.1'
     
     //JS/CSS Dependencies
     compile 'org.webjars.bower:angularjs:1.4.0'
-    compile 'org.webjars:bootstrap:3.3.5'
+    compile 'org.webjars:bootstrap:3.3.5'    
+    compile 'org.webjars.bower:bootstrap:3.3.5'
+    compile 'org.webjars.bower:angular-route:1.4.1'
     compile 'org.webjars:jquery:2.1.4'
 
 

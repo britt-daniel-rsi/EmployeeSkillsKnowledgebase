@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -41,11 +40,10 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 			public UserDetails loadUserByUsername(String username)
 					throws UsernameNotFoundException {
 				com.rsi.esk.domain.User user = userService
-						.findByUserName(username);
+						.loadUserByUsername(username);
 				if (user != null) {
 					return new User(user.getUserName(), user.getUserPassword(),
-							true, true, true, true,
-							AuthorityUtils.createAuthorityList("USER"));
+							true, true, true, true,user.getAuthorities());
 				} else {
 					throw new UsernameNotFoundException(
 							"could not find the user '" + username + "'");

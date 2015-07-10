@@ -1,70 +1,23 @@
 package com.rsi.esk.domain;
 
-import java.util.Date;
+public enum UserRole {
+	USER, ADMIN;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import org.dom4j.tree.AbstractEntity;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-@Entity
-@Table(name = "esk_user_role_xref", schema = "esk")
-public class UserRole extends AbstractEntity{
-
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name = "user_role_id")
-	private Long id;
-
-	@Column(name = "create_timestamp")
-	private Date createTimestamp;
-
-	@ManyToOne
-	@JoinColumn(name = "access_level_id")
-	private AccessLevel accessLevel;
-
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	@JsonIgnore
-	private User user;
-
-	public Long getId() {
-		return id;
+	public UserAuthority asAuthorityFor(final User user) {
+		final UserAuthority authority = new UserAuthority();
+		authority.setAuthority("ROLE_" + toString());
+		authority.setUser(user);
+		return authority;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public static UserRole valueOf(final UserAuthority authority) {
+		switch (authority.getAuthority()) {
+		case "ROLE_USER":
+			return USER;
+		case "ROLE_ADMIN":
+			return ADMIN;
+		}
+		throw new IllegalArgumentException("No role defined for authority: "
+				+ authority.getAuthority());
 	}
-
-	public Date getCreateTimestamp() {
-		return createTimestamp;
-	}
-
-	public void setCreateTimestamp(Date createTimestamp) {
-		this.createTimestamp = createTimestamp;
-	}
-
-	public AccessLevel getAccessLevel() {
-		return accessLevel;
-	}
-
-	public void setAccessLevel(AccessLevel accessLevel) {
-		this.accessLevel = accessLevel;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 }

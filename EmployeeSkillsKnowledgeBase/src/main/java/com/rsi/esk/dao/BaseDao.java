@@ -2,9 +2,7 @@ package com.rsi.esk.dao;
 
 import java.util.List;
 
-import org.dom4j.tree.AbstractEntity;
-
-public interface BaseDao<T extends AbstractEntity> {
+public interface BaseDao<T> {
 	Long getNextId();
 
 	void saveOrUpdate(T entity);

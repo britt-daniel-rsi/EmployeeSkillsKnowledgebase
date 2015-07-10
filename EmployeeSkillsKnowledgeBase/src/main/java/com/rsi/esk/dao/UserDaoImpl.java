@@ -3,7 +3,6 @@ package com.rsi.esk.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
@@ -69,6 +68,15 @@ public class UserDaoImpl extends HibernateDao implements UserDao{
         criteria.add(Restrictions.eq("id", id));
 
         return (User)(criteria.uniqueResult());
+	}
+
+	@Override
+	public Long count() {
+		Session session = getSessionFactory().openSession();
+		Criteria criteria = session.createCriteria(User.class);
+		
+		criteria.setProjection(Projections.rowCount());
+		return (Long) (criteria.uniqueResult());
 	}
   
 }

@@ -1,16 +1,16 @@
 package com.rsi.esk.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.dom4j.tree.AbstractEntity;
-
 
 @Entity
 @Table(schema = "esk", name = "phone_type")
-public class PhoneType extends AbstractEntity{
+public class PhoneType implements Serializable{
 
 	private static final long serialVersionUID = 1L;
     @Id

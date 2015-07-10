@@ -1,5 +1,7 @@
 package com.rsi.esk.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,13 +11,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import org.dom4j.tree.AbstractEntity;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(schema = "esk", name = "employee_phone")
-public class Phone extends AbstractEntity{
+public class Phone implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id

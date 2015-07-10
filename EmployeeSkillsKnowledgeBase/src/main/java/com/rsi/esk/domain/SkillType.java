@@ -1,16 +1,16 @@
 package com.rsi.esk.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.dom4j.tree.AbstractEntity;
-
 @Entity
 @Table(schema = "esk", name = "skill_type")
-public class SkillType extends AbstractEntity{
+public class SkillType implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id
