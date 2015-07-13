@@ -19,11 +19,6 @@
 <script type="text/javascript" src="/js/navigation.js"></script>
 <script type="text/javascript" src="/js/login.js"></script>
 
-<!doctype html>
-<html>
-<head>
-    <title>Hello AngularJS</title>
-
 </head>
 
 <body ng-app="webApp" ng-cloak class="ng-cloak">

@@ -17,7 +17,7 @@ angular
 
         var authenticate = function(callback) {
 
-            $http.get('user').success(function(data) {
+            $http.get('/user').success(function(data) {
                 console.log("/user success: " + JSON.stringify(data));
                 if (data.name) {
                     console.log("And Authenticated!");
@@ -42,7 +42,7 @@ angular
             var data2 = 'username=' + encodeURIComponent(vm.credentials.username) +
                 '&password=' + encodeURIComponent(vm.credentials.password);
 
-            $http.post('login', data2, {
+            $http.post('/login', data2, {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
@@ -69,7 +69,7 @@ angular
         };
 
         $scope.logout = function() {
-            $http.post('logout', {}).success(function() {
+            $http.post('/logout', {}).success(function() {
                 $rootScope.authenticated = false;
                 $location.path("/");
             }).error(function() {

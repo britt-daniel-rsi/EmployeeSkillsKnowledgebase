@@ -12,6 +12,8 @@ public class NavigationController {
 
 	@RequestMapping("/user")
 	public Principal user(Principal user) {
+		Principal innerUser = user;
+		System.out.println(innerUser.getName());
 		return user;
 	}
 	

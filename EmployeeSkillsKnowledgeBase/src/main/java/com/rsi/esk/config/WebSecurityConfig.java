@@ -29,15 +29,16 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.formLogin()
-				.loginPage("/#/login")
+		http.httpBasic().and()
+		.formLogin()
+				//.loginPage("/#/login")
 				.and()
 				//TODO checkout logout handler
 				.logout().logoutSuccessUrl("/#/login")
 				.and()
 				.authorizeRequests()
-				.antMatchers("**/*.js", "**/*.css", "/webjars/*", "/index",
-						"/home", "/login", "/", "/ESK/jersey/user/save")
+				.antMatchers("**/*.js", "**/*.css", "/webjars/**", "/index",
+						"/home", "/login", "/", "/ESK/jersey/user/save","/user")
 				.permitAll().anyRequest().authenticated().and().csrf()
 				.csrfTokenRepository(csrfTokenRepository()).and()
 				.addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
