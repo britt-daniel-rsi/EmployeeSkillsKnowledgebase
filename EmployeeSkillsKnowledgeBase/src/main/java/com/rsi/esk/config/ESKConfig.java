@@ -28,9 +28,9 @@ public class ESKConfig extends WebMvcConfigurerAdapter {
 	public PropertyPlaceholderConfigurer getPropertyPlaceHolderConfigurer() {
 		PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
 
-		ppc.setLocations(new ClassPathResource(
-				"properties/hibernate.properties"), new ClassPathResource(
-				"application.properties"));
+		ppc.setLocations(new ClassPathResource("properties/hibernate.properties"),
+				new ClassPathResource("application.properties"),
+				new ClassPathResource("properties/security.properties"));
 
 		ppc.setIgnoreUnresolvablePlaceholders(true);
 
