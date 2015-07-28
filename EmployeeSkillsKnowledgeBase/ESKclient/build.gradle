@@ -1,0 +1,144 @@
+import static java.awt.Desktop.*
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+         maven {
+          url "https://plugins.gradle.org/m2/"
+       }
+    }
+    //noinspection GroovyAssignabilityCheck
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+        classpath "com.eriwen:gradle-js-plugin:1.12.1"
+        classpath 'com.eriwen:gradle-css-plugin:1.11.1'
+  }
+    
+}
+
+description = "ESKclient"
+
+apply plugin: "spring-boot"
+apply plugin: "war"
+apply plugin: "js"
+apply plugin: "css"
+
+def cssDir = "${projectDir}/src/main/webapp/css"
+def jsDir = "${projectDir}/src/main/webapp/js"
+
+def getVersionName = { ->
+    def majorVersion = 0
+    def minorVersion = 1
+    def buildNumber = 91
+    return ("${majorVersion}.${minorVersion}.${buildNumber}")
+}
+
+war {
+    baseName = "ESKClient"
+    version =  getVersionName()
+}
+
+//noinspection GroovyAssignabilityCheck
+jar {
+    baseName = "ESKClient"
+    version = getVersionName()
+}
+
+
+configurations {
+    compile.exclude module: "spring-boot-starter-tomcat"
+}
+
+//noinspection GroovyAssignabilityCheck
+dependencies {
+
+    compile "org.springframework.boot:spring-boot-starter-web:$project.ext.versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-actuator:$project.ext.versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-jetty:$project.ext.versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-logging:$project.ext.versionSpringboot",
+            "javax.validation:validation-api"
+
+    compile "org.eclipse.jetty:jetty-jsp:9.2.10.v20150310"
+    compile "javax.servlet:javax.servlet-api:3.0.1"
+
+    
+    //JS/CSS Dependencies
+    
+    
+    compile 'org.webjars.bower:bootstrap:3.3.5'
+    
+    compile 'org.webjars.bower:jquery:2.1.4'
+    
+	compile 'org.webjars.bower:angularjs:1.4.3'
+    compile 'org.webjars.bower:angular-animate:1.4.3'
+    compile 'org.webjars.bower:angular-aria:1.4.3'
+    compile 'org.webjars.bower:angular-cookies:1.4.3'
+    compile 'org.webjars.bower:angular-messages:1.4.3'
+    compile 'org.webjars.bower:angular-resource:1.4.3'
+    compile 'org.webjars.bower:angular-route:1.4.3'
+    compile 'org.webjars.bower:angular-xeditable:0.1.9'
+
+    // Utilities
+    compile("com.google.guava:guava:18.0")
+
+}
+
+bootRepackage {
+    mainClass = "com.rsi.esk.ESKClientApplication"
+}
+
+task cleanCombinedJs(type: Delete) {
+  delete "${jsDir}/all.js","${jsDir}/all.min.js"
+}
+
+task cleanCombinedCss(type: Delete) {
+  delete "${cssDir}/all.css","${cssDir}/all.min.css"
+}
+
+
+combineJs {
+source = fileTree(dir: "${jsDir}", include: "**/*.js")
+dest = "${jsDir}/all.js"
+}
+
+minifyJs {
+    source = "${jsDir}/all.js"
+    dest = file("${jsDir}/all.min.js")
+    sourceMap = file("${projectDir}/all.sourcemap.json")
+    closure {
+       warningLevel = 'QUIET'
+       compilerOptions.defineReplacements = ['MY_DBUG_FLAG':false]
+    }
+} 
+
+
+combineCss {
+    source = fileTree(dir: "${cssDir}", include: "**/*.css")
+    dest = "${cssDir}/all.css"
+} 
+combineCss << {
+    source.each { logger.info "Combining $it"}
+}
+
+minifyCss {
+    source = combineCss
+    dest = "${cssDir}/all.min.css"
+    yuicompressor { // Optional
+        lineBreakPos = -1
+    }
+}
+
+tasks.processResources.dependsOn tasks.minifyJs
+tasks.processResources.dependsOn tasks.minifyCss
+tasks.minifyCss.dependsOn tasks.combineCss
+tasks.minifyJs.dependsOn tasks.combineJs
+tasks.combineJs.dependsOn tasks.cleanCombinedJs
+tasks.combineCss.dependsOn tasks.cleanCombinedCss
+
+
+
+
+applicationDefaultJvmArgs = [
+        "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
+]

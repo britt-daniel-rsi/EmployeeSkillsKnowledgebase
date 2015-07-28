@@ -1,0 +1,93 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+         maven {
+          url "https://plugins.gradle.org/m2/"
+       }
+    }
+    //noinspection GroovyAssignabilityCheck
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
+  }
+    
+}
+
+description = "ESKserver"
+
+apply plugin: "spring-boot"
+apply plugin: "war"
+
+def getVersionName = { ->
+    def majorVersion = 0
+    def minorVersion = 1
+    def buildNumber = 91
+    return ("${majorVersion}.${minorVersion}.${buildNumber}")
+}
+
+war {
+    baseName = "ESKServer"
+    version =  getVersionName()
+}
+
+//noinspection GroovyAssignabilityCheck
+jar {
+    baseName = "ESKServer"
+    version = getVersionName()
+}
+
+
+configurations {
+    compile.exclude module: "spring-boot-starter-tomcat"
+}
+
+//noinspection GroovyAssignabilityCheck
+dependencies {
+
+    runtime files("lib/sqljdbc4.jar")
+    runtime fileTree(dir: "lib", include: "*.jar")
+
+    compile "org.springframework.boot:spring-boot-starter-web:$project.ext.versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-data-jpa:$project.ext.versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-actuator:$project.ext.versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-jetty:$project.ext.versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-security:$project.ext.versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-logging:$project.ext.versionSpringboot",
+            "org.springframework.boot:spring-boot-starter-jersey:$project.ext.versionSpringboot",
+           // "org.springframework.boot:spring-boot-starter-social-facebook:$project.ext.versionSpringboot",
+            "org.springframework:spring-web:$project.ext.versionSpring",
+            "org.springframework:spring-webmvc:$project.ext.versionSpring",
+            "javax.validation:validation-api"
+
+
+  //compile('org.springframework.social:spring-social-security:1.1.0.RELEASE')
+
+    compile group: "javax.el", name: "el-api", version: "1.0"
+    compile "org.glassfish.web:el-impl:2.2"
+    compile "org.eclipse.jetty:jetty-jsp:9.2.10.v20150310"
+    compile "javax.servlet:javax.servlet-api:3.0.1"
+
+    compile "org.hibernate:hibernate-entitymanager:4.3.10.Final"
+    compile "org.hibernate:hibernate-core:4.3.10.Final"
+    compile "org.hibernate:hibernate-validator:4.3.10.Final"
+
+    compile "org.apache.commons:commons-lang3:3.4"
+    compile 'io.jsonwebtoken:jjwt:0.5.1'
+    
+    // Utilities
+    compile("com.google.guava:guava:18.0")
+
+    testCompile "junit:junit:4.12",
+           "org.assertj:assertj-core:1.7.0",
+           "org.springframework.boot:spring-boot-starter-test:$project.ext.versionSpringboot"
+
+}
+
+
+bootRepackage {
+    mainClass = "com.rsi.esk.ESKServerApplication"
+}
+
+applicationDefaultJvmArgs = [
+        "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5006"
+]
