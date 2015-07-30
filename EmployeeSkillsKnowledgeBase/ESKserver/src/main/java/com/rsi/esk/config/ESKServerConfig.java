@@ -83,17 +83,8 @@ public class ESKServerConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/js/");
-		registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/css/");
-		registry.addResourceHandler("/html/**").addResourceLocations("/WEB-INF/html");
-
-		registry.addResourceHandler("/scss/**").addResourceLocations("/WEB-INF/scss");
-		registry.addResourceHandler("/img/**").addResourceLocations("/WEB-INF/img");
-		registry.addResourceHandler("/fonts/**").addResourceLocations("/WEB-INF/fonts");
-		if (!registry.hasMappingForPattern("/webjars/**")) {
-			registry.addResourceHandler("/webjars/**").addResourceLocations(
-					"classpath:/META-INF/resources/webjars/");
-		}
+		//registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/js/");
+		
 	}
 
 	@Bean
@@ -108,8 +99,5 @@ public class ESKServerConfig extends WebMvcConfigurerAdapter {
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
       registry.addViewController("/").setViewName("index");
-      registry.addViewController("/index").setViewName("index");
-      registry.addViewController("/login").setViewName("login");
-      registry.addViewController("/home").setViewName("home");
   }
 }
