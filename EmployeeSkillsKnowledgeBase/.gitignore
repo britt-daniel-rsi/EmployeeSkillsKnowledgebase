@@ -9,5 +9,10 @@ bower_components
 /jsp
 /ESKserver/build
 /ESKserver/bin
+/ESKserver/.settings
+/ESKserver/.classpath
 /ESKclient/build
 /ESKclient/bin
+/ESKclient/.settings
+/ESKclient/.classpath
+/ESKclient/all.sourcemap.json
