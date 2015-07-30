@@ -1,10 +1,13 @@
+/bin
 /build
 /node_modules
 bower_components
+/.settings
 /target
 /.gradle
 /.springbeans
 /.idea
+.project
 /lib
 /jsp
 /ESKserver/build
@@ -16,3 +19,4 @@ bower_components
 /ESKclient/.settings
 /ESKclient/.classpath
 /ESKclient/all.sourcemap.json
+
