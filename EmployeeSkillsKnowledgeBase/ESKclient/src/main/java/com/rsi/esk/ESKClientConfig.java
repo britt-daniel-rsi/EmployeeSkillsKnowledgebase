@@ -82,11 +82,11 @@ public class ESKClientConfig extends WebMvcConfigurerAdapter {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
 		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
-		registry.addResourceHandler("/html/**").addResourceLocations("/html");
+		registry.addResourceHandler("/html/**").addResourceLocations("/html/");
 
-		registry.addResourceHandler("/scss/**").addResourceLocations("/scss");
-		registry.addResourceHandler("/img/**").addResourceLocations("/img");
-		registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts");
+		registry.addResourceHandler("/scss/**").addResourceLocations("/scss/");
+		registry.addResourceHandler("/img/**").addResourceLocations("/img/");
+		registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
 		if (!registry.hasMappingForPattern("/webjars/**")) {
 			registry.addResourceHandler("/webjars/**").addResourceLocations(
 					"classpath:/META-INF/resources/webjars/");
