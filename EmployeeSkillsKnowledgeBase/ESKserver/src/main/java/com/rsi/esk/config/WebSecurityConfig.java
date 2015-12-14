@@ -49,26 +49,27 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-		.csrf().disable()
+		.csrf().disable();
 //		.formLogin().loginPage("/#/login").permitAll()
 //		.and()
-        .httpBasic()
-            .authenticationEntryPoint(unauthorisedEntryPoint)
-            .and()
-        .authorizeRequests()
-            .antMatchers("/**","**/*.html", "**/*.js", "**/*.css", "/webjars/**", "/index", "/home", "/login", "/", "/ESK/jersey/user/save","/user").permitAll()
-            .and()
-        .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-        .logout()
-            .logoutUrl(LOGOUT_URL)
-            .logoutSuccessUrl(LOGOUT_SUCCESS_URL)
-            .invalidateHttpSession(true)
-            .deleteCookies("JSESSIONID")
-            .and()
-        .addFilterBefore(statelessAuthenticationFilter, BasicAuthenticationFilter.class)
-        .addFilterAfter(statelessTokenAuthenticationFilter, BasicAuthenticationFilter.class);
+        //.httpBasic()
+         //   .authenticationEntryPoint(unauthorisedEntryPoint)
+         //   .and()
+        //.authorizeRequests()
+            //.antMatchers("/**","**/*.html", "**/*.js", "**/*.css", "/webjars/**", "/index", "/home", "/login", "/", "/ESK/jersey/user/save","/user")
+        //.permitAll();
+//            .and()
+//        .sessionManagement()
+//            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//            .and()
+//        .logout()
+//            .logoutUrl(LOGOUT_URL)
+//            .logoutSuccessUrl(LOGOUT_SUCCESS_URL)
+//            .invalidateHttpSession(true)
+//            .deleteCookies("JSESSIONID")
+//            .and()
+//        .addFilterBefore(statelessAuthenticationFilter, BasicAuthenticationFilter.class)
+//        .addFilterAfter(statelessTokenAuthenticationFilter, BasicAuthenticationFilter.class);
 	}
 
 
